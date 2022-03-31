@@ -16,7 +16,7 @@ This course is mainly for the third year foreign undergraduate students in East 
 - Tools: [Jupyter Notebook](https://jupyter.org/), [Anaconda](https://www.anaconda.com/), [Numpy](https://numpy.org/), [Pandas](https://pandas.pydata.org/),[matplotlib](https://matplotlib.org/), [SkLearn for ML](https://scikit-learn.org/stable/), [Keras](https://keras.io/) and [Pytorch for deep learing](https://pytorch.org/)
 - Install them [Anaconda with python](https://www.youtube.com/watch?v=EI_xyppkWCA),[Install Lib of python](https://www.youtube.com/watch?v=EI_xyppkWCA)
 
-<img src="C:\Users\msipc\Introduction2Engineering\figures\python_ecosystem.png" style="zoom:75%;" />
+![image](.\figures\python_ecosystem.png)
 
 ## Usage
 
@@ -31,7 +31,7 @@ From any chapter, you can launch a live session in the cloud by pressing the <i 
 
 ## Author
 
-<div align=left><img src="C:\Users\msipc\Introduction2Engineering\figures\bio.jpg"  style="zoom:33%;" /></div>
+![image](.\figures\bio.PNG)
 
 **[Dr. Fangli Ying](https://fangli-ying.github.io/)**(应方立) is currently a lecturer at Department of Computer Science in East China University of Science and Technology (ECUST). He is a supervisor for Master program and co-supervisor for Ph.D. program in Computer Science and he is supervising 3 international Ph.D. students. He is also a visiting professor in the International College of Digital Innovation at Chiang Mai University (CMU) in Thailand. He is working on the development of artificial intelligence industrial applications for solving practical problems in multidisciplinary research and he is cooperating with State Key Laboratory of Bioreactor Engineering, Department of Finance and National Engineering Laboratory for Big Data Distribution and Exchange Technologies in ECUST. He has authored many articles in  journals and conferences in the fields of Artificial Intelligence and Computer Science. His current research interests include Computer Vision, Reinforcement Learning for Portfolio Management, Bioinformatics with Synthetic Biology.
 
