@@ -1,0 +1,981 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau 二、数据前处理、折线图、饼图 &#8212; 商业数据挖掘</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tableau 三. 基本表、树状图、气泡图、词云" href="chp3.html" />
+    <link rel="prev" title="Tableau 一、简介、条形图和直方图" href="chp1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">商业数据挖掘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Business Data Science
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp1.html">
+   Tableau 一、简介、条形图和直方图
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tableau 二、数据前处理、折线图、饼图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp3.html">
+   Tableau 三. 基本表、树状图、气泡图、词云
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp4.html">
+   Tableau 四、标靶图、甘特图、瀑布图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp5.html">
+   Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp6.html">
+   Tableau 六、填充地图、多维地图、混合地图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp7.html">
+   Tableau 七、多边形地图和背景图地图：设置地理信息（自定义地图码导入、设置地图源）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp8.html">
+   Tableau 八、数据分层、数据分组、数据集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp9.html">
+   Tableau 九、计算字段与表计算：粒度、聚合与比率
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp10.html">
+   Tableau 十、人口金字塔、漏斗图、箱线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp11.html">
+   Tableau 十一、范围-线图、倾斜图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp12.html">
+   Tableau 十二、网络图与弧线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp13.html">
+   Tableau 十三、雷达图与凹凸图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp14.html">
+   Tableau 十四、回归分析与时间序列分析
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chp2.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.数据前处理
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   拆分“电影名”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   拆分“累计票房”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   拆分“导演”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   拆分“主演”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   自定义拆分“上映时间”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   修改“上映日期”的数据类型
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   2.绘制折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   2.1创建电影数量变化折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   作折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#null">
+   删除Null值
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   修改轴标题
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   为折线上的点添加注释
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   2.2创建电影票房变化折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   作折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   修改图表里的数字格式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   2.3 2015年的电影数量与票房比较分析
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   筛选2015年
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   做折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id19">
+   分析
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id20">
+   双轴图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id21">
+   3.饼图和环形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   3.1 酒店价格等级饼图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id23">
+   导入文件
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   做饼图的方法
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   变成百分比
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id26">
+   修改百分比为整数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id27">
+   图像导出
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id28">
+   说明
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id29">
+   3.2 酒店价格等级环形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id30">
+   做饼图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id31">
+   做环形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id32">
+   注意
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id33">
+   加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id34">
+   添加百分比
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id35">
+   添加内环标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id36">
+   如何用【智能显示】做环形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id37">
+   作业：
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tableau 二、数据前处理、折线图、饼图</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.数据前处理
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   拆分“电影名”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   拆分“累计票房”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   拆分“导演”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   拆分“主演”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   自定义拆分“上映时间”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   修改“上映日期”的数据类型
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   2.绘制折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   2.1创建电影数量变化折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   作折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#null">
+   删除Null值
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   修改轴标题
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   为折线上的点添加注释
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   2.2创建电影票房变化折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   作折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   修改图表里的数字格式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   2.3 2015年的电影数量与票房比较分析
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   筛选2015年
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   做折线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id19">
+   分析
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id20">
+   双轴图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id21">
+   3.饼图和环形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   3.1 酒店价格等级饼图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id23">
+   导入文件
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   做饼图的方法
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   变成百分比
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id26">
+   修改百分比为整数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id27">
+   图像导出
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id28">
+   说明
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id29">
+   3.2 酒店价格等级环形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id30">
+   做饼图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id31">
+   做环形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id32">
+   注意
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id33">
+   加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id34">
+   添加百分比
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id35">
+   添加内环标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id36">
+   如何用【智能显示】做环形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id37">
+   作业：
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tableau">
+<h1>Tableau 二、数据前处理、折线图、饼图<a class="headerlink" href="#tableau" title="Permalink to this headline">¶</a></h1>
+<p>Created: April 3, 2022 7:52 AM
+Tags: Dr. Fangli Ying</p>
+<div class="section" id="id1">
+<h2>1.数据前处理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>导入“中国电影网电影_data.xlsx”</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611160904320.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611160904320.png" /></p>
+</div>
+<div class="section" id="id2">
+<h2>拆分“电影名”<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>右击“电影名”（选中该列），拆分，则会自动拆分。</p>
+<p>自动拆分针对数据有一定格式的。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061116102173.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061116102173.png" /></p>
+<p>删除“电影名 - 拆分”、“电影名 - 拆分”，将“电影名 - 拆分 1”右击【重命名】为“电影名称”，将“电影名”列隐藏。</p>
+</div>
+<div class="section" id="id3">
+<h2>拆分“累计票房”<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>右击“累计票房”，拆分，右击“累计票房 - 拆分 1”重命名为“累计票房(万)”，右击“累计票房”隐藏。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611161741467.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611161741467.png" /></p>
+</div>
+<div class="section" id="id4">
+<h2>拆分“导演”<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>右击“导演”，拆分，删除“导演 - 拆分 2”和“导演 - 拆分 3”，右击“导演 - 拆分 1”重命名为“导演姓名”，右击“导演”隐藏。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611162059411.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611162059411.png" /></p>
+<p>注意，原始数据不能删除，只能隐藏。</p>
+</div>
+<div class="section" id="id5">
+<h2>拆分“主演”<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>右击“主演”，拆分，删除“主演 - 拆分 2”和“主演 - 拆分 3”，右击“主演 - 拆分 1”重命名为“主演姓名”，右击“主演”隐藏。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611162411182.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611162411182.png" /></p>
+<p>注意，如果主演有多个，而又要保留多个主演，则最好使用pandas或其他方法删除英文，<a class="reference external" href="https://so.csdn.net/so/search?q=tableau&amp;spm=1001.2101.3001.7020">tableau</a>的主要功能是可视化。</p>
+<p>拆分后的字段重命名<strong>不要</strong>和原始数据的字段名<strong>一样</strong>，否则会冲突。</p>
+</div>
+<div class="section" id="id6">
+<h2>自定义拆分“上映时间”<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>右击“上映时间”，拆分，会拆成年，月，日各1列。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163030671.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163030671.png" /></p>
+<p>如果要保留年月日同一列，右击“上映时间”，【自定义拆分】，分隔符为（，拆分选择第一个。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611162901258.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611162901258.png" /></p>
+<p>右击“上映时间 - 拆分 1”，重命名为“上映日期”，右击“上映时间”隐藏。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163334307.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163334307.png" /></p>
+</div>
+<div class="section" id="id7">
+<h2>修改“上映日期”的数据类型<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>点击“上映日期”上方的Abc，可以看到数据类型为【字符串】，点击【日期】，修改为日期类型。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163459172.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163459172.png" /></p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163637616.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163637616.png" /></p>
+</div>
+<div class="section" id="id8">
+<h2>2.绘制折线图<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id9">
+<h2>2.1创建电影数量变化折线图<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id10">
+<h2>作折线图<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>在【工作表】里，将【维度】下的【上映日期】放到【列】，将【度量】下【记录数】放到【行】，点击【整个视图】</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163955769.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611163955769.png" /></p>
+</div>
+<div class="section" id="null">
+<h2>删除Null值<a class="headerlink" href="#null" title="Permalink to this headline">¶</a></h2>
+<p>折线图有null值，点击null上方的点，【排除】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061116413522.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061116413522.png" /></p>
+<p>修改【工作表1】名字为”电影数量变化折线图”</p>
+<p>将将【度量】下【记录数】拖到【标记】下的【标签】处，添加标签。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611164553391.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611164553391.png" /></p>
+</div>
+<div class="section" id="id11">
+<h2>修改轴标题<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>双击轴标题“记录数”，在【轴标题】下修改“记录数” ，为“电影数量”，回车。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611165155817.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611165155817.png" /></p>
+</div>
+<div class="section" id="id12">
+<h2>为折线上的点添加注释<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>选择折线上的点，右击【添加注释】——【标记】。将注释拖放到合适位置。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611165416711.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611165416711.png" /></p>
+<p>双击注释，可以修改文字</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611165737411.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611165737411.png" /></p>
+<p>右击注释，【设置格式】，可以修改注释框，去掉注释框里阴影和边界，修改注释线的颜色和箭头等。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611170031827.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611170031827.png" /></p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/202106111702165.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/202106111702165.png" /></p>
+</div>
+<div class="section" id="id13">
+<h2>2.2创建电影票房变化折线图<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id14">
+<h2>作折线图<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>新建工作表2，将【维度】下的【上映日期】放到【列】，【累计票房】放到【行】，本来以为是个折线图，结果出现一个表格。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611170342476.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611170342476.png" /></p>
+<p>原因是“累计票房（万）”应该放在【度量】下，将“累计票房（万）”拖到【度量】下。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611170603769.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611170603769.png" /></p>
+<p>将【行】中的累计票房（万）拖走，将【度量】下的“累计票房（万）”放到【行】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611170840963.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611170840963.png" /></p>
+<p>视图调整为【整个视图】，添加【累计票房（万）】标签。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611171250918.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611171250918.png" /></p>
+</div>
+<div class="section" id="id15">
+<h2>修改图表里的数字格式<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>发现图表里的数字太长，右击【标记】下的【累计票房（万）】，选择【设置格式】。</p>
+<p>在【区】——【默认值】——【数字】——【数字（自定义）】，修改【小数位数】为0，【显示单位】为k。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611171903303.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611171903303.png" /></p>
+<p>删除图表里的Null值。</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-WH9gaBXy-1623507085736)(C:\Users\23645\AppData\Roaming\Typora\typora-user-images\image-20210611172107312.png)]</p>
+<p>修改【工作表2】名字为【电影票房变化折线图】</p>
+</div>
+<div class="section" id="id16">
+<h2>2.3 2015年的电影数量与票房比较分析<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>用一个双轴图将电影数量和票房相比较。</p>
+<p>新建工作表3， 重命名为“2015年的电影数量与票房变化折线图”</p>
+</div>
+<div class="section" id="id17">
+<h2>筛选2015年<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<p>将【维度】下【上映日期】拖到【筛选器】，双击【年】</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/202106111727099.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/202106111727099.png" /></p>
+<p>选择2015，确定。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061117282257.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061117282257.png" /></p>
+<p>【筛选器】下多了一个字段。将【维度】下的【上映日期】拖到【列】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611172903557.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611172903557.png" /></p>
+</div>
+<div class="section" id="id18">
+<h2>做折线图<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<p>将【度量】下的【记录数】拖到行中，点击【列】里的【上映日期】的下拉三角，修改为“月”</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061117323339.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061117323339.png" /></p>
+<p>将【度量】下的【累计票房（万）】拖到【行】。修改视图为【整个视图】。将轴标题里的【记录数】修改为【电影数量】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611173628676.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611173628676.png" /></p>
+</div>
+<div class="section" id="id19">
+<h2>分析<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<p>1月份电影数量多，但累计票房少，说明烂电影多。</p>
+<p>7月份和12月份电影数量多，累计票房也高。</p>
+</div>
+<div class="section" id="id20">
+<h2>双轴图<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<p>复制表格“2015年的电影数量与票房变化折线图”，右击其中一个轴标题，右击【双轴】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611174139611.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611174139611.png" /></p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611174225337.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611174225337.png" /></p>
+<p>但其实，将票房和电影数量做双轴图不怎么合适，最后是中国票房VS外国票房，中国电影数量VS外国电影数量，这种维度比较比较合适。</p>
+</div>
+<div class="section" id="id21">
+<h2>3.饼图和环形图<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>环形图是饼图的升级版。</p>
+</div>
+<div class="section" id="id22">
+<h2>3.1 酒店价格等级饼图<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id23">
+<h2>导入文件<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<p>点击【数据源】，点击上方的彩色星图【显示开始页面】，从【连接】——【到文件】——【Microsoft Excel】，选择“酒店数据.xlsx”导入。</p>
+<p>注意：不是直接【数据源】——【添加】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611174800750.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611174800750.png" /></p>
+<p>如果是【数据源】——【添加】，则【数据源】的【连接】下会显示两个表格数据，这是需要做表格连接时才会用到的。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611175223857.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611175223857.png" /></p>
+</div>
+<div class="section" id="id24">
+<h2>做饼图的方法<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<p>新建工作表4。</p>
+<p>饼图有两种方法</p>
+<ul class="simple">
+<li><p>【标记】下的【自动】里，选择饼图</p></li>
+<li><p>【智能显示】选择饼图。</p></li>
+</ul>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611175446306.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611175446306.png" /></p>
+<p>将【价格等级】拖到【列】，将【记录数】拖到【行】，出现一个条形图。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611175657487.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611175657487.png" /></p>
+<p>点击【智能显示】里的饼图，视图选择【整个视图】。修改【工作表4】为“酒店价格等级饼图”。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611175838660.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611175838660.png" /></p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611180111796.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611180111796.png" /></p>
+<p>将【价格等级】和【记录数】拖到标签，为饼图添加标签。</p>
+</div>
+<div class="section" id="id25">
+<h2>变成百分比<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<p>右击【标记】下的【记录数】——【快速表计算】——【合计百分比】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611180351522.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611180351522.png" /></p>
+</div>
+<div class="section" id="id26">
+<h2>修改百分比为整数<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<p>右击【标记】下的【记录数】——【设置格式】。</p>
+<p>【区】——【默认值】——【数字】——【百分比】，修改【小数位数】为0。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611181625791.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210611181625791.png" /></p>
+</div>
+<div class="section" id="id27">
+<h2>图像导出<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h2>
+<p>【工作表】——【导出】——【图像】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612202938605.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612202938605.png" /></p>
+<p>【导出图像】中，【标题】就是工作表标题；【查看】是图表区域，必选；【颜色图例】和【大小图例】如图所示，图例可以选不同的位置和方向。点击【保存】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612203506481.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612203506481.png" /></p>
+<p>图像如下</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612203804484.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612203804484.png" /></p>
+</div>
+<div class="section" id="id28">
+<h2>说明<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h2>
+<p>右击灰色区域——【说明】</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612203921369.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612203921369.png" /></p>
+<p>双击图表下面的区域，打开【编辑标题】栏，进行文字编辑。【说明】里一般放入自己的分析。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612204055784.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612204055784.png" /></p>
+</div>
+<div class="section" id="id29">
+<h2>3.2 酒店价格等级环形图<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
+<p>环形图是饼图的变种，做环形图时尽量不要用【智能显示】（有坑），要用【标记】下的【饼图】。</p>
+<p>Tableau其实并不能直接生成环形图，是做两个饼图，一大一小，小的饼图变成白色，就成了环形图。</p>
+</div>
+<div class="section" id="id30">
+<h2>做饼图<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h2>
+<p>【标记】下选择饼图，【价格等级】拖到【颜色】上，生成饼图。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612204655542.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612204655542.png" /></p>
+<p>选择【整个视图】。【记录数】拖到【标记】下【角度】，因为饼图每块的大小代表酒店数量。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612204858304.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612204858304.png" /></p>
+</div>
+<div class="section" id="id31">
+<h2>做环形图<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
+<p>将【记录数】拖到【行】中，按ctrl键复制一下。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612205126378.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612205126378.png" /></p>
+<p>两个【记录数】选择【度量】——【最小值】。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612205425513.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612205425513.png" /></p>
+<p>选择上面的饼图，点击【标记】下的【大小】，把饼图变大一点。</p>
+<p>右击【记录数】——【双轴】，两个饼图合在了一起。</p>
+<p>拖走【标记】下的【价格等级】颜色，则小饼图变成灰色。</p>
+<p>选择小饼图，点击【标记】下的【颜色】，选择白色，点击【大小】，稍微调大一些。</p>
+</div>
+<div class="section" id="id32">
+<h2>注意<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<p>记录数可以选最小值或最大值，因为记录数的最小值和最大值为1，能够保持同轴。</p>
+<p>如果【行】中的【记录数】改为平均值，则两者不同轴。</p>
+<p>右击右边的轴——【同步轴】，则可以形成环形图，但环形图不在中间，比较丑。</p>
+</div>
+<div class="section" id="id33">
+<h2>加标签<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h2>
+<p>【维度】下的【价格标签】放到【标记】下【最小(记录数)】的【标签】上。也就是让外环形成标签。</p>
+<p>同样，【度量】的【记录数】放到【标记】下【最小(记录数)】的【标签】上。也就是让外环形成标签。</p>
+</div>
+<div class="section" id="id34">
+<h2>添加百分比<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h2>
+<p>右击【标记】下【最小(记录数)】的【总和（记录数）】，【快速表计算】——【合计百分比】。</p>
+<p>右击【标记】下【最小(记录数)】的【总和（记录数）】——【设置格式】。</p>
+<p>【区】——【默认值】——【数字】——【百分比】，修改【小数位数】为0。</p>
+<p>修改工作表名称为【酒店价格等级环形图】</p>
+</div>
+<div class="section" id="id35">
+<h2>添加内环标签<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h2>
+<p>将【度量】下【记录数】拖到【标记】下内环的标签上，这样内环显示总数，这是环形图的标准做法。</p>
+</div>
+<div class="section" id="id36">
+<h2>如何用【智能显示】做环形图<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h2>
+<p>将3.1的酒店价格等级饼图（用【智能显示】做的饼图）复制一张新图，将【度量】下的【记录数】拖到行里，ctrl复制记录数，右击【行】里两个【记录数】——【度量】——【最小值】，右击【行】里的【记录数】——【双轴】。</p>
+<p>你会发现【标记】最下边的【最小(记录数)】也即内环，多了大小和标签标记的【总和(记录数)】，带颜色和标签的【价格等级】。</p>
+<p>中间【最小(记录数)】也即外环，也有带有大小标记的【总和(记录数)】，如果改变大小，则会同步大小。</p>
+<p>方法：去掉内环里的大小和标签标记的【总和(记录数)】，带颜色和标签的【价格等级】，只保留角度标记的【总和(记录数)】</p>
+<p>去掉外环，带有大小标记的【总和(记录数)】，此时可以改变大小。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061222004895.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061222004895.png" /></p>
+<p>调整内环颜色和大小为合适位置。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612220200835.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612220200835.png" /></p>
+<p>不过，环形图一般都会保留内环里的【总和(记录数)】标签，右击【清除表计算】，这样就会变成一个数字。</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612220445878.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612220445878.png" /></p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612221234270.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210612221234270.png" /></p>
+</div>
+<div class="section" id="id37">
+<h2>作业：<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h2>
+<p>使用“豆瓣电影数据.xlsx”文件，完成以下作业；</p>
+<p>1、制作电影数量折线图（以此命名），横轴为时间，排除2016年的数据，显示标签，标记出最大值信息，将标记的线条颜色设为黑色，线末端使用箭头，导出图像，并对折线图进行分析；</p>
+<p>2、绘制 剧情、喜剧、动作 三种类型电影环形图（以此命名），要求空心内部显示三种电影的总记录数（提示：27461），显示电影类型标签及总额百分比，导出图像，不显示说明，选择图例在下；分析环形图数据；</p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210614162337560.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/20210614162337560.png" /></p>
+<p><img alt="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061416234386.png" src="Tableau%20%E4%BA%8C%E3%80%81%204eec0/2021061416234386.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chp1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tableau 一、简介、条形图和直方图</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chp3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tableau 三. 基本表、树状图、气泡图、词云</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2022.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

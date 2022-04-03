@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau 十二、网络图与弧线图 &#8212; 商业数据挖掘</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tableau 十三、雷达图与凹凸图" href="chp13.html" />
+    <link rel="prev" title="Tableau 十一、范围-线图、倾斜图" href="chp11.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">商业数据挖掘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Business Data Science
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp1.html">
+   Tableau 一、简介、条形图和直方图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp2.html">
+   Tableau 二、数据前处理、折线图、饼图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp3.html">
+   Tableau 三. 基本表、树状图、气泡图、词云
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp4.html">
+   Tableau 四、标靶图、甘特图、瀑布图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp5.html">
+   Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp6.html">
+   Tableau 六、填充地图、多维地图、混合地图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp7.html">
+   Tableau 七、多边形地图和背景图地图：设置地理信息（自定义地图码导入、设置地图源）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp8.html">
+   Tableau 八、数据分层、数据分组、数据集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp9.html">
+   Tableau 九、计算字段与表计算：粒度、聚合与比率
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp10.html">
+   Tableau 十、人口金字塔、漏斗图、箱线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp11.html">
+   Tableau 十一、范围-线图、倾斜图
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tableau 十二、网络图与弧线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp13.html">
+   Tableau 十三、雷达图与凹凸图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp14.html">
+   Tableau 十四、回归分析与时间序列分析
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chp12.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.1简单的网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   创建网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   添加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   1.2创建各省份关系的网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   创建网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   添加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   修改地图层
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   将地图网络关系图改为普通网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   复原为地图网格关系图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   1.3线路方式创建网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   创建网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   添加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   修改线路颜色
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   总结
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   2.弧线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   2.1创建表格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   创建条形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id19">
+   创建表格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id20">
+   2.2创建弧线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id21">
+   圆坐标公式说明
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   创建计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id23">
+   2.3调整弧线图参数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   修改尺寸
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   调整方向
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id26">
+   添加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id27">
+   总结
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tableau 十二、网络图与弧线图</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.1简单的网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   创建网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   添加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   1.2创建各省份关系的网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   创建网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   添加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   修改地图层
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   将地图网络关系图改为普通网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   复原为地图网格关系图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   1.3线路方式创建网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   创建网络图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   添加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   修改线路颜色
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   总结
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   2.弧线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   2.1创建表格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   创建条形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id19">
+   创建表格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id20">
+   2.2创建弧线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id21">
+   圆坐标公式说明
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   创建计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id23">
+   2.3调整弧线图参数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id24">
+   修改尺寸
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   调整方向
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id26">
+   添加标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id27">
+   总结
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tableau">
+<h1>Tableau 十二、网络图与弧线图<a class="headerlink" href="#tableau" title="Permalink to this headline">¶</a></h1>
+<p>Created: April 3, 2022 7:53 AM
+Tags: Dr. Fangli Ying</p>
+<div class="section" id="id1">
+<h2>1.网络图<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>1.1简单的网络图<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>打开“五点位置关系信息.xlsx”</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701085337271.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701085337271.png" /></p>
+</div>
+<div class="section" id="id3">
+<h2>创建网络图<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>在【工作表1】，将【X】拖到【列】，将【Y】拖到【行】</p>
+<p>【分析】——取消勾选【聚合度量】</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701085723200.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701085723200.png" /></p>
+<p>【标记】下选择【线】，将【关联】拖到【路径】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701085950222.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701085950222.png" /></p>
+</div>
+<div class="section" id="id4">
+<h2>添加标签<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>按住ctrl，拖动【行】里【Y】进行复制。</p>
+<p>【标记】下【总和(Y)(2)】的【自动】里选择【形状】，【形状】里选择实心圆圈。</p>
+<p>将【点】拖到【总和(Y)(2)】的【标签】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701090343714.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701090343714.png" /></p>
+<p>点击【总和(Y)(2)】的【标签】，勾选【允许标签覆盖其他标记】</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701090615406.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701090615406.png" /></p>
+<p>右击图标里下方图表的纵轴——【双轴】</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701090845678.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701090845678.png" /></p>
+<p>显示如下</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701091005544.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701091005544.png" /></p>
+<p>图表中挪动C点位置，发现有两个C</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701091345615.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701091345615.png" /></p>
+<p>右击图表里的C点——【标记标签】——【从不显示】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701091440269.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701091440269.png" /></p>
+<p>重命名【工作表1】为【五点网络图】，最终结果如下</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701091923238.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701091923238.png" /></p>
+</div>
+<div class="section" id="id5">
+<h2>1.2创建各省份关系的网络图<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>打开“province_relationship.xlsx”，右击隐藏【F1】字段。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701092108777.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701092108777.png" /></p>
+</div>
+<div class="section" id="id6">
+<h2>创建网络图<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>新建【工作表2】</p>
+<p>双击【Latitude】，再双击【Longitude】，打开了地图。</p>
+<p>【分析】——取消勾选【聚合度量】。</p>
+<p>按住ctrl，滚动滑轮可以缩放地图大小。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701092358608.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701092358608.png" /></p>
+<p>【标记】下选择【线】，将【relationship】拖到【路径】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701092828778.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701092828778.png" /></p>
+</div>
+<div class="section" id="id7">
+<h2>添加标签<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>按住ctrl，拖动【行】里【Latitude】进行复制。</p>
+<p>【标记】下【平均值(Latitude)(2)】的【自动】里选择【形状】，【形状】——【更多形状】里选择自己的自定义形状。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/2021070109384292.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/2021070109384292.png" /></p>
+<p>将【province】拖到【平均值(Latitude)(2)】的【标签】上</p>
+<p>点击【平均值(Latitude)(2)】的【标签】，勾选【允许标签覆盖其他标记】</p>
+<p>将【province】拖到【平均值(Latitude)(2)】的【颜色】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701094328809.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701094328809.png" /></p>
+<p>点击【Latitude】里下拉框【双轴】</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701094559959.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701094559959.png" /></p>
+<p>【平均值(Latitude)(2)】的【大小】，调整自定义形状的大小</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701094717305.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701094717305.png" /></p>
+</div>
+<div class="section" id="id8">
+<h2>修改地图层<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>点击【地图】——【地图层】。</p>
+<p>【样式】选择【普通】，【冲蚀】选择【15%】，取消【地图层】中【国家/地区名称】勾选。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701095107932.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701095107932.png" /></p>
+</div>
+<div class="section" id="id9">
+<h2>将地图网络关系图改为普通网络图<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>点击【Latitude】——【地理角色】——【无】。</p>
+<p>点击【Longitude】——【地理角色】——【无】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701095550907.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701095550907.png" /></p>
+</div>
+<div class="section" id="id10">
+<h2>复原为地图网格关系图<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>点击【Latitude】——【地理角色】——【纬度】。</p>
+<p>点击【Longitude】——【地理角色】——【经度】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701095834681.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701095834681.png" /></p>
+<p>重命名【工作表2】为【省份关系网络图】。</p>
+</div>
+<div class="section" id="id11">
+<h2>1.3线路方式创建网络图<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>点击此处可以返回数据源。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701101020371.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701101020371.png" /></p>
+<p>导入“线路数据.xlsx”</p>
+<p>可以看出【线路】的数据方式跟上面不一样，是通过<code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code>形式连接两点。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/2021070110112590.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/2021070110112590.png" /></p>
+</div>
+<div class="section" id="id12">
+<h2>创建网络图<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>新建【工作表3】</p>
+<p>将【X】拖到【列】，将【Y】拖到【行】</p>
+<p>【分析】——取消勾选【聚合度量】</p>
+<p>将【线路】直接拖到【标记】下。（这个是和前面不一样的地方，要注意）</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701101447847.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701101447847.png" /></p>
+</div>
+<div class="section" id="id13">
+<h2>添加标签<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>按住ctrl，拖动【行】里【Y】进行复制。</p>
+<p>【标记】下【总和(Y)(2)】的【自动】里选择【形状】，【形状】里选择实心圆圈。</p>
+<p>点击【行】里的最右边的【Y】下拉框——【双轴】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701101849282.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701101849282.png" /></p>
+</div>
+<div class="section" id="id14">
+<h2>修改线路颜色<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>将【使用率】放到【标记】下【总和(Y)】的【颜色】上。</p>
+<p>点击【颜色】——【编辑颜色】，选择【红色-蓝色发散】，勾选【倒序】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701102414388.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701102414388.png" /></p>
+<p>将【站点】拖到【总和(Y)(2)】下的【颜色】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701102709658.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701102709658.png" /></p>
+<p>将【站点】拖到【总和(Y)(2)】下的【标签】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701103023685.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701103023685.png" /></p>
+<p>重命名【工作表3】为【线路关系图】。</p>
+</div>
+<div class="section" id="id15">
+<h2>总结<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>每个网络图都是由两部分组成：点、线。</p>
+<p>网络图是通过双轴合成的</p>
+<p>点与点的表达形式有两种：通过数字；通过<code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code></p>
+</div>
+<div class="section" id="id16">
+<h2>2.弧线图<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>弧线图是通过弧度长度表示量的大小。</p>
+</div>
+<div class="section" id="id17">
+<h2>2.1创建表格<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id18">
+<h2>创建条形图<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<p>导入数据“酒店数据.xlsx”</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701103823133.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701103823133.png" /></p>
+<p>新建【工作表4】</p>
+<p>将【地区】拖到【列】，将【记录数】拖到【行】。</p>
+<p>点击【降序】。</p>
+<p>点击图标里的【其他】——【排除】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701104356670.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701104356670.png" /></p>
+<p>框选或者按ctrl，选择前六个——【只保留】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701104649323.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701104649323.png" /></p>
+</div>
+<div class="section" id="id19">
+<h2>创建表格<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<p>打开Excel，命名为“酒店角度.xlsx”</p>
+<p>表格里需要创建角度、地区、分类、酒店数量。</p>
+<p>角度通过百分占比求出。</p>
+<p>地区是弧度名称。</p>
+<p>分类在环里的第几环。</p>
+<p>【离岛】数量最少，在弧线的最里面。</p>
+<p>右击【总和(记录数)】——【快速表计算】——【合计百分比】。</p>
+<p>右击【总和(记录数)】——【设置格式】，【数字】——【百分比】，小数位数为0。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701105623239.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701105623239.png" /></p>
+<p>从中看出【离岛】的百分比是4%，则在excel表格里如下，从0到3共4个数字。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701110026969.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701110026969.png" /></p>
+<p>【东区】是5%，则从0-4共5个数字。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701110227367.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701110227367.png" /></p>
+<p>其他类推。</p>
+<p>【分类】是按照由小到大的排列的。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701111012418.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701111012418.png" /></p>
+<p>将【记录数】拖到【标签】上，显示出酒店数量。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701111115337.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701111115337.png" /></p>
+<p>在excel表格里填入数据。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701111351973.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701111351973.png" /></p>
+</div>
+<div class="section" id="id20">
+<h2>2.2创建弧线图<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<p>导入““酒店角度.xlsx””</p>
+<p>新建【工作表5】</p>
+</div>
+<div class="section" id="id21">
+<h2>圆坐标公式说明<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701143730299.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701143730299.png" /></p>
+</div>
+<div class="section" id="id22">
+<h2>创建计算字段<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p>【维度】下空白处右击——【创建计算字段】，字段名为【X坐标】，公式为<code class="docutils literal notranslate"><span class="pre">[分类]*COS([角度]*PI()/180)</span></code></p>
+<p>复制字段【X坐标】，重命名为【Y坐标】，公式为<code class="docutils literal notranslate"><span class="pre">[分类]*SIN([角度]*PI()/180)</span></code></p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701112509614.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701112509614.png" /></p>
+<p>将【X坐标】拖到【列】，将【Y坐标】拖到【行】</p>
+<p>【标记】下【自动】选择【线】，将【地区】拖到【颜色】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701113606408.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701113606408.png" /></p>
+</div>
+<div class="section" id="id23">
+<h2>2.3调整弧线图参数<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id24">
+<h2>修改尺寸<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<p>调整【大小】，弧线变粗。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701113840937.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701113840937.png" /></p>
+<p>调整计算字段【X坐标】的公式为<code class="docutils literal notranslate"><span class="pre">[分类]*COS([角度]*PI()/90)</span></code></p>
+<p>调整计算字段【Y坐标】的公式为<code class="docutils literal notranslate"><span class="pre">[分类]*SIN([角度]*PI()/90)</span></code></p>
+<p>这样，弧线就变长了。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701114135125.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701114135125.png" /></p>
+<p>右击图表里横坐标轴——【编辑轴】，点击【固定】，固定开始为【-7】，固定结束为【7】</p>
+<p>右击图表里纵坐标轴——【编辑轴】，点击【固定】，固定开始为【-7】，固定结束为【7】</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701114436471.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701114436471.png" /></p>
+<p>调整计算字段【X坐标】的公式为<code class="docutils literal notranslate"><span class="pre">[分类]*COS([角度]*PI()/45)</span></code></p>
+<p>调整计算字段【Y坐标】的公式为<code class="docutils literal notranslate"><span class="pre">[分类]*SIN([角度]*PI()/45)</span></code></p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/2021070111480382.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/2021070111480382.png" /></p>
+<p>将【角度】放到【路径】里</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/2021070111485988.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/2021070111485988.png" /></p>
+</div>
+<div class="section" id="id25">
+<h2>调整方向<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<p>调整计算字段【X坐标】的公式为<code class="docutils literal notranslate"><span class="pre">[分类]*COS([角度]*PI()/45+PI()/2)</span></code></p>
+<p>调整计算字段【Y坐标】的公式为<code class="docutils literal notranslate"><span class="pre">[分类]*SIN([角度]*PI()/45+PI()/2)</span></code></p>
+<p>（注意，加上一个PI，是调整180度，加上半个PI，是调整90度）</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701115306608.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701115306608.png" /></p>
+<p>调整计算字段【X坐标】的公式为<code class="docutils literal notranslate"><span class="pre">-[分类]*COS([角度]*PI()/45+PI()/2)</span></code></p>
+<p>（注意加上-，形成了镜像反转）</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701115659846.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701115659846.png" /></p>
+</div>
+<div class="section" id="id26">
+<h2>添加标签<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<p>将【地区】拖到【标签】上。</p>
+<p>点击【标签】——【线末端】，勾选【允许标签覆盖其他标记】和【线首标签】</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701120005202.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701120005202.png" /></p>
+<p>将【酒店数量】拖到【标签】上</p>
+<p>点击【标签】——【文本】旁的…，调整标签位置。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701120229789.png" src="Tableau%20%E5%8D%81%E4%BA%8C%200eaaa/20210701120229789.png" /></p>
+<p>修改【工作表5】为【酒店弧线图】</p>
+</div>
+<div class="section" id="id27">
+<h2>总结<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h2>
+<p>记住X、Y公式</p>
+<p>分类代表第几环</p>
+<p>根据公式调整线条弧度和角度</p>
+<p>要把地区放到【颜色】上，把【角度】放到【路径】上</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chp11.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tableau 十一、范围-线图、倾斜图</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chp13.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tableau 十三、雷达图与凹凸图</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2022.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,678 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau 三. 基本表、树状图、气泡图、词云 &#8212; 商业数据挖掘</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tableau 四、标靶图、甘特图、瀑布图" href="chp4.html" />
+    <link rel="prev" title="Tableau 二、数据前处理、折线图、饼图" href="chp2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">商业数据挖掘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Business Data Science
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp1.html">
+   Tableau 一、简介、条形图和直方图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp2.html">
+   Tableau 二、数据前处理、折线图、饼图
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tableau 三. 基本表、树状图、气泡图、词云
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp4.html">
+   Tableau 四、标靶图、甘特图、瀑布图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp5.html">
+   Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp6.html">
+   Tableau 六、填充地图、多维地图、混合地图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp7.html">
+   Tableau 七、多边形地图和背景图地图：设置地理信息（自定义地图码导入、设置地图源）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp8.html">
+   Tableau 八、数据分层、数据分组、数据集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp9.html">
+   Tableau 九、计算字段与表计算：粒度、聚合与比率
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp10.html">
+   Tableau 十、人口金字塔、漏斗图、箱线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp11.html">
+   Tableau 十一、范围-线图、倾斜图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp12.html">
+   Tableau 十二、网络图与弧线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp13.html">
+   Tableau 十三、雷达图与凹凸图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp14.html">
+   Tableau 十四、回归分析与时间序列分析
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chp3.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.基本表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.1 基本表的使用
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   1.2 凸显表的使用
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   第一种：智能显示
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   第二种：【标记】——【方形】
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   二值凸显表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   2.树形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   2.1 不同酒店类型与酒店数量
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   2.2不同类型电影数量与票房
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   修改标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   删除比较少的数据
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   2.3香港不同地区酒店数量与价格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   3.1不同类型电影数量与票房
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   3.2动作电影动态气泡图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   将时间放入页面
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   3.3词云图制作
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tableau 三. 基本表、树状图、气泡图、词云</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.基本表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.1 基本表的使用
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   1.2 凸显表的使用
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   第一种：智能显示
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   第二种：【标记】——【方形】
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   二值凸显表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   2.树形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   2.1 不同酒店类型与酒店数量
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   2.2不同类型电影数量与票房
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   修改标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   删除比较少的数据
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   2.3香港不同地区酒店数量与价格
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   3.1不同类型电影数量与票房
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   3.2动作电影动态气泡图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   将时间放入页面
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   3.3词云图制作
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tableau">
+<h1>Tableau 三. 基本表、树状图、气泡图、词云<a class="headerlink" href="#tableau" title="Permalink to this headline">¶</a></h1>
+<p>Created: April 3, 2022 7:34 AM
+Tags: Dr. Fangli Ying</p>
+<div class="section" id="id1">
+<h2>1.基本表<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>基本表是表格的<a class="reference external" href="https://so.csdn.net/so/search?q=%E5%8F%AF%E8%A7%86%E5%8C%96&amp;spm=1001.2101.3001.7020">可视化</a>表达方式。</p>
+</div>
+<div class="section" id="id2">
+<h2>1.1 基本表的使用<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>导入“酒店数据.xlsx”，新建工作表为【基本表】</p>
+<p>将【维度】下的【地区】拖入到【行】中，就形成了一个表格。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614163253481.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614163253481.png" /></p>
+<p>将【度量】下的【记录数】拖到【标记】下的【文本】上，表格显示出各地区记录数。一个基本表就做好了。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614163421980.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614163421980.png" /></p>
+</div>
+<div class="section" id="id3">
+<h2>1.2 凸显表的使用<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>凸显表相比基本表，使用的时候更多。</p>
+<p>复制工作表【基本表】，命名为【不同地区酒店数量凸显表】</p>
+<p>有两种方式做凸显表</p>
+</div>
+<div class="section" id="id4">
+<h2>第一种：智能显示<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>点击【智能显示】下的【凸显表】，自动生成。凸显表和基本表的区别在于凸显表有颜色不一的色块。数据大则颜色深。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614163934756.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614163934756.png" /></p>
+<p>可以点击【智能显示】下的【基本表】，恢复过来。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061416413372.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061416413372.png" /></p>
+</div>
+<div class="section" id="id5">
+<h2>第二种：【标记】——【方形】<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>将【度量】下的【记录数】拖到【标记】下的【颜色】上，表格颜色发生变化。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616151136500.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616151136500.png" /></p>
+<p>选择【标记】下【自动】里的【方形】，则变成凸显表。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614164556385.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614164556385.png" /></p>
+</div>
+<div class="section" id="id6">
+<h2>二值凸显表<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>二值凸显表是一种非此即彼的凸显表。</p>
+<p>选择【标记】下【颜色】——【编辑颜色】。</p>
+<p>【色板】选择【红色-蓝色发散】，【渐变颜色】选择2阶，勾选【倒序】，点击【高级】，【中心】填10（即以10家酒店数量为中心，包括10及10以上为红，10以下为蓝）。点击【确定】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061416530866.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061416530866.png" /></p>
+<p>最右边出现了-165，这并不是错误，而是因为我们以10位中心，两边要对称，则一边是185，另一边出于对称是-165。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614170037777.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614170037777.png" /></p>
+</div>
+<div class="section" id="id7">
+<h2>2.树形图<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>树形图类似七巧板。</p>
+</div>
+<div class="section" id="id8">
+<h2>2.1 不同酒店类型与酒店数量<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>将【维度】下【类型】拖到【行】中，将【度量】下【记录数】拖到【列】中。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614171356128.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614171356128.png" /></p>
+<p>点击【智能显示】下的【树形图】，则自动生成。树形图以面积和颜色深浅表示数量多少。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614171512387.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614171512387.png" /></p>
+<p>选择【标记】下【颜色】——【编辑颜色】，【色板】选择【红色-绿色发散】，勾选【倒序】，点击【确定】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614171823832.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614171823832.png" /></p>
+</div>
+<div class="section" id="id9">
+<h2>2.2不同类型电影数量与票房<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>导入“中国电影网电影_data.xlsx”，新建【工作表9】。</p>
+<p>右击【累计票房】——【拆分】，隐藏【累计票房】列，保留拆分后数据。</p>
+<p>右击【类型】——【自定义拆分】，分隔符为<code class="docutils literal notranslate"><span class="pre">/</span></code>，隐藏【类型】列，重命名拆分后数据列为【类型1】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614172245604.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614172245604.png" /></p>
+<p>在【工作表9】中，将【维度】下的【类型1】放到【行】中，将【度量】下的【记录数】放到【列】中。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616151345922.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616151345922.png" /></p>
+<p>点击【智能显示】——【树形图】。这时，树形图的面积大小和颜色都是表示电影数量。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061417280778.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061417280778.png" /></p>
+<p>右击【维度】下【累计票房 - 拆分 1】，重命名为【累计票房(万)】，拖到【度量】下，再拖到【标记】下的【颜色】里。</p>
+<p>这时，颜色深浅表示票房多少，面积大小表示电影数量多少。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614173207527.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614173207527.png" /></p>
+<p>将【工作表9】命名为【不同类型电影数量与票房树形图】。</p>
+<p>选择【标记】下【颜色】——【编辑颜色】，【色板】选择【红色-绿色发散】，勾选【倒序】，点击【确定】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614173653183.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614173653183.png" /></p>
+<p>将【度量】下——【累计票房】放到【标记】下的【标签】上，右击【设置格式】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614173944368.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614173944368.png" /></p>
+<p>【数字（自定义）】中的【小数位数】为0，【显示单位】为“千(K)”。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614173839526.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614173839526.png" /></p>
+<p>这样就添加上了票房标签。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614174158568.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614174158568.png" /></p>
+<p>将【度量】下——【记录数】放到【标记】下的【标签】上。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614174712116.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614174712116.png" /></p>
+</div>
+<div class="section" id="id10">
+<h2>修改标签<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>点击【标记】下【标签】，点击【文本】边的【…】，在【编辑标签】里添加文字，点击【确定】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614174524941.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614174524941.png" /></p>
+</div>
+<div class="section" id="id11">
+<h2>删除比较少的数据<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>树形图中右下角很多面积比较小，没有显示，想删除掉。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614174953704.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614174953704.png" /></p>
+<p>方法1：筛选器</p>
+<p>将【维度】下【类型1】放到【筛选器】里筛选。</p>
+<p>方法2 : 右击【筛选器】</p>
+<p>右击【筛选器】——【记录数总和】</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614175300294.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210614175300294.png" /></p>
+<p>右边显示【总和（记录数）】的进度条，可以通过拖拉和填写数字来调整记录数。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615171552623.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615171552623.png" /></p>
+</div>
+<div class="section" id="id12">
+<h2>2.3香港不同地区酒店数量与价格<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>新建【工作表】，重命名为【不同地区酒店数量与价格】</p>
+<p>将【维度】下【地区】放入【行】，将【度量】下的【记录数】放入【列】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615171957744.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615171957744.png" /></p>
+<p>点击【智能显示】下的【树形图】，自动生成。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615172141281.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615172141281.png" /></p>
+<p>拖走【总和(记录数)】颜色，将【度量】下的【价格】拖到【颜色】上。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615172404390.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615172404390.png" /></p>
+<p>价格求总和无意义，应该用价格的平均值。右击【总和（价格）】——【度量(总和)】——【平均值】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615172703186.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615172703186.png" /></p>
+<p>选择【标记】下【颜色】——【编辑颜色】，【色板】选择【红色-绿色发散】，勾选【倒序】，点击【确定】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615172859125.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615172859125.png" /></p>
+<p>将【度量】下的【记录数】和【价格】放到【标记】的【标签】下，生成标签，右击【价格】——【度量】——【平均值】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061517335162.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061517335162.png" /></p>
+<p>点击【标记】下【标签】，点击【文本】边的【…】，在【编辑标签】里添加文字，点击【确定】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615173548963.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615173548963.png" /></p>
+</div>
+<div class="section" id="id13">
+<h2>3.1不同类型电影数量与票房<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>新建工作表，重命名为【不同类型电影数量与票房气泡图】</p>
+<p>将【维度】下的【类型1】放到【行】中，将【度量】下的【记录数】放到【列】中。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615173953879.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615173953879.png" /></p>
+<p>点击【智能显示】——【气泡图】。点击【整个视图】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615174126491.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615174126491.png" /></p>
+<p>按ctrl键，将【类型1】拖到【颜色】上，增加颜色。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615174356750.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615174356750.png" /></p>
+<p>因为是求不同类型电影数量与票房，将【类型1】颜色拖走，将【累计票房(万)】拖到【颜色】上。</p>
+<p>选择【标记】下【颜色】——【编辑颜色】，【色板】选择【红色-绿色发散】，勾选【倒序】，点击【确定】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616151456162.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616151456162.png" /></p>
+</div>
+<div class="section" id="id14">
+<h2>3.2动作电影动态气泡图<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>动态图一般要把时间概念引入进来。</p>
+<p>新建工作表，重命名为【动作电影动态气泡图】</p>
+</div>
+<div class="section" id="id15">
+<h2>将时间放入页面<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>要做动态图，时间一定要放入到【页面】中。</p>
+<p>右击【维度】下的【上映时间】——【更改数据类型】——【日期】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615175102246.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615175102246.png" /></p>
+<p>将【上映时间】移到【页面】中。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615175247465.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615175247465.png" /></p>
+<p>双击【页面】下的【年(上映时间)】，去掉Null值。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061517540867.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061517540867.png" /></p>
+<p>将【维度】下的【类型1】放到【筛选器】里，勾选【动作】，从而筛选出动作电影。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615175640918.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615175640918.png" /></p>
+<p>将【度量】下的【记录数】放入【行】中，将【累计票房(万)】放入【列】中。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615175827591.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210615175827591.png" /></p>
+<p>拖动进图条，可以看到气泡在移动。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061518000571.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/2021061518000571.png" /></p>
+<p>点击【大小】修改点的大小；点击【标记】下【自动】，选择【形状】，在下方【形状】里选择空心气泡。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616115059662.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616115059662.png" /></p>
+<p>点击右边的【动作播放】按钮，气泡可以动，点击【慢】、【普通】或【快】按钮，可以控制速度。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616141526263.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616141526263.png" /></p>
+<p>点击【年(上映时间)】的下拉三角，勾选【循环播放】，点击【动作播放】按钮，可以循环播放。如果要取消循环播放，点击中间的方块按钮。（点击方块左边的三角按钮，是时间倒序播放；点击方块右边的三角按钮，是时间正序播放）</p>
+<p>勾选【显示历史记录】，点击下拉三角，选择【全部】、【两者】，轨迹的【格式】选择虚线和橙色。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616142557508.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616142557508.png" /></p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616142746595.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616142746595.png" /></p>
+<p>也可以不选择【两者】，选择【轨迹】，根据自己需要。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616151607556.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616151607556.png" /></p>
+<p>点击【筛选器】的【类型1 ：动作】的下拉三角，【编辑筛选器】，增加【爱情】和【剧情】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616143035854.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616143035854.png" /></p>
+<p>将【维度】下的【类型1】拖放到【颜色】上，这样就形成三个轨迹。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616143211557.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616143211557.png" /></p>
+<p>也可以【显示历史记录】中选择【已选定】和【标记】，这样只显示气泡变化，不显示轨迹。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616143707996.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616143707996.png" /></p>
+</div>
+<div class="section" id="id16">
+<h2>3.3<a class="reference external" href="https://so.csdn.net/so/search?q=%E8%AF%8D%E4%BA%91&amp;spm=1001.2101.3001.7020">词云</a>图制作<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>制作电影类型词云图。</p>
+<p>新建工作表，重命名为【词云图制作】。</p>
+<p>将【类型1】拖入【行】中，将【记录数】拖到【大小】上。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616145215184.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616145215184.png" /></p>
+<p>点击【智能显示】——【气泡图】。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616145323795.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616145323795.png" /></p>
+<p>将【类型1】放到【颜色】里。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616145445302.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616145445302.png" /></p>
+<p>选择【标记】下【自动】里的【文本】，词云图搞定。</p>
+<p><img alt="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616145543458.png" src="3%20%E5%9F%BA%E6%9C%AC%E8%A1%A8%E3%80%81%E6%A0%91%E7%8A%B6%E5%9B%BE%E3%80%81%20d3fd5/20210616145543458.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chp2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tableau 二、数据前处理、折线图、饼图</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chp4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tableau 四、标靶图、甘特图、瀑布图</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2022.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

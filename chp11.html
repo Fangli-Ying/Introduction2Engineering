@@ -1,0 +1,678 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau 十一、范围-线图、倾斜图 &#8212; 商业数据挖掘</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tableau 十二、网络图与弧线图" href="chp12.html" />
+    <link rel="prev" title="Tableau 十、人口金字塔、漏斗图、箱线图" href="chp10.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">商业数据挖掘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Business Data Science
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp1.html">
+   Tableau 一、简介、条形图和直方图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp2.html">
+   Tableau 二、数据前处理、折线图、饼图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp3.html">
+   Tableau 三. 基本表、树状图、气泡图、词云
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp4.html">
+   Tableau 四、标靶图、甘特图、瀑布图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp5.html">
+   Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp6.html">
+   Tableau 六、填充地图、多维地图、混合地图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp7.html">
+   Tableau 七、多边形地图和背景图地图：设置地理信息（自定义地图码导入、设置地图源）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp8.html">
+   Tableau 八、数据分层、数据分组、数据集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp9.html">
+   Tableau 九、计算字段与表计算：粒度、聚合与比率
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp10.html">
+   Tableau 十、人口金字塔、漏斗图、箱线图
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tableau 十一、范围-线图、倾斜图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp12.html">
+   Tableau 十二、网络图与弧线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp13.html">
+   Tableau 十三、雷达图与凹凸图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp14.html">
+   Tableau 十四、回归分析与时间序列分析
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chp11.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.范围-线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.1概念与用途
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   1.2创建范围—线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   新建计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   检查计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   创建范围-线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   2.倾斜图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   劳动生产率变化倾斜图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   添加表计算
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   设置标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   降序排列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   修改标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   调整线粗细
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   调整线颜色
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   负值换算成绝对值
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   调整当期和同期顺序
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   注意事项
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tableau 十一、范围-线图、倾斜图</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.范围-线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.1概念与用途
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   1.2创建范围—线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   新建计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   检查计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   创建范围-线图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   2.倾斜图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   劳动生产率变化倾斜图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   添加表计算
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   设置标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   降序排列
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   修改标签
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   调整线粗细
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   调整线颜色
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   负值换算成绝对值
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   调整当期和同期顺序
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   注意事项
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tableau">
+<h1>Tableau 十一、范围-线图、倾斜图<a class="headerlink" href="#tableau" title="Permalink to this headline">¶</a></h1>
+<p>Created: April 3, 2022 7:53 AM
+Tags: Dr. Fangli Ying</p>
+<div class="section" id="id1">
+<h2>1.范围-线图<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>1.1概念与用途<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>范围-线图将整体数据的部分特征（均值、最大值、最小值等）展示在图形中，既可以说明群体特征，还可以展示个体信息，更可以比较个体与整体的相对关系。</p>
+<p>导入”人工坐席接听数据.xlsx”</p>
+<p>在【工作表1】里，将【日期】拖到【列】，点击下拉选择【天】。</p>
+<p>将【日期】放到【筛选器】，右击【筛选器】里的【工号】——【显示筛选器】，在右侧的工号栏里选择一个工号。</p>
+<p>将【人工服务接听量】拖到【行】里。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/202106291656126.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/202106291656126.png" /></p>
+<p>折线图不能反映该工号员工在所有员工里的位置，而范围-线图则可以实现该目的。</p>
+</div>
+<div class="section" id="id3">
+<h2>1.2创建范围—线图<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>使用详细级别表达式里的fixed实现一个计算字段。</p>
+</div>
+<div class="section" id="id4">
+<h2>新建计算字段<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>右击【日期】——【创建】——【计算字段】。</p>
+<p>字段名称为“接听量平均值”，公式为<code class="docutils literal notranslate"><span class="pre">{FIXED</span> <span class="pre">[日期]:</span> <span class="pre">AVG([人工服务接听量])}</span></code></p>
+<p>公式意思是每天的人工服务接听量平均值。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629170738249.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629170738249.png" /></p>
+<p>右击【接听量平均值】——【复制】，生成【接听量平均值 (复制)】</p>
+<p>右击【接听量平均值 (复制)】——【编辑】，字段名改为【接听量最大值】，公式为<code class="docutils literal notranslate"><span class="pre">{FIXED</span> <span class="pre">[日期]:</span> <span class="pre">MAX([人工服务接听量])}</span></code></p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629171033200.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629171033200.png" /></p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629171216515.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629171216515.png" /></p>
+<p>右击【接听量平均值】——【复制】，生成【接听量平均值 (复制2)】</p>
+<p>右击【接听量平均值 (复制2)】——【编辑】，字段名改为【接听量最小值】，公式为<code class="docutils literal notranslate"><span class="pre">{FIXED</span> <span class="pre">[日期]:</span> <span class="pre">MIN([人工服务接听量])}</span></code></p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629171346264.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629171346264.png" /></p>
+</div>
+<div class="section" id="id5">
+<h2>检查计算字段<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>新建工作表2</p>
+<p>将【度量名称】放到【筛选器】里，勾选【人工服务接听量】、【接听量平均值】、【接听量最大值】、【接听量最小值】、【接听量平均值】。</p>
+<p>将【度量名称】拖到【列】</p>
+<p>将【日期】拖到【行】选择【天】（和上面折线图一样，都是第一个“天”）。</p>
+<p>将【度量值】放到【文本】。</p>
+<p>点击【整个视图】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629172006382.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629172006382.png" /></p>
+<p>选择【度量值】下的【人工服务接听量】——【度量】——【平均值】，可以发现图表里两列是一样的。</p>
+<p>同样可以看最大值和最小值，通过比较发现确实一样，说明计算公式无误。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629172341213.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629172341213.png" /></p>
+</div>
+<div class="section" id="id6">
+<h2>创建范围-线图<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>在【工作表1】里，将【接听量平均值】、【接听量最大值】、【接听量最小值】拖到【详细信息】上。</p>
+<p>（只有将三者拖到详细信息上，才能在添加参考线的值里选择这三者之一。）、</p>
+<p>（如果想要计算字段作为参考线的值，就必须放到详细信息里。）</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629173048985.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629173048985.png" /></p>
+<p>右击纵坐标轴——【添加参考线】，【线】——【每单元格】——【总和(接听量平均值)】【平均值】，标签选择【无】，线选择粗一点，黑色，点击【确定】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629173438609.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629173438609.png" /></p>
+<p>右击纵坐标轴——【添加参考线】，【区间】——【每单元格】——区间开始选择【总和(接听量最小值)】【最小值】，标签选择【无】；区间结束选择【总和(接听量最大值)】【最大值】，标签选择【无】。</p>
+<p>线选择粗一点，虚线，黑色，点击【确定】。这就完成了范围-线图的创建。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629210806812.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629210806812.png" /></p>
+<p>结果如下</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629211412953.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629211412953.png" /></p>
+</div>
+<div class="section" id="id7">
+<h2>2.倾斜图<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>倾斜图用于展示单个指标在不同时期的变化。既能展示大小变化，也能展示排名变化。</p>
+</div>
+<div class="section" id="id8">
+<h2>劳动生产率变化倾斜图<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>打开“劳动生产率指标-2.xlsx”</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629212121680.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210629212121680.png" /></p>
+<p>新建【工作表3】。</p>
+</div>
+<div class="section" id="id9">
+<h2>计算字段<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>右击空白处——【创建计算字段】，字段名称改为【排名】，输入公式<code class="docutils literal notranslate"><span class="pre">INDEX()</span></code></p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630112401766.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630112401766.png" /></p>
+<p>将【期间】拖到【列】，将【排名】拖到【行】</p>
+<p>点击【整个视图】</p>
+<p>选择【标记】下【自动】里的【线】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630112609548.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630112609548.png" /></p>
+</div>
+<div class="section" id="id10">
+<h2>添加表计算<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>将【单位】拖到【详细信息】</p>
+<p>点击【行】里【排名】下拉框——【添加表计算】。</p>
+<p>在【表计算】里，【特定维度】勾选【期间】和【单位】，【排序顺序】选择【自定义】【累计值】【总和】【升序】。</p>
+<p>（勾选【单位】是按单元格进行计算）</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630113129196.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630113129196.png" /></p>
+<p>点击【行】里【排名】下拉框——【编辑表计算】。</p>
+<p>【重新启动间隔】里选择【期间】。</p>
+<p>（可以对比一下上边选择【无】的区别，选择【无】是整体排序，选择【期间】是按左右期间分别排序。）</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630113711956.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630113711956.png" /></p>
+<p>将【排名】拖到【标签】上。</p>
+<p>右击标签的【排名】——【添加表计算】，内容设置同上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630114326890.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630114326890.png" /></p>
+</div>
+<div class="section" id="id11">
+<h2>设置标签<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>将【单位】和【累计值】拖到【标签】上</p>
+<p>点击【标签】，点击【文本】旁的…，将三个标签排成一行，点击确定；点击【线末端】，勾选三个选项。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630114903716.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630114903716.png" /></p>
+</div>
+<div class="section" id="id12">
+<h2>降序排列<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>点击【排名】——【复制】</p>
+<p>点击【排名(复制)】——【编辑】，修改字段名为【排名-正确】，公式为<code class="docutils literal notranslate"><span class="pre">17-INDEX()</span></code></p>
+<p>(为什么选17，因为序号是17-16=1,17-15=2…17-1=16)</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630115435912.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630115435912.png" /></p>
+<p>将【排名】从【标记】上拖开。</p>
+<p>将【排名-正确】拖到【标签】上，右击【排名-正确】——【编辑表计算】，内容设置同上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630115925759.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630115925759.png" /></p>
+</div>
+<div class="section" id="id13">
+<h2>修改标签<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>图表的标签顺序错误，重新修改。</p>
+<p>点击【标签】，点击【文本】旁的…，将三个标签排成一行，点击确定；点击【线末端】，勾选三个选项。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630120212958.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630120212958.png" /></p>
+</div>
+<div class="section" id="id14">
+<h2>调整线粗细<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>右击空白处——【创建计算字段】，字段名称改为【变化量】，输入公式<code class="docutils literal notranslate"><span class="pre">LOOKUP(SUM([累计值]),LAST())-LOOKUP(SUM([累计值]),FIRST())</span></code></p>
+<p>将【变化量】拖到【大小】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630120859222.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630120859222.png" /></p>
+</div>
+<div class="section" id="id15">
+<h2>调整线颜色<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>在【度量】下空白处右击【创建计算字段】，字段名为【增减状态标志】，公式为</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IF</span> <span class="p">[</span><span class="n">变化量</span><span class="p">]</span> <span class="o">&gt;</span><span class="mi">0</span> <span class="n">THEN</span> <span class="s2">&quot;增长&quot;</span>
+<span class="n">ELSEIF</span> <span class="p">[</span><span class="n">变化量</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span> <span class="n">THEN</span> <span class="s2">&quot;持平&quot;</span>
+<span class="n">ELSE</span> <span class="s2">&quot;下降&quot;</span> <span class="n">END</span>
+
+</pre></div>
+</div>
+<p>将【增减状态标志】拖到【颜色】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630135751654.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630135751654.png" /></p>
+</div>
+<div class="section" id="id16">
+<h2>负值换算成绝对值<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>问题：像浙江下降非常厉害，但是线却非常细，实际上应该非常粗才对，也即是负值应该按绝对值来排序。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630140146154.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630140146154.png" /></p>
+<p>在【度量】下空白处右击【创建计算字段】，字段名为【变化量绝对值】，公式为<code class="docutils literal notranslate"><span class="pre">ABS([变化量])</span></code></p>
+<p>将【标记】下的【变化量】拖走，将【变化量绝对值】拖到【大小】上。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630140821336.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630140821336.png" /></p>
+</div>
+<div class="section" id="id17">
+<h2>调整当期和同期顺序<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<p>为方便阅读，需要将当期调到右边。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630141243144.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630141243144.png" /></p>
+<p>右击【列】里的【期间】——【排序】。</p>
+<p>选择【手动排序】，将【当期】下移到下边。</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630141445853.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630141445853.png" /></p>
+<p>结果如下：</p>
+<p><img alt="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630141833322.png" src="Tableau%20%E5%8D%81%E4%B8%80%202a767/20210630141833322.png" /></p>
+</div>
+<div class="section" id="id18">
+<h2>注意事项<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<p>变化量使用lookup <code class="docutils literal notranslate"><span class="pre">LOOKUP(SUM([累计值]),LAST())-LOOKUP(SUM([累计值]),FIRST())</span></code></p>
+<p>排名顺序需要重新计算</p>
+<p>标签在使用的时候需要重新排版</p>
+<p>用绝对值来显示变化量的大小，用颜色来区分增长或减小。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chp10.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tableau 十、人口金字塔、漏斗图、箱线图</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chp12.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tableau 十二、网络图与弧线图</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2022.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

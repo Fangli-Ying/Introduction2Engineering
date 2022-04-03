@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau 四、标靶图、甘特图、瀑布图 &#8212; 商业数据挖掘</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘" href="chp5.html" />
+    <link rel="prev" title="Tableau 三. 基本表、树状图、气泡图、词云" href="chp3.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">商业数据挖掘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Business Data Science
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp1.html">
+   Tableau 一、简介、条形图和直方图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp2.html">
+   Tableau 二、数据前处理、折线图、饼图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp3.html">
+   Tableau 三. 基本表、树状图、气泡图、词云
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tableau 四、标靶图、甘特图、瀑布图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp5.html">
+   Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp6.html">
+   Tableau 六、填充地图、多维地图、混合地图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp7.html">
+   Tableau 七、多边形地图和背景图地图：设置地理信息（自定义地图码导入、设置地图源）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp8.html">
+   Tableau 八、数据分层、数据分组、数据集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp9.html">
+   Tableau 九、计算字段与表计算：粒度、聚合与比率
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp10.html">
+   Tableau 十、人口金字塔、漏斗图、箱线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp11.html">
+   Tableau 十一、范围-线图、倾斜图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp12.html">
+   Tableau 十二、网络图与弧线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp13.html">
+   Tableau 十三、雷达图与凹凸图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp14.html">
+   Tableau 十四、回归分析与时间序列分析
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chp4.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.1 二月份电量销售额完成情况
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   添加参考线
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   添加月度计划值
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   添加参考分布
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   四分位数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   2. Tableau制作甘特图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   2.1 甘特图的概念和用途
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   2.2 交货延期情况的甘特图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   创造计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   2.3 不同的日期类型选择
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   3.创建超市不同子类别产品的盈亏瀑布图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   汇总
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   甘特条形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   创建【长方形高度】字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   【利润】汇总
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   分析合计
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   注意
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tableau 四、标靶图、甘特图、瀑布图</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.1 二月份电量销售额完成情况
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   添加参考线
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   添加月度计划值
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   添加参考分布
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   四分位数
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   2. Tableau制作甘特图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   2.1 甘特图的概念和用途
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   2.2 交货延期情况的甘特图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   创造计算字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   2.3 不同的日期类型选择
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   3.创建超市不同子类别产品的盈亏瀑布图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   汇总
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   甘特条形图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   创建【长方形高度】字段
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   【利润】汇总
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   分析合计
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   注意
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tableau">
+<h1>Tableau 四、标靶图、甘特图、瀑布图<a class="headerlink" href="#tableau" title="Permalink to this headline">¶</a></h1>
+<p>Created: April 3, 2022 7:52 AM
+Tags: Dr. Fangli Ying</p>
+<p>标靶图是在条形图的基础上增加参考线和参考区间，可以了解两个度量之间的关系，通常用来比较计划值和实际值，看有没有达到计划的标准。</p>
+<div class="section" id="id1">
+<h2>1.1 二月份电量销售额完成情况<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>打开“2014年各省市售电量.xlsx”。</p>
+<p>过一下数据。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616152446250.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616152446250.png" /></p>
+<p>在将工作表重命名为“二月份电量销售额完成情况”。在工作表里，将【统计周期】放到【筛选器】里，双击【月】，勾选【二月】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616152609965.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616152609965.png" /></p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616152627483.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616152627483.png" /></p>
+<p>将【省市】放到【列】中，将【当期值】放到【行】中。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616152843729.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616152843729.png" /></p>
+<p>选择【整个视图】，选择【交换行和列】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616153016361.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616153016361.png" /></p>
+</div>
+<div class="section" id="id2">
+<h2>添加参考线<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>下图表下方右击——【添加参考线】，其中【线】和【区间】最常用。默认范围是【每区】。</p>
+<p>“区”就是“行”的意思，这里行只有一个区，也就是【省市】，每区和整个表是一样的。如果不一样，比如说有南方省市和北方省市，则有两个区。</p>
+<p>点击【线】和【每区】，就发现有一条线，显示的是二月份所有省市的当期值总计的平均值线。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616154014952.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616154014952.png" /></p>
+<p>点击【每单元格】，就发现条形图里的每条都有个平均值线。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616154206334.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616154206334.png" /></p>
+<p>【线】——【值】中可以选择各种计算值，这里选择【平均值】，【标签】是参考线显示什么值，也可以不显示。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616154816662.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616154816662.png" /></p>
+</div>
+<div class="section" id="id3">
+<h2>添加月度计划值<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>标靶图是要看【月度计划值】和【当期值】之间的完成情况。</p>
+<p>将【月度计划值】拖到【详细信息】中，点击参考线，【编辑】，则【线】——【值】下有【总和(月度计划值)】</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616155233567.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616155233567.png" /></p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616155303947.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616155303947.png" /></p>
+<p>选择【线】，【每单元格】和【总和(月度计划值)】，单击确定。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616155625208.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616155625208.png" /></p>
+<p>【格式】下选择粗线，黑色。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616212605419.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616212605419.png" /></p>
+</div>
+<div class="section" id="id4">
+<h2>添加参考分布<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>右击图表下方，【添加参考线】（注意是添加）。点击【分布】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616160414340.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616160414340.png" /></p>
+<p>为便于理解，点击【值】，改为【50,100】。</p>
+<p>右击图表下方，【添加参考线】（注意是添加）。点击【线】，【每区】，【平均值】。</p>
+<p>发现分布的最右边就是平均值线，也就是100%平均值，最左边是50%的平均值。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616160754466.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616160754466.png" /></p>
+<p>点击平均值线，【移除】，从而删除平均值线。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161040669.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161040669.png" /></p>
+<p>点击图表中的分布，【编辑】，【标签】可以选择【无】、【值】、【计算】和【自定义】。【线】可以选择粗细和颜色。【填充】可以选择颜色。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161223144.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161223144.png" /></p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161352913.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161352913.png" /></p>
+<p>右击图表下方，可以编辑和删除所选择的参考线。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161628711.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161628711.png" /></p>
+</div>
+<div class="section" id="id5">
+<h2>四分位数<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>右击图表下方，【编辑参考线】——【50%,100%/平均值】，选择【值】——【分位数】，【图块数】选4，点击确定。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161842494.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616161842494.png" /></p>
+<p>右击图表下方，【编辑参考线】——【四分位点】，选择【值】——【百分比】，【百分比】下选择【总和(月度计划值)】，在选择【分位数】，图块数选择4。这就是月度计划值的四分位数。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/2021061621271177.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/2021061621271177.png" /></p>
+</div>
+<div class="section" id="id6">
+<h2>2. Tableau制作甘特图<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id7">
+<h2>2.1 甘特图的概念和用途<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>甘特图又叫横道图，是以图示的形式表达活动列表和时间刻度，能够表达一个项目的顺序和持续时间，主要用于项目管理里。</p>
+</div>
+<div class="section" id="id8">
+<h2>2.2 交货延期情况的甘特图<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>打开‘物资采购情况.xlsx’。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616173858286.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616173858286.png" /></p>
+<p>新建工作表，重命名为“ 交货延期情况甘特图”</p>
+<p>【计划交货日期】拖到【列】，点击下拉三角中的【天】（选择下边那个【天】，上边那个【天】是把日期单独拿出来作为数字的一种符号）。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616174108298.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616174108298.png" /></p>
+<p>将【供应商名称】和【物资类别】放到【行】上。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616174306198.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616174306198.png" /></p>
+</div>
+<div class="section" id="id9">
+<h2>创造计算字段<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>【实际交货日期】右击【创建】——【计算字段】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616174644880.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616174644880.png" /></p>
+<p>字段名称为【延迟天数】，输入计算，点击【确定】，这样【度量】下出现【延迟天数】字段。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616174822508.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616174822508.png" /></p>
+<p>将【延迟天数】拖到【大小】上。图表中长条的起点是计划交货日期，长度是延迟天数。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616175026692.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616175026692.png" /></p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616175239685.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616175239685.png" /></p>
+<p>但延迟天数有正有负。如何区别？将【延伸天数】拖到【颜色】上，点击【颜色】——【编辑颜色】——【渐变颜色】选择2，勾选【倒序】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616175510182.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616175510182.png" /></p>
+<p>交换【行】里【物资类别】和【供应商名称】，可以看每个物资的交货延迟情况。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616175758825.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616175758825.png" /></p>
+</div>
+<div class="section" id="id10">
+<h2>2.3 不同的日期类型选择<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>做甘特图时，日期选择【天】有两个，选择下边那个【天】，上边那个【天】是把日期单独拿出来作为数字的一种符号。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616180540436.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616180540436.png" /></p>
+<p>下边那个【天】的甘特图，这个【天】是绿色。这种甘特图是正确的。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616180716725.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616180716725.png" /></p>
+<p>上边那个【天】的甘特图，这个【天】是蓝色。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616180818478.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616180818478.png" /></p>
+</div>
+<div class="section" id="id11">
+<h2>3.创建超市不同子类别产品的盈亏瀑布图<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>打开“全球超市订单数据.xlsx”。</p>
+<p>这次有两个工作表，【人员】和【订单】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616182049679.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616182049679.png" /></p>
+<p>将【人员】工作表拖到右边，再将【订单】工作表拖到右边，点击中间的交集，可以看出两者是inner join（内连接），通过地区连接。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616182253758.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616182253758.png" /></p>
+<p>新建工作表，命名为“超市不同子类别产品的盈亏瀑布图”。</p>
+<p>将【子类别】拖到【列】中，将【利润】拖到【行】中。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616204930716.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616204930716.png" /></p>
+<p>按照升序排列条形图。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616205117892.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616205117892.png" /></p>
+</div>
+<div class="section" id="id12">
+<h2>汇总<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>点击【总和(利润)】的下拉三角框——【快速表计算】——【汇总】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/2021061620521033.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/2021061620521033.png" /></p>
+<p>将【利润】放到【标签】上。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616205513812.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616205513812.png" /></p>
+<p>点击【标记】下【总和(利润)】的下拉框，【设置格式】，【区】——【数字】——【数字(自定义)】——【小数位数】为0，显示单位为【千(K)】</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616205605531.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616205605531.png" /></p>
+<p>条形图的标签是利润情况，但是条形图是按照累计排列，每个条形都是累计上前面的数值的。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/202106162100019.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/202106162100019.png" /></p>
+</div>
+<div class="section" id="id13">
+<h2>甘特条形图<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>【标记】下【自动】里选择【甘特条形图】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616210145653.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616210145653.png" /></p>
+</div>
+<div class="section" id="id14">
+<h2>创建【长方形高度】字段<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>【度量】下右击【利润】——【创建】——【计算字段】，</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616210411514.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616210411514.png" /></p>
+<p>命名为【长方形高度】，取值为【-[利润]】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616210514829.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616210514829.png" /></p>
+<p>【度量】下【长方形高度】放到【大小】上。</p>
+</div>
+<div class="section" id="id15">
+<h2>【利润】汇总<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>将【度量】下【利润】放到【颜色】上，右击颜色的【总和(利润)】——【快速表计算】——【汇总】。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616211231267.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616211231267.png" /></p>
+<p>点击【颜色】——【编辑颜色】——色阶选【2】，中心为【0】，也就是小于0 为红色，大于0为蓝色。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616211442161.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616211442161.png" /></p>
+</div>
+<div class="section" id="id16">
+<h2>分析合计<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>【分析】——【合计】——【显示行总和】，这样在右边显示利润总和。</p>
+</div>
+<div class="section" id="id17">
+<h2>注意<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<p>带三角符号说明进行了汇总。</p>
+<p><img alt="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616212255990.png" src="Tableau%20%E5%9B%9B%E3%80%81%203bcd4/20210616212255990.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chp3.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tableau 三. 基本表、树状图、气泡图、词云</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chp5.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2022.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

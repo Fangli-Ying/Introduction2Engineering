@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau 十四、回归分析与时间序列分析 &#8212; 商业数据挖掘</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Tableau 十三、雷达图与凹凸图" href="chp13.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">商业数据挖掘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Business Data Science
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp1.html">
+   Tableau 一、简介、条形图和直方图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp2.html">
+   Tableau 二、数据前处理、折线图、饼图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp3.html">
+   Tableau 三. 基本表、树状图、气泡图、词云
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp4.html">
+   Tableau 四、标靶图、甘特图、瀑布图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp5.html">
+   Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp6.html">
+   Tableau 六、填充地图、多维地图、混合地图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp7.html">
+   Tableau 七、多边形地图和背景图地图：设置地理信息（自定义地图码导入、设置地图源）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp8.html">
+   Tableau 八、数据分层、数据分组、数据集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp9.html">
+   Tableau 九、计算字段与表计算：粒度、聚合与比率
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp10.html">
+   Tableau 十、人口金字塔、漏斗图、箱线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp11.html">
+   Tableau 十一、范围-线图、倾斜图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp12.html">
+   Tableau 十二、网络图与弧线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp13.html">
+   Tableau 十三、雷达图与凹凸图
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tableau 十四、回归分析与时间序列分析
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chp14.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   第一种添加趋势线方式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   参数解释
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   第二种添加趋势线方式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   第三种添加趋势线方式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   描述趋势线
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   1.2构建其他回归分析模型
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   对数回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   指数回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   幂回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   多项式回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   如何评定一个回归分析模型的好坏？
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   2.1创建人工服务接听量预测曲线
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   2.2预测选项设置
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   累加和累乘的区别
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   2.3预测模型评价
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tableau 十四、回归分析与时间序列分析</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   第一种添加趋势线方式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   参数解释
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   第二种添加趋势线方式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   第三种添加趋势线方式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   描述趋势线
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   1.2构建其他回归分析模型
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   对数回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   指数回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   幂回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   多项式回归
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   如何评定一个回归分析模型的好坏？
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   2.1创建人工服务接听量预测曲线
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   2.2预测选项设置
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   累加和累乘的区别
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   2.3预测模型评价
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tableau">
+<h1>Tableau 十四、回归分析与时间序列分析<a class="headerlink" href="#tableau" title="Permalink to this headline">¶</a></h1>
+<p>Created: April 3, 2022 7:53 AM
+Tags: Dr. Fangli Ying</p>
+<p>回归分析是将可能存在相关关系的变量<a class="reference external" href="https://so.csdn.net/so/search?q=%E6%8B%9F%E5%90%88&amp;spm=1001.2101.3001.7020">拟合</a>成直线或者曲线，然后据此一方面总结已有数据的规律和特征，另一方面预测数据。</p>
+<p>导入数据“人工坐席接听数据.xlsx”</p>
+<p>在工作表1，将【人工服务接听量】放入【列】，将【呼入案头总时长(秒)】放入【行】。</p>
+<p>点击【分析】，取消【聚合度量】的勾选。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628112639486.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628112639486.png" /></p>
+<div class="section" id="id1">
+<h2>第一种添加趋势线方式<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>选择【整个视图】，右击图表——【趋势线】——【显示趋势线】。这样就添加好了线性回归模型。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628113003199.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628113003199.png" /></p>
+<p>将鼠标悬浮在趋势线上，会出现提示框。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628113158720.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628113158720.png" /></p>
+</div>
+<div class="section" id="id2">
+<h2>参数解释<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>线性回归就是一次方程，比如y=nx+b</p>
+<p>R值就是拟合优度，越大越好，R平方值范围是0—1，一般认为0.1上都可以，越大越好。</p>
+<p>P值越小越好，常规设置是&lt;0.05，可以调整。P值决定了系数，比如提示框里15.9995的核心程度。</p>
+</div>
+<div class="section" id="id3">
+<h2>第二种添加趋势线方式<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>【分析】——【趋势线】——【显示趋势线】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628113832493.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628113832493.png" /></p>
+</div>
+<div class="section" id="id4">
+<h2>第三种添加趋势线方式<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>选择【分析】下【模型】里的【趋势线】，拖到右边图表里，会自动显示趋势线选择框，拖到【线性】里。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114015409.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114015409.png" /></p>
+</div>
+<div class="section" id="id5">
+<h2>描述趋势线<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>右击图表空白处——【描述趋势线】，可见公式和系数。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114214989.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114214989.png" /></p>
+<p>选择里面的公式，右击复制，然后关闭。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114401112.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114401112.png" /></p>
+<p>右击图表空白处——【添加注释】——【区域】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114657657.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114657657.png" /></p>
+<p>复制公式到里面，选择字号大小，点击【确定】。将注释长宽调整到合适位置。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114750217.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114750217.png" /></p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114913264.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628114913264.png" /></p>
+</div>
+<div class="section" id="id6">
+<h2>1.2构建其他回归分析模型<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>对数回归</p></li>
+<li><p>幂回归</p></li>
+<li><p>指数回归</p></li>
+<li><p>多项式回归</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>对数回归<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>重命名工作表1为“线性回归”，复制该工作表，重命名为“对数回归”</p>
+<p>右击图表空白——【趋势线】——【编辑趋势线】</p>
+<p>或者右击图表里的趋势线——【编辑趋势线】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628115752295.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628115752295.png" /></p>
+<p>或者点击趋势线，点击【编辑】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628120032706.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628120032706.png" /></p>
+<p>勾选【对数】，选择【确定】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628120142694.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628120142694.png" /></p>
+<p>鼠标悬浮在趋势线上，可见公式，里面的人工服务接听量属于解释变量。</p>
+<p>R平方值小于上面的线性，说明不如线性的好。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628120240193.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628120240193.png" /></p>
+<p>右击图表空白处——【描述趋势线】，可见公式和系数。</p>
+<p>选择里面的公式，右击复制，然后关闭。</p>
+<p>双击原来的注释，将公式粘贴进去。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628132509160.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628132509160.png" /></p>
+</div>
+<div class="section" id="id8">
+<h2>指数回归<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>复制工作表【对数回归】，重命名为【指数回归】。</p>
+<p>点击趋势线，点击【编辑】，勾选【指数】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628132901743.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628132901743.png" /></p>
+<p>鼠标悬浮在趋势线上，可见公式。</p>
+<p>R平方值大于上面的对数，说明比对数的好。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628133023661.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628133023661.png" /></p>
+<p>右击图表空白处——【描述趋势线】，可见公式和系数。</p>
+<p>选择里面的公式，右击复制，然后关闭。</p>
+<p>双击原来的注释，将公式粘贴进去。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628133156324.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628133156324.png" /></p>
+<p><strong>为什么这里的指数回归的R平方值比对数回归的要好？</strong></p>
+<p>因为指数回归线下部的数据占比非常少，对拟合结果的影响非常非常小。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628134230711.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628134230711.png" /></p>
+<p>比如以人工服务接听量等于120为界限，大于120的为异常数据，创建一个计算字段计算异常数据的占比是多少。</p>
+<p>计算字段比较</p>
+<p>右击【人工服务接听量】——【创建】——【计算字段】</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628134638879.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628134638879.png" /></p>
+<p>修改字段名称为【人工服务接听量异常区分】，输入公式<code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">[人工服务接听量]&gt;120</span> <span class="pre">THEN</span> <span class="pre">&quot;异常数据&quot;</span> <span class="pre">ELSE</span> <span class="pre">&quot;正常数据&quot;</span> <span class="pre">END</span></code></p>
+<p>将【人工服务接听量异常区分】拖入到【颜色】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628134747810.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628134747810.png" /></p>
+<p>新建工作表4。</p>
+<p>将【人工服务接听量异常区分】拖到【列】，将【记录数】拖到【行】。</p>
+<p>将【记录数】拖到【标签】，右击【总和(记录数)】——【快速表计算】——【合计百分比】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628135233989.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628135233989.png" /></p>
+<p>可见大于120的异常值只占了3.58%，非常少的比例，对拟合优度影响不大。</p>
+<p>一般数据分析中，小于6%的数据可以忽略不计。</p>
+<p>参数比较</p>
+<p>在【指数回归】工作表里，空白处右击——【创建参数】。设置一个参数调整异常数的界定。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628135859584.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628135859584.png" /></p>
+<p>参数名称是【人工服务接听量异常定义阈值】，点击【范围】，填入最小值80，最大值180，步长10，点击【确定】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628140159143.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628140159143.png" /></p>
+<p>右击【人工服务接听量异常区分】——【编辑】，去除数字120，将【人工服务接听量异常定义阈值】拖入到公式里，点击【确定】。</p>
+<p><code class="docutils literal notranslate"><span class="pre">IF</span> <span class="pre">[人工服务接听量]&gt;[人工服务接听量异常定义阈值]</span> <span class="pre">THEN</span> <span class="pre">&quot;异常数据&quot;</span> <span class="pre">ELSE</span> <span class="pre">&quot;正常数据&quot;</span> <span class="pre">END</span></code></p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628140430836.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628140430836.png" /></p>
+<p>右击【人工服务接听量异常定义阈值】——【显示参数控件】，则右边显示参数控件。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628140829399.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628140829399.png" /></p>
+<p>开始值是80。点击【工作表4】，可见比例变化，发现占比不是很大。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628141005728.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628141005728.png" /></p>
+<p>在【指数回归】工作表里可以调整参数，在【工作表4】里可以见比例变化。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628141121789.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628141121789.png" /></p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628141227537.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628141227537.png" /></p>
+<p>参考线比较</p>
+<p>拖走【人工服务接听量异常区分】颜色，将【人工服务接听量异常区分】拖到【详细信息】里。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628141515845.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628141515845.png" /></p>
+<p>右击坐标轴空白处——【添加参考线】，【值】选择【人工服务接听量异常定义阈值(参数)】点击确定。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210630143508124.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210630143508124.png" /></p>
+</div>
+<div class="section" id="id9">
+<h2>幂回归<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>复制【指数回归】工作表，重命名为【幂回归】。</p>
+<p>右击趋势线——【编辑趋势线】，选择【幂】，点击【确定】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628142317510.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628142317510.png" /></p>
+<p>鼠标悬浮在趋势线上，可见公式。</p>
+<p>R平方值大于以上回归，说明该拟合优度比较好。</p>
+<p>P值较小，可以接受。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628142459490.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628142459490.png" /></p>
+<p>右击图表空白处——【描述趋势线】，可见公式和系数。</p>
+<p>选择里面的公式，右击复制，然后关闭。</p>
+<p>双击原来的注释，将公式粘贴进去。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/2021062814281868.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/2021062814281868.png" /></p>
+</div>
+<div class="section" id="id10">
+<h2>多项式回归<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>复制【幂回归】工作表，重命名为【多项式回归】。</p>
+<p>右击趋势线——【编辑趋势线】，选择【多项式】，【度】的范围是2-8，一般选择3-5，这里选3，点击【确定】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628143054727.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628143054727.png" /></p>
+<p>鼠标悬浮在趋势线上，可见公式。</p>
+<p>R平方值一般，说明该拟合优度一般。</p>
+<p>P值较小，可以接受。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628143306197.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628143306197.png" /></p>
+<p>右击图表空白处——【描述趋势线】，可见公式和系数。</p>
+<p>选择里面的公式，右击复制，然后关闭。</p>
+<p>双击原来的注释，将公式粘贴进去，字号选择10。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628143448219.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628143448219.png" /></p>
+</div>
+<div class="section" id="id11">
+<h2>如何评定一个回归分析模型的好坏？<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>R平方值就是拟合优度，越大越好(在0到1之间)，一般0.4或0.5以上是可以接受的。</p>
+<p>P值就是显著性水平，一般设置小于5%，也就是0.05。</p>
+<p>时间序列分析预测是对<a class="reference external" href="https://so.csdn.net/so/search?q=Tableau&amp;spm=1001.2101.3001.7020">Tableau</a>内嵌周期性数据的一个预测功能。能够自动拟合预测模型，分析数据的变化规律和预测数据，能够对预测模型的参数进行调整，然后评价预测模型的精度。</p>
+</div>
+<div class="section" id="id12">
+<h2>2.1创建人工服务接听量预测曲线<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>新建工作表7。</p>
+<p>将【人工服务接听量】拖到【行】，将【日期】拖到【列】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628145118808.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628145118808.png" /></p>
+<p>点击【日期】下拉框，选择【天】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628145226441.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628145226441.png" /></p>
+<p>重命名工作表7为【时间序列分析】。</p>
+<p>时间序列分析或时间预测本质上是利用原始的时间数据，来拟合出一个模型，研究数据的发展变化的规律，从而得出观测数据的统一特征。找到这个特征，再依据拟合出的模型，外推一个时间段内的数值。</p>
+<p>时间序列分析能够识别以周为周期还是以月为周期的匹配情况。</p>
+<p>图表的空白处右击——【预测】——【显示预测】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628145835391.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628145835391.png" /></p>
+<p>默认情况下是一条直线，是因为没有进行参数设置。</p>
+</div>
+<div class="section" id="id13">
+<h2>2.2预测选项设置<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>图表的空白处右击——【预测】——【预测选项】。</p>
+<p>【精确】选择【天】，【直至】选择【9】【天】，【季节】选择【累加】，点击【确定】。</p>
+<p>【精确】可以按照天、周、月、季度、年等预测。</p>
+<p>【直至】是预测的结束范围。</p>
+<p>谨慎注意【用零填充缺少值】，如果缺少值是关键时间点的数值的话，会影响模型，一般会回到原始数据中填写。</p>
+<p>【趋势】只有不变、增加或减少三种趋势，没有先增后减，或先减后增等情形。</p>
+<p>【季节】就是周期的意思。</p>
+<p>【显示预测区间】跟P值有关系，计算方法是1-P=预测区间。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628151449968.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628151449968.png" /></p>
+<p>图表的空白处右击——【预测】——【描述预测】。</p>
+<p>为什么【忽略最后】要忽略最后一天？是因为最后一天对预测的影响太大，一般会忽略。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628151609665.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628151609665.png" /></p>
+<p>【显示预测区间】是【95%】时，这里的值是7473。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628151813844.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628151813844.png" /></p>
+<p>如果【显示预测区间】为【99%】，则值为9821。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628152035694.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628152035694.png" /></p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628152100773.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628152100773.png" /></p>
+<p>恢复【显示预测区间】为【95%】。</p>
+<p>质量有三种：差、确定 、好。</p>
+<p>将【预测选项】里的【季节】改为【累乘】，在【描述预测】里【质量】显示【确定】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628152420369.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628152420369.png" /></p>
+<p>将【预测选项】里的【趋势】和【季节】都改为【累加】，在【描述预测】里【质量】为【差】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628152653275.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628152653275.png" /></p>
+<p>如果将【预测选项】里的【趋势】和【季节】都改为【无】，则预测为直线，说明【趋势】和【季节】都没有做贡献。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/2021062815283395.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/2021062815283395.png" /></p>
+</div>
+<div class="section" id="id14">
+<h2>累加和累乘的区别<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>如果数值数量级差异比较大的话，用累乘比较合适。</p>
+<p>将【预测选项】里的【趋势】改为【无】，【季节】都改为【累加】，打开【描述预测】，可见【模型】。</p>
+<p><img alt="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628153300360.png" src="Tableau%20%E5%8D%81%E5%9B%9B%2037a62/20210628153300360.png" /></p>
+</div>
+<div class="section" id="id15">
+<h2>2.3预测模型评价<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>【描述预测】里有【质量】。</p>
+<p>质量有三种：差、确定 、好。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chp13.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tableau 十三、雷达图与凹凸图</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2022.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

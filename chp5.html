@@ -1,0 +1,672 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘 &#8212; 商业数据挖掘</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tableau 六、填充地图、多维地图、混合地图" href="chp6.html" />
+    <link rel="prev" title="Tableau 四、标靶图、甘特图、瀑布图" href="chp4.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">商业数据挖掘</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Business Data Science
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp1.html">
+   Tableau 一、简介、条形图和直方图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp2.html">
+   Tableau 二、数据前处理、折线图、饼图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp3.html">
+   Tableau 三. 基本表、树状图、气泡图、词云
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp4.html">
+   Tableau 四、标靶图、甘特图、瀑布图
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp6.html">
+   Tableau 六、填充地图、多维地图、混合地图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp7.html">
+   Tableau 七、多边形地图和背景图地图：设置地理信息（自定义地图码导入、设置地图源）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp8.html">
+   Tableau 八、数据分层、数据分组、数据集
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp9.html">
+   Tableau 九、计算字段与表计算：粒度、聚合与比率
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp10.html">
+   Tableau 十、人口金字塔、漏斗图、箱线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp11.html">
+   Tableau 十一、范围-线图、倾斜图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp12.html">
+   Tableau 十二、网络图与弧线图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp13.html">
+   Tableau 十三、雷达图与凹凸图
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chp14.html">
+   Tableau 十四、回归分析与时间序列分析
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chp5.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   2.符号地图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   修改数据为地图信息数据
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   制作地图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   添加销售额
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   处理未知
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   制作地图的其他三种方法
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   双击
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   经度/纬度
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   智能显示
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   3.智能显示
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   4.插入自定义形状
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   【大小】
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   放工作表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   调整图像
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   【网页】
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   【空白】
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   【浮动】
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   2.符号地图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   修改数据为地图信息数据
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   制作地图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   添加销售额
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   处理未知
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   制作地图的其他三种方法
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   双击
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   经度/纬度
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id9">
+   智能显示
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   3.智能显示
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   4.插入自定义形状
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   【大小】
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id13">
+   放工作表
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   调整图像
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   【网页】
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   【空白】
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id17">
+   【浮动】
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tableau">
+<h1>Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘<a class="headerlink" href="#tableau" title="Permalink to this headline">¶</a></h1>
+<p>Created: April 3, 2022 7:52 AM
+Tags: Dr. Fangli Ying</p>
+<p>导入“全球超市订单数据.xlsx”。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210616213435919.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210616213435919.png" /></p>
+<p>举例数据集合并</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210616213849964.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210616213849964.png" /></p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210616214223907.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210616214223907.png" /></p>
+<div class="section" id="id1">
+<h2>2.符号地图<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>将工作表命名为【各国家销售额符号地图】</p>
+</div>
+<div class="section" id="id2">
+<h2>修改数据为地图信息数据<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>通常情况下，Tableau会识别数据是否为地理信息。</p>
+<p>如果国家地区导入时为<a class="reference external" href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&amp;spm=1001.2101.3001.7020">字符串</a>数据时，则需要转换为地理信息。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210616214723755.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210616214723755.png" /></p>
+<p>右击【维度】下【国家/地区】——【地理角色】，选择【国家/地区】。</p>
+<p>常用的是【城市】、【国家/地区】、【省/市/自治区】。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021061715410990.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021061715410990.png" /></p>
+<p>右击【维度】下【城市】——【地理角色】，选择【城市】。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210617154435979.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210617154435979.png" /></p>
+</div>
+<div class="section" id="id3">
+<h2>制作地图<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>制作地图的方式至少有四种，最简单的一种是直接将【维度】下【国家/地区】拖到图表区。</p>
+<p>（如果图表不是地图为灰色，国家带点的，选择【智能显示】的下框出的显示方式）</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620215106977.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620215106977.png" /></p>
+</div>
+<div class="section" id="id4">
+<h2>添加销售额<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>符号地图一般是用大小来表示对应的数值情况。</p>
+<p>将【度量】下【销售额】放到【标记】下【大小】上。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620215514379.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620215514379.png" /></p>
+<p>通过【标记】下【大小】调整圆圈大小。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620215631175.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620215631175.png" /></p>
+<p>【维度】下【国家/地区】放到【标签】上，显示所有国家名称。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062021581172.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062021581172.png" /></p>
+<p>通过【颜色】修改圆颜色。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620220002938.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620220002938.png" /></p>
+<p>有些国家比如澳大利亚，名称显示重复了，怎么办？</p>
+<p>【地图】——【地图层】，取消勾选【国家/地区名称】。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620220250359.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620220250359.png" /></p>
+</div>
+<div class="section" id="id5">
+<h2>处理未知<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>在地图右下角显示【未知】，说明有些国家和地区没有识别出来。</p>
+<p>点击【未知】——【编辑位置】</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062022052250.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062022052250.png" /></p>
+<p>可以找【匹配位置】下的选择框，选择相应国家和地区。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620220627219.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620220627219.png" /></p>
+<p>如果数据太多，不想匹配，也可以点击【筛选数据】，将数据剔除掉。（通常做法是筛选数据）</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620221428340.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620221428340.png" /></p>
+</div>
+<div class="section" id="id6">
+<h2>制作地图的其他三种方法<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id7">
+<h2>双击<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>双击【维度】下【国家/地区】</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620221726305.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620221726305.png" /></p>
+</div>
+<div class="section" id="id8">
+<h2>经度/纬度<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>将【度量】下【经度】拖到【列】中，将【维度】拖到【行】中。</p>
+<p>将【维度】下【国家/地区】拖到【详细信息】上。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620221949497.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620221949497.png" /></p>
+</div>
+<div class="section" id="id9">
+<h2>智能显示<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>按ctrl键，将【度量】下【经度】和【维度】选中，点击【智能显示】下地图。</p>
+<p>将【维度】下【国家/地区】拖到【详细信息】上。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620222315708.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620222315708.png" /></p>
+<p>常用方法是直接拖和双击。</p>
+</div>
+<div class="section" id="id10">
+<h2>3.智能显示<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>在没有数据放到【行】和【列】的时候，【智能显示】是灰色的。</p>
+<p>当放入数据的时候，【智能显示】会给出【建议】，比如说基本表（即文本表）。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620222658869.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620222658869.png" /></p>
+<p>放入多个数据时，【智能显示】的很多图表开始高亮，并在下方显示需要几个维度和度量。</p>
+<p>橙色线框标出来的是【智能显示】推荐的图表。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620222941661.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620222941661.png" /></p>
+</div>
+<div class="section" id="id11">
+<h2>4.插入自定义形状<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>【利润】放入【列】，【地区（订单）】放入【行】，点击【标记】下【形状】，在【形状】里可以选择多种形状，点击【更多形状】。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620223522577.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620223522577.png" /></p>
+<p>还有更多形状可以选择。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620223733814.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620223733814.png" /></p>
+<p>如果插入形状，建议使用png格式的图片。</p>
+<p>在桌面【开始】菜单栏，右键【打开文件位置】。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620223934628.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620223934628.png" /></p>
+<p>右击打开文件位置。</p>
+<p>在文件家【Shapes】就是存放图片的地方。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620224308947.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620224308947.png" /></p>
+<p>右击【新建文件夹】，用英文为文件夹起名字【people】，放入想放入类型的图片。</p>
+<p>然后关闭Tableau，再打开，就可以利用图片了。</p>
+<p>将【国家/地区】放入【筛选器】，勾选【中国】。</p>
+<p>双击【城市】，显示中国地图。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620225515730.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620225515730.png" /></p>
+<p>【形状】点击【更多形状】，选择【people】。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062022563415.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062022563415.png" /></p>
+<p>调整【大小】为合适位置。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620225846334.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620225846334.png" /></p>
+<p>将【利润】放【颜色】上，人物形状的颜色发生改变。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620225941964.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620225941964.png" /></p>
+<p>【颜色】——【编辑】颜色，选择【红色-绿色发散】，【倒序】。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062023015434.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062023015434.png" /></p>
+<p>点击【未知】——【筛选数据】，将未知数据剔除掉。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620230257531.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210620230257531.png" /></p>
+<p>自定义形状可以放到条形图、气泡图等图形中。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621161418863.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621161418863.png" /></p>
+<p>课程大纲等纯文字文字可以放在仪表盘里。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621161950396.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621161950396.png" /></p>
+<p>也可以在PPT里做好课程大纲，另存为图片，然后通过【图像】Tableau里。（推荐后一种方法，因为PPT可以加logo，调整格式）。</p>
+</div>
+<div class="section" id="id12">
+<h2>【大小】<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>【大小】一般选自动。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621162845116.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621162845116.png" /></p>
+</div>
+<div class="section" id="id13">
+<h2>放工作表<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>【工作表】下选择合适的工作表放入右边。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621162944145.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621162944145.png" /></p>
+<p>将【工作表3】拖入右边，可以放入上下左右等位置。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621163210282.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621163210282.png" /></p>
+<p>可以直接拖入图像，打开文件夹，选择图像。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621163535357.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621163535357.png" /></p>
+</div>
+<div class="section" id="id14">
+<h2>调整图像<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<p>点击图像下拉箭头，【适合图像】和【使图像居中】，可以让图像在合适位置。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621163717503.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621163717503.png" /></p>
+<p>也可以通过图像之间的间隙调整图像大小（鼠标变成上下箭头或左右箭头的时候。）。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621163857336.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621163857336.png" /></p>
+<p>【文本】</p>
+<p>拖【文本】到合适位置，注意，要放到最上边一行，必须拖入如下图显示的灰色区域。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062116414533.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/2021062116414533.png" /></p>
+<p>修改文本字体和字号大小。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621164237341.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621164237341.png" /></p>
+</div>
+<div class="section" id="id15">
+<h2>【网页】<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<p>可以直接拖入【网页】，输入网页地址。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621165015873.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621165015873.png" /></p>
+<p>不过一般是右击仪表盘里的图片——【设置URL】，然后输入网址。这样，点击图片，就可以打开网站。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621164631483.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621164631483.png" /></p>
+</div>
+<div class="section" id="id16">
+<h2>【空白】<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>空白起着占位符的作用。图中左右各有一个空白，可以将工作表放中间。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621165325705.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621165325705.png" /></p>
+</div>
+<div class="section" id="id17">
+<h2>【浮动】<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<p>默认图像是【平铺】，也可以选择【浮动】，让文本、图像和工作表等浮动在其他工作表上。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621165914941.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621165914941.png" /></p>
+<p>放入浮动的【工作表4】，点击【布局】，可以修改是否有标题，位置和图片大小。</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621172302555.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621172302555.png" /></p>
+<p>做好的仪表盘如下：</p>
+<p><img alt="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621171443305.png" src="Tableau%20%E4%BA%94%E3%80%81%20dc094/20210621171443305.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chp4.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tableau 四、标靶图、甘特图、瀑布图</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chp6.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tableau 六、填充地图、多维地图、混合地图</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2022.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
