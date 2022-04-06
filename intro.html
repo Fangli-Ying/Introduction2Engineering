@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Business Data Science &#8212; 商业数据挖掘</title>
+    <title>Welcome to Introduction to Engineering &#8212; Introduction to Engineering</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tableau 一、简介、条形图和直方图" href="chp1.html" />
+    <link rel="next" title="A Brief Introduction to ML &amp; AI" href="Introduction%20to%20Machine%20Learning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -82,7 +82,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="_static/logo.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">商业数据挖掘</h1>
+      <h1 class="site-logo" id="site-title">Introduction to Engineering</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -93,79 +93,24 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   Welcome to Business Data Science
+   Welcome to Introduction to Engineering
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="chp1.html">
-   Tableau 一、简介、条形图和直方图
+  <a class="reference internal" href="Introduction%20to%20Machine%20Learning.html">
+   A Brief Introduction to ML &amp; AI
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chp2.html">
-   Tableau 二、数据前处理、折线图、饼图
+  <a class="reference internal" href="logistic_regression.html">
+   Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="chp3.html">
-   Tableau 三. 基本表、树状图、气泡图、词云
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp4.html">
-   Tableau 四、标靶图、甘特图、瀑布图
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp5.html">
-   Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp6.html">
-   Tableau 六、填充地图、多维地图、混合地图
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp7.html">
-   Tableau 七、多边形地图和背景图地图：设置地理信息（自定义地图码导入、设置地图源）
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp8.html">
-   Tableau 八、数据分层、数据分组、数据集
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp9.html">
-   Tableau 九、计算字段与表计算：粒度、聚合与比率
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp10.html">
-   Tableau 十、人口金字塔、漏斗图、箱线图
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp11.html">
-   Tableau 十一、范围-线图、倾斜图
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp12.html">
-   Tableau 十二、网络图与弧线图
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp13.html">
-   Tableau 十三、雷达图与凹凸图
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chp14.html">
-   Tableau 十四、回归分析与时间序列分析
+  <a class="reference internal" href="notebooks.html">
+   Content with notebooks
   </a>
  </li>
 </ul>
@@ -240,8 +185,23 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-we-will-learn-from-this-course">
+   What we will learn from this course
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-are-the-tools-for-this-course">
    What are the tools for this course
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#usage">
+   Usage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#author">
+   Author
   </a>
  </li>
 </ul>
@@ -254,7 +214,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Welcome to Business Data Science</h1>
+                <h1>Welcome to Introduction to Engineering</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -265,8 +225,23 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-we-will-learn-from-this-course">
+   What we will learn from this course
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-are-the-tools-for-this-course">
    What are the tools for this course
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#usage">
+   Usage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#author">
+   Author
   </a>
  </li>
 </ul>
@@ -278,34 +253,52 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="welcome-to-business-data-science">
-<h1>Welcome to Business Data Science<a class="headerlink" href="#welcome-to-business-data-science" title="Permalink to this headline">¶</a></h1>
-<p>This is a course textbook to give a general introduction to the business data sciecne, especially for the course in NCU. This course also intends to provide a set of practical data science skills to help the students to work as a data scientist and provide potential solutions to the business.</p>
-<p>This course is mainly for the postgraduate students in NCU and the tutor of this course is <strong><a class="reference external" href="https://fangli-ying.github.io/">Dr. Fangli Ying</a></strong>(应方立). He creates this <strong>fully open-sourced executable notebook <a class="reference external" href="https://github.com/Fangli-Ying/Introduction2Engineering">[Github repository]</a></strong> for the online course of “Introduction to the Engineering”.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="welcome-to-introduction-to-engineering">
+<h1>Welcome to Introduction to Engineering<a class="headerlink" href="#welcome-to-introduction-to-engineering" title="Permalink to this headline">¶</a></h1>
+<p>This is a course textbook to give a general introduction to the engineering issues in the field of Computer Science, especially for the issues raised in the scope of data science. This course also intends to provide a set of practical artificial intelligence and machine learning skills to help the students to work as a data scientist and provide potential solutions to the data engineering problems.</p>
+<p>This course is mainly for the third year foreign undergraduate students in East China University of Science and Technology (ECUST)  and the tutor of this course is <strong><a class="reference external" href="https://fangli-ying.github.io/">Dr. Fangli Ying</a></strong>(应方立). He is a Lecturer in the department of Computer Science at ECUST and he creates this <strong>fully open-sourced executable notebook <a class="reference external" href="https://github.com/Fangli-Ying/Introduction2Engineering">[Github repository]</a></strong> for the online course of “Introduction to the Engineering”.</p>
+<div class="section" id="what-we-will-learn-from-this-course">
+<h2>What we will learn from this course<a class="headerlink" href="#what-we-will-learn-from-this-course" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The fundamentals of Artificial Intelligence and some applications using machine learning algorithms</p></li>
+<li><p>How to apply A.I. and M.L. to help to solve the engineering problems in computer science and we demonstrate a number of applications with simple executable python code examples.</p></li>
+<li><p>The principles of machine learning approaches and the development of data science applications in the era of big data.</p></li>
+</ul>
+</div>
 <div class="section" id="what-are-the-tools-for-this-course">
 <h2>What are the tools for this course<a class="headerlink" href="#what-are-the-tools-for-this-course" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Programming Language: Python and Tableau</p></li>
+<li><p>Programming Language: Python Only</p></li>
 <li><p>Tools: <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a>, <a class="reference external" href="https://www.anaconda.com/">Anaconda</a>, <a class="reference external" href="https://numpy.org/">Numpy</a>, <a class="reference external" href="https://pandas.pydata.org/">Pandas</a>,<a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://scikit-learn.org/stable/">SkLearn for ML</a>, <a class="reference external" href="https://keras.io/">Keras</a> and <a class="reference external" href="https://pytorch.org/">Pytorch for deep learing</a></p></li>
 <li><p>Install them <a class="reference external" href="https://www.youtube.com/watch?v=EI_xyppkWCA">Anaconda with python</a>,<a class="reference external" href="https://www.youtube.com/watch?v=EI_xyppkWCA">Install Lib of python</a></p></li>
 </ul>
+<div class="figure align-default" id="eco">
+<a class="reference internal image-reference" href="_images/python_ecosystem.png"><img alt="_images/python_ecosystem.png" src="_images/python_ecosystem.png" style="width: 650px;" /></a>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>All chapters are written as <a class="reference external" href="https://jupyter.org/">Jupyter Notebooks</a> combining explanations and example code. When teaching, I use <a class="reference external" href="https://revealjs.com/">reveal.js</a> and <a class="reference external" href="https://rise.readthedocs.io/en/stable/">RISE</a> to showcase them as live presentations.</p>
+<p>The content of this site is designed to be browsed thematically rather than sequentially.</p>
+<div class="tip admonition">
+<p class="admonition-title">Interactivity</p>
+<p>From any chapter, you can launch a live session in the cloud by pressing the <i class="fas fa-rocket" title="rocket"></i> button in the toolbar above and selecting a hosted runtime environment. You will be able to test the code and regenerate the chapter output.</p>
+</div>
+</div>
+<div class="section" id="author">
+<h2>Author<a class="headerlink" href="#author" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-left" id="bio">
+<a class="reference internal image-reference" href="_images/bio.PNG"><img alt="_images/bio.PNG" src="_images/bio.PNG" style="width: 200px;" /></a>
+</div>
+<p><strong><a class="reference external" href="https://fangli-ying.github.io/">Dr. Fangli Ying</a></strong>(应方立) is currently a lecturer at Department of Computer Science in East China University of Science and Technology (ECUST). He is a supervisor for Master program and co-supervisor for Ph.D. program in Computer Science and he is supervising 3 international Ph.D. students. He is also a visiting professor in the International College of Digital Innovation at Chiang Mai University (CMU) in Thailand. He is working on the development of artificial intelligence industrial applications for solving practical problems in multidisciplinary research and he is cooperating with State Key Laboratory of Bioreactor Engineering, Department of Finance and National Engineering Laboratory for Big Data Distribution and Exchange Technologies in ECUST. He has authored many articles in  journals and conferences in the fields of Artificial Intelligence and Computer Science. His current research interests include Computer Vision, Reinforcement Learning for Portfolio Management, Bioinformatics with Synthetic Biology.</p>
 <p>Check out the chapter pages bundled with this  book to see more.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="chp1.html">Tableau 一、简介、条形图和直方图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp2.html">Tableau 二、数据前处理、折线图、饼图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp3.html">Tableau 三. 基本表、树状图、气泡图、词云</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp4.html">Tableau 四、标靶图、甘特图、瀑布图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp5.html">Tableau 五、进阶：数据集合并、符号地图、智能显示、插入自定义形状、仪表盘</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp6.html">Tableau 六、填充地图、多维地图、混合地图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp7.html">Tableau 七、多边形地图和背景图地图：设置地理信息（自定义地图码导入、设置地图源）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp8.html">Tableau 八、数据分层、数据分组、数据集</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp9.html">Tableau 九、计算字段与表计算：粒度、聚合与比率</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp10.html">Tableau 十、人口金字塔、漏斗图、箱线图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp11.html">Tableau 十一、范围-线图、倾斜图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp12.html">Tableau 十二、网络图与弧线图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp13.html">Tableau 十三、雷达图与凹凸图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chp14.html">Tableau 十四、回归分析与时间序列分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction%20to%20Machine%20Learning.html">A Brief Introduction to ML &amp; AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction%20to%20Machine%20Learning.html#what-is-artificial-intelligence-ai">What is artificial intelligence (AI)?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction%20to%20Machine%20Learning.html#machine-learning">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 </ul>
 </div>
 </div>
@@ -336,10 +329,10 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="chp1.html" title="next page">
+    <a class='right-next' id="next-link" href="Introduction%20to%20Machine%20Learning.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tableau 一、简介、条形图和直方图</p>
+        <p class="prev-next-title">A Brief Introduction to ML &amp; AI</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
