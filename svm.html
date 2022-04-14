@@ -53,6 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Artificial Neural Networks" href="NN.html" />
     <link rel="prev" title="Linear Regression" href="linear_regression.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -136,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Support Vector Machine Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NN.html">
+   Artificial Neural Networks
   </a>
  </li>
 </ul>
@@ -366,7 +372,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="what-will-we-do">
 <h2>What will we do?<a class="headerlink" href="#what-will-we-do" title="Permalink to this headline">¶</a></h2>
 <p>We will build a Support Vector Machine that will find the optimal hyperplane that maximizes the margin between two toy data classes using gradient descent.</p>
-<img src="./figures/svm.jpeg" width=450 height=450>
+<p><img alt="image" src="_images/svm.jpeg" /></p>
 </div>
 <div class="section" id="what-are-some-use-cases-for-svms">
 <h2>What are some use cases for SVMs?<a class="headerlink" href="#what-are-some-use-cases-for-svms" title="Permalink to this headline">¶</a></h2>
@@ -447,38 +453,6 @@ The learning rate is the length of the steps the algorithm makes down the gradie
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\ProgramData\Anaconda3\lib\site-packages\pandas\compat\_optional.py:138: UserWarning: Pandas requires version &#39;2.7.0&#39; or newer of &#39;numexpr&#39; (version &#39;2.6.9&#39; currently installed).
   warnings.warn(msg, UserWarning)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\least_angle.py:35: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  eps=np.finfo(np.float).eps,
-D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\least_angle.py:597: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  eps=np.finfo(np.float).eps, copy_X=True, fit_path=True,
-D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\least_angle.py:836: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  eps=np.finfo(np.float).eps, copy_X=True, fit_path=True,
-D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\least_angle.py:862: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  eps=np.finfo(np.float).eps, positive=False):
-D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\least_angle.py:1097: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  max_n_alphas=1000, n_jobs=None, eps=np.finfo(np.float).eps,
-D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\least_angle.py:1344: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  max_n_alphas=1000, n_jobs=None, eps=np.finfo(np.float).eps,
-D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\least_angle.py:1480: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  eps=np.finfo(np.float).eps, copy_X=True, positive=False):
-D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\randomized_l1.py:152: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  precompute=False, eps=np.finfo(np.float).eps,
-D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\randomized_l1.py:320: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  eps=np.finfo(np.float).eps, random_state=None,
-D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\randomized_l1.py:580: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-  eps=4 * np.finfo(np.float).eps, n_jobs=None,
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -1967,6 +1941,13 @@ Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdo
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Linear Regression</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="NN.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Artificial Neural Networks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
