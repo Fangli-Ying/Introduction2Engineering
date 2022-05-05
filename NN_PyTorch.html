@@ -410,90 +410,53 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">InvalidHeaderError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
-<span class="nn">D:\ProgramData\Anaconda3\lib\tarfile.py</span> in <span class="ni">next</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2288</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2289</span>                 <span class="n">tarinfo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tarinfo</span><span class="o">.</span><span class="n">fromtarfile</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2290</span>             <span class="k">except</span> <span class="n">EOFHeaderError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-
-<span class="nn">D:\ProgramData\Anaconda3\lib\tarfile.py</span> in <span class="ni">fromtarfile</span><span class="nt">(cls, tarfile)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1094</span>         <span class="n">buf</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">BLOCKSIZE</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1095</span>         <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">frombuf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1096</span>         <span class="n">obj</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">fileobj</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span> <span class="o">-</span> <span class="n">BLOCKSIZE</span>
-
-<span class="nn">D:\ProgramData\Anaconda3\lib\tarfile.py</span> in <span class="ni">frombuf</span><span class="nt">(cls, buf, encoding, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1038</span>         <span class="k">if</span> <span class="n">chksum</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">calc_chksums</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1039</span>             <span class="k">raise</span> <span class="n">InvalidHeaderError</span><span class="p">(</span><span class="s2">&quot;bad checksum&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span> 
-
-<span class="ne">InvalidHeaderError</span>: bad checksum
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">ReadError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">~\AppData\Roaming\Python\Python37\site-packages\torch\serialization.py</span> in <span class="ni">_load</span><span class="nt">(f, map_location, pickle_module, **pickle_load_args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">554</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">555</span>             <span class="k">return</span> <span class="n">legacy_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">556</span>         <span class="k">except</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">TarError</span><span class="p">:</span>
-
-<span class="nn">~\AppData\Roaming\Python\Python37\site-packages\torch\serialization.py</span> in <span class="ni">legacy_load</span><span class="nt">(f)</span>
-<span class="g g-Whitespace">    </span><span class="mi">465</span> 
-<span class="ne">--&gt; </span><span class="mi">466</span>         <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r:&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">tarfile</span><span class="o">.</span><span class="n">PAX_FORMAT</span><span class="p">))</span> <span class="k">as</span> <span class="n">tar</span><span class="p">,</span> \
-<span class="g g-Whitespace">    </span><span class="mi">467</span>                 <span class="n">mkdtemp</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdir</span><span class="p">:</span>
-
-<span class="nn">D:\ProgramData\Anaconda3\lib\tarfile.py</span> in <span class="ni">open</span><span class="nt">(cls, name, mode, fileobj, bufsize, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1592</span>                 <span class="k">raise</span> <span class="n">CompressionError</span><span class="p">(</span><span class="s2">&quot;unknown compression type </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">comptype</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1593</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">filemode</span><span class="p">,</span> <span class="n">fileobj</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1594</span> 
-
-<span class="nn">D:\ProgramData\Anaconda3\lib\tarfile.py</span> in <span class="ni">taropen</span><span class="nt">(cls, name, mode, fileobj, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1622</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;mode must be &#39;r&#39;, &#39;a&#39;, &#39;w&#39; or &#39;x&#39;&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1623</span>         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">fileobj</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1624</span> 
-
-<span class="nn">D:\ProgramData\Anaconda3\lib\tarfile.py</span> in <span class="ni">__init__</span><span class="nt">(self, name, mode, fileobj, format, tarinfo, dereference, ignore_zeros, encoding, errors, pax_headers, debug, errorlevel, copybufsize)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1485</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">firstmember</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1486</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">firstmember</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1487</span> 
-
-<span class="nn">D:\ProgramData\Anaconda3\lib\tarfile.py</span> in <span class="ni">next</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2300</span>                 <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2301</span>                     <span class="k">raise</span> <span class="n">ReadError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">2302</span>             <span class="k">except</span> <span class="n">EmptyHeaderError</span><span class="p">:</span>
-
-<span class="ne">ReadError</span>: bad checksum
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
 <span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">5</span><span class="n">cde4022c60c</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>                               <span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Download and load the training data</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">trainset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s1">&#39;~/.pytorch/MNIST_data/&#39;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">trainloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">trainset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1">### Run this cell</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Define a transform to normalize the data</span>
 
-<span class="nn">~\AppData\Roaming\Python\Python37\site-packages\torchvision\datasets\mnist.py</span> in <span class="ni">__init__</span><span class="nt">(self, root, train, transform, target_transform, download)</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span>             <span class="n">data_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_file</span>
-<span class="ne">---&gt; </span><span class="mi">78</span>         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_folder</span><span class="p">,</span> <span class="n">data_file</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span> 
-<span class="g g-Whitespace">     </span><span class="mi">80</span>     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<span class="ne">D</span>:\ProgramData\Anaconda3\lib\site-packages\torchvision\__init__.py in &lt;module&gt;
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">models</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">ops</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">utils</span>
 
-<span class="nn">~\AppData\Roaming\Python\Python37\site-packages\torch\serialization.py</span> in <span class="ni">load</span><span class="nt">(f, map_location, pickle_module, **pickle_load_args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span>         <span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">386</span>         <span class="k">return</span> <span class="n">_load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">map_location</span><span class="p">,</span> <span class="n">pickle_module</span><span class="p">,</span> <span class="o">**</span><span class="n">pickle_load_args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">387</span>     <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">388</span>         <span class="k">if</span> <span class="n">new_fd</span><span class="p">:</span>
+<span class="ne">D</span>:\ProgramData\Anaconda3\lib\site-packages\torchvision\models\__init__.py in &lt;module&gt;
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">.shufflenetv2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">segmentation</span>
+<span class="ne">---&gt; </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">detection</span>
 
-<span class="nn">~\AppData\Roaming\Python\Python37\site-packages\torch\serialization.py</span> in <span class="ni">_load</span><span class="nt">(f, map_location, pickle_module, **pickle_load_args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">557</span>             <span class="k">if</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">is_zipfile</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">558</span>                 <span class="c1"># .zip is used for torch.jit.save and will throw an un-pickling error here</span>
-<span class="ne">--&gt; </span><span class="mi">559</span>                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is a zip archive (did you mean to use torch.jit.load()?)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">560</span>             <span class="c1"># if not a tarfile, reset file offset and proceed</span>
-<span class="g g-Whitespace">    </span><span class="mi">561</span>             <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="ne">D</span>:\ProgramData\Anaconda3\lib\site-packages\torchvision\models\detection\__init__.py in &lt;module&gt;
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.faster_rcnn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.mask_rcnn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.keypoint_rcnn</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="ne">RuntimeError</span>: C:\Users\msipc/.pytorch/MNIST_data/MNIST\processed\training.pt is a zip archive (did you mean to use torch.jit.load()?)
+<span class="ne">D</span>:\ProgramData\Anaconda3\lib\site-packages\torchvision\models\detection\faster_rcnn.py in &lt;module&gt;
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> 
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">torchvision.ops</span> <span class="kn">import</span> <span class="n">misc</span> <span class="k">as</span> <span class="n">misc_nn_ops</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">torchvision.ops</span> <span class="kn">import</span> <span class="n">MultiScaleRoIAlign</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> 
+
+<span class="ne">D</span>:\ProgramData\Anaconda3\lib\site-packages\torchvision\ops\__init__.py in &lt;module&gt;
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.boxes</span> <span class="kn">import</span> <span class="n">nms</span><span class="p">,</span> <span class="n">box_iou</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.roi_align</span> <span class="kn">import</span> <span class="n">roi_align</span><span class="p">,</span> <span class="n">RoIAlign</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.roi_pool</span> <span class="kn">import</span> <span class="n">roi_pool</span><span class="p">,</span> <span class="n">RoIPool</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.poolers</span> <span class="kn">import</span> <span class="n">MultiScaleRoIAlign</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">.feature_pyramid_network</span> <span class="kn">import</span> <span class="n">FeaturePyramidNetwork</span>
+
+<span class="ne">D</span>:\ProgramData\Anaconda3\lib\site-packages\torchvision\ops\boxes.py in &lt;module&gt;
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">torch</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">_C</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">def</span> <span class="nf">nms</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">iou_threshold</span><span class="p">):</span>
+
+<span class="ne">ImportError</span>: DLL load failed: 找不到指定的模块。
 </pre></div>
 </div>
 </div>
