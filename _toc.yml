@@ -18,5 +18,6 @@ chapters:
 - file: NN_PyTorch
 - file: TrainingNN_Pytorch
 - file: Practice_Pytorch
+- file: Pytorch_Intro
  
 
