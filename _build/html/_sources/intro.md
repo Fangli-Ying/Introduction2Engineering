@@ -1,21 +1,29 @@
 # Welcome to Introduction to Engineering
 
-This is a course textbook to give a general introduction to the engineering issues in the field of Computer Science, especially for the issues raised in data science. This course also intends to provide a set of practical artificial intelligence and machine learning skills to help the students to work like a data scientist and design potential solutions to the engineering problems in computer science.
+This is a course textbook to give a general introduction to the engineering issues in the field of Computer Science, especially for the issues raised in the scope of data science. This course also intends to provide a set of practical artificial intelligence and machine learning skills to help the students to work as a data scientist and provide potential solutions to the data engineering problems.
 
-This course is the third year class and mainly for the foreign students in East China University of Science and Technology (ECUST)  and the mentor of this course is **[Dr. Fangli Ying](https://fangli-ying.github.io/)**(应方立). He is a Lecturer in the department of Computer Science at ECUST and he creates this public notebook for the online course of "Introduction to the Engineering".
+This course is mainly for the third year foreign undergraduate students in East China University of Science and Technology (ECUST)  and the tutor of this course is **[Dr. Fangli Ying](https://fangli-ying.github.io/)**(应方立). He is a Lecturer in the department of Computer Science at ECUST and he creates this **fully open-sourced executable notebook [[Github repository]](https://github.com/Fangli-Ying/Introduction2Engineering)** for the online course of "Introduction to the Engineering".
 
 ## What we will learn from this course
 
-- The fundamentals of Artificial Intelligence and some simple approaches using machine learning algorithms
-- How A.I. and M.L. work with engineering problems in computer science and demonstrated with some simple python code examples.
-- Know some important machine learning approaches and show how they can work with the engineering problems raised in the real-life applications.
+- The fundamentals of Artificial Intelligence and some applications using machine learning algorithms
+- How to apply A.I. and M.L. to help to solve the engineering problems in computer science and we demonstrate a number of applications with simple executable python code examples.
+- The principles of machine learning approaches and the development of data science applications in the era of big data.
 
 ## What are the tools for this course
 
 - Programming Language: Python Only
-- Tools: [Jupyter Notebook](https://jupyter.org/), [Anaconda](https://www.anaconda.com/), [Numpy](https://numpy.org/), [matplotlib](https://matplotlib.org/), [SkLearn for ML](https://scikit-learn.org/stable/), [Pytorch for deep learing](https://pytorch.org/)
-- All the materials of this course are fully opensourced and will send over the platform of my [github repository](https://fangli-ying.github.io/)
+- Tools: [Jupyter Notebook](https://jupyter.org/), [Anaconda](https://www.anaconda.com/), [Numpy](https://numpy.org/), [Pandas](https://pandas.pydata.org/),[matplotlib](https://matplotlib.org/), [SkLearn for ML](https://scikit-learn.org/stable/), [Keras](https://keras.io/) and [Pytorch for deep learing](https://pytorch.org/)
 - Install them [Anaconda with python](https://www.youtube.com/watch?v=EI_xyppkWCA),[Install Lib of python](https://www.youtube.com/watch?v=EI_xyppkWCA)
+
+
+
+```{figure} figures/python_ecosystem.png
+---
+width: 650px
+name: eco
+---
+```
 
 ## Usage
 
@@ -30,7 +38,17 @@ From any chapter, you can launch a live session in the cloud by pressing the <i 
 
 ## Author
 
-Dr. Fangli Ying ([Github profile](https://fangli-ying.github.io/)) is currently a lecturer at Department of Computer Science in East China University of Science and Technology (ECUST). He is a supervisor for Master program and co-supervisor for Ph.D. program in Computer Science and he is supervising 3 international Ph.D. students. He is also a visiting professor in the International College of Digital Innovation at Chiang Mai University (CMU) in Thailand. He is working on the development of artificial intelligence industrial applications for solving practical problems in multidisciplinary research and he is cooperating with State Key Laboratory of Bioreactor Engineering, Department of Finance and National Engineering Laboratory for Big Data Distribution and Exchange Technologies in ECUST. He has authored many articles in  journals and conferences in the fields of Artificial Intelligence and Computer Science. His current research interests include Computer Vision, Reinforcement Learning for Portfolio Management, Bioinformatics with Synthetic Biology.
+
+```{figure} figures/bio.PNG
+---
+width: 200px
+align: left
+name: bio
+---
+```
+
+
+**[Dr. Fangli Ying](https://fangli-ying.github.io/)**(应方立) is currently a lecturer at Department of Computer Science in East China University of Science and Technology (ECUST). He is a supervisor for Master program and co-supervisor for Ph.D. program in Computer Science and he is supervising 3 international Ph.D. students. He is also a visiting professor in the International College of Digital Innovation at Chiang Mai University (CMU) in Thailand. He is working on the development of artificial intelligence industrial applications for solving practical problems in multidisciplinary research and he is cooperating with State Key Laboratory of Bioreactor Engineering, Department of Finance and National Engineering Laboratory for Big Data Distribution and Exchange Technologies in ECUST. He has authored many articles in  journals and conferences in the fields of Artificial Intelligence and Computer Science. His current research interests include Computer Vision, Reinforcement Learning for Portfolio Management, Bioinformatics with Synthetic Biology.
 
 Check out the chapter pages bundled with this  book to see more.
 

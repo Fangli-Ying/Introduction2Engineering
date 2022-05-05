@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="A Brief Introduction to ML &amp; AI" href="Introduction%20to%20Machine%20Learning.html" />
+    <link rel="next" title="A Brief Introduction to ML &amp; AI" href="IntroductiontoMachineLearning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -99,8 +99,23 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Introduction%20to%20Machine%20Learning.html">
+  <a class="reference internal" href="IntroductiontoMachineLearning.html">
    A Brief Introduction to ML &amp; AI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MaincategoriesofML.html">
+   What is Machine Learning, and how does it work? (video #1)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Class3.html">
+   Benefits and drawbacks of scikit-learn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Class4.html">
+   Getting started in scikit-learn with the famous iris dataset
   </a>
  </li>
  <li class="toctree-l1">
@@ -109,8 +124,43 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooks
+  <a class="reference internal" href="DecisionTreeEn.html">
+   Conclusion on Descision Tree
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_regression.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="svm.html">
+   Support Vector Machine Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NN.html">
+   Artificial Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tensor_PyTorch.html">
+   Introduction to Deep Learning with PyTorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NN_PyTorch.html">
+   Neural networks with PyTorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TrainingNN_Pytorch.html">
+   Training Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Practice_Pytorch.html">
+   Classifying Fashion-MNIST
   </a>
  </li>
 </ul>
@@ -255,24 +305,26 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="welcome-to-introduction-to-engineering">
 <h1>Welcome to Introduction to Engineering<a class="headerlink" href="#welcome-to-introduction-to-engineering" title="Permalink to this headline">¶</a></h1>
-<p>This is a course textbook to give a general introduction to the engineering issues in the field of Computer Science, especially for the issues raised in data science. This course also intends to provide a set of practical artificial intelligence and machine learning skills to help the students to work like a data scientist and design potential solutions to the engineering problems in computer science.</p>
-<p>This course is the third year class and mainly for the foreign students in East China University of Science and Technology (ECUST)  and the mentor of this course is <strong><a class="reference external" href="https://fangli-ying.github.io/">Dr. Fangli Ying</a></strong>(应方立). He is a Lecturer in the department of Computer Science at ECUST and he creates this public notebook for the online course of “Introduction to the Engineering”.</p>
+<p>This is a course textbook to give a general introduction to the engineering issues in the field of Computer Science, especially for the issues raised in the scope of data science. This course also intends to provide a set of practical artificial intelligence and machine learning skills to help the students to work as a data scientist and provide potential solutions to the data engineering problems.</p>
+<p>This course is mainly for the third year foreign undergraduate students in East China University of Science and Technology (ECUST)  and the tutor of this course is <strong><a class="reference external" href="https://fangli-ying.github.io/">Dr. Fangli Ying</a></strong>(应方立). He is a Lecturer in the department of Computer Science at ECUST and he creates this <strong>fully open-sourced executable notebook <a class="reference external" href="https://github.com/Fangli-Ying/Introduction2Engineering">[Github repository]</a></strong> for the online course of “Introduction to the Engineering”.</p>
 <div class="section" id="what-we-will-learn-from-this-course">
 <h2>What we will learn from this course<a class="headerlink" href="#what-we-will-learn-from-this-course" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>The fundamentals of Artificial Intelligence and some simple approaches using machine learning algorithms</p></li>
-<li><p>How A.I. and M.L. work with engineering problems in computer science and demonstrated with some simple python code examples.</p></li>
-<li><p>Know some important machine learning approaches and show how they can work with the engineering problems raised in the real-life applications.</p></li>
+<li><p>The fundamentals of Artificial Intelligence and some applications using machine learning algorithms</p></li>
+<li><p>How to apply A.I. and M.L. to help to solve the engineering problems in computer science and we demonstrate a number of applications with simple executable python code examples.</p></li>
+<li><p>The principles of machine learning approaches and the development of data science applications in the era of big data.</p></li>
 </ul>
 </div>
 <div class="section" id="what-are-the-tools-for-this-course">
 <h2>What are the tools for this course<a class="headerlink" href="#what-are-the-tools-for-this-course" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Programming Language: Python Only</p></li>
-<li><p>Tools: <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a>, <a class="reference external" href="https://www.anaconda.com/">Anaconda</a>, <a class="reference external" href="https://numpy.org/">Numpy</a>, <a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://scikit-learn.org/stable/">SkLearn for ML</a>, <a class="reference external" href="https://pytorch.org/">Pytorch for deep learing</a></p></li>
-<li><p>All the materials of this course are fully opensourced and will send over the platform of my <a class="reference external" href="https://fangli-ying.github.io/">github repository</a></p></li>
+<li><p>Tools: <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a>, <a class="reference external" href="https://www.anaconda.com/">Anaconda</a>, <a class="reference external" href="https://numpy.org/">Numpy</a>, <a class="reference external" href="https://pandas.pydata.org/">Pandas</a>,<a class="reference external" href="https://matplotlib.org/">matplotlib</a>, <a class="reference external" href="https://scikit-learn.org/stable/">SkLearn for ML</a>, <a class="reference external" href="https://keras.io/">Keras</a> and <a class="reference external" href="https://pytorch.org/">Pytorch for deep learing</a></p></li>
 <li><p>Install them <a class="reference external" href="https://www.youtube.com/watch?v=EI_xyppkWCA">Anaconda with python</a>,<a class="reference external" href="https://www.youtube.com/watch?v=EI_xyppkWCA">Install Lib of python</a></p></li>
 </ul>
+<div class="figure align-default" id="eco">
+<a class="reference internal image-reference" href="_images/python_ecosystem.png"><img alt="_images/python_ecosystem.png" src="_images/python_ecosystem.png" style="width: 650px;" /></a>
+</div>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
@@ -285,15 +337,45 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="author">
 <h2>Author<a class="headerlink" href="#author" title="Permalink to this headline">¶</a></h2>
-<p>Dr. Fangli Ying (<a class="reference external" href="https://fangli-ying.github.io/">Github profile</a>) is currently a lecturer at Department of Computer Science in East China University of Science and Technology (ECUST). He is a supervisor for Master program and co-supervisor for Ph.D. program in Computer Science and he is supervising 3 international Ph.D. students. He is also a visiting professor in the International College of Digital Innovation at Chiang Mai University (CMU) in Thailand. He is working on the development of artificial intelligence industrial applications for solving practical problems in multidisciplinary research and he is cooperating with State Key Laboratory of Bioreactor Engineering, Department of Finance and National Engineering Laboratory for Big Data Distribution and Exchange Technologies in ECUST. He has authored many articles in  journals and conferences in the fields of Artificial Intelligence and Computer Science. His current research interests include Computer Vision, Reinforcement Learning for Portfolio Management, Bioinformatics with Synthetic Biology.</p>
+<div class="figure align-left" id="bio">
+<a class="reference internal image-reference" href="_images/bio.PNG"><img alt="_images/bio.PNG" src="_images/bio.PNG" style="width: 200px;" /></a>
+</div>
+<p><strong><a class="reference external" href="https://fangli-ying.github.io/">Dr. Fangli Ying</a></strong>(应方立) is currently a lecturer at Department of Computer Science in East China University of Science and Technology (ECUST). He is a supervisor for Master program and co-supervisor for Ph.D. program in Computer Science and he is supervising 3 international Ph.D. students. He is also a visiting professor in the International College of Digital Innovation at Chiang Mai University (CMU) in Thailand. He is working on the development of artificial intelligence industrial applications for solving practical problems in multidisciplinary research and he is cooperating with State Key Laboratory of Bioreactor Engineering, Department of Finance and National Engineering Laboratory for Big Data Distribution and Exchange Technologies in ECUST. He has authored many articles in  journals and conferences in the fields of Artificial Intelligence and Computer Science. His current research interests include Computer Vision, Reinforcement Learning for Portfolio Management, Bioinformatics with Synthetic Biology.</p>
 <p>Check out the chapter pages bundled with this  book to see more.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Introduction%20to%20Machine%20Learning.html">A Brief Introduction to ML &amp; AI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introduction%20to%20Machine%20Learning.html#what-is-artificial-intelligence-ai">What is artificial intelligence (AI)?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Introduction%20to%20Machine%20Learning.html#machine-learning">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductiontoMachineLearning.html">A Brief Introduction to ML &amp; AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductiontoMachineLearning.html#what-is-artificial-intelligence-ai">What is artificial intelligence (AI)?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IntroductiontoMachineLearning.html#machine-learning">Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MaincategoriesofML.html">What is Machine Learning, and how does it work? (video #1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Class3.html">Benefits and drawbacks of scikit-learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Class3.html#installing-scikit-learn">Installing scikit-learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Class3.html#using-the-jupyter-notebook">Using the Jupyter Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Class3.html#heading">Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Class3.html#resources-for-learning-python">Resources for learning Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Class3.html#comments-or-questions">Comments or Questions?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Class4.html">Getting started in scikit-learn with the famous iris dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">Logistic Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTreeEn.html">Conclusion on Descision Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTreeEn.html#terminology-for-ml">Terminology for ML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTreeEn.html#questions-for-homework">Questions for homework:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTreeEn.html#can-you-find-features-feature-values-and-the-outcomes-in-the-tree">Can you find features, feature values and the outcomes in the tree?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTreeEn.html#which-are-node-branch-and-leaf">which are Node Branch and  Leaf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTreeEn.html#pruning-dt">Pruning DT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DecisionTreeEn.html#random-forest">Random forest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linear_regression.html#linear-model">linear model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svm.html">Support Vector Machine Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN.html">Artificial Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN.html#history">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN.html#random-numpy-array">random numpy array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN.html#from-numpy-to-tensor">from numpy to tensor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN.html#from-tensor-to-numpy">from tensor to numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tensor_PyTorch.html">Introduction to Deep Learning with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NN_PyTorch.html">Neural networks with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TrainingNN_Pytorch.html">Training Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Practice_Pytorch.html">Classifying Fashion-MNIST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Practice_Pytorch.html#train-the-network">Train the network</a></li>
 </ul>
 </div>
 </div>
@@ -324,7 +406,7 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="Introduction%20to%20Machine%20Learning.html" title="next page">
+    <a class='right-next' id="next-link" href="IntroductiontoMachineLearning.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">A Brief Introduction to ML &amp; AI</p>
@@ -338,9 +420,12 @@ const thebe_selector_output = ".output, .cell_output"
     <footer class="footer">
   <p>
     
-      By Dr. Fangli Ying<br/>
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
     
         &copy; Copyright 2022.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
   </p>
 </footer>
 </main>
