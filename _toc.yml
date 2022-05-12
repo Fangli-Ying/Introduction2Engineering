@@ -19,5 +19,6 @@ chapters:
 - file: TrainingNN_Pytorch
 - file: Practice_Pytorch
 - file: Pytorch_Intro
+- file: CNN and FC
  
 
