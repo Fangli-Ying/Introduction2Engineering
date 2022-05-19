@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RNN and its applications &#8212; Introduction to Engineering</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="FC and CNN Networks" href="CNN%20and%20FC.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Introduction to Engineering
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="IntroductiontoMachineLearning.html">
+   A Brief Introduction to ML &amp; AI
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MaincategoriesofML.html">
+   What is Machine Learning, and how does it work? (video #1)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Class3.html">
+   Benefits and drawbacks of scikit-learn
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Class4.html">
+   Getting started in scikit-learn with the famous iris dataset
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logistic_regression.html">
+   Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="DecisionTreeEn.html">
+   Conclusion on Descision Tree
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_regression.html">
+   Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="svm.html">
+   Support Vector Machine Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NN.html">
+   Artificial Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tensor_PyTorch.html">
+   Introduction to Deep Learning with PyTorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NN_PyTorch.html">
+   Neural networks with PyTorch
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="TrainingNN_Pytorch.html">
+   Training Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Practice_Pytorch.html">
+   Classifying Fashion-MNIST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Pytorch_Intro.html">
+   Tensor Basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="CNN%20and%20FC.html">
+   FC and CNN Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   RNN and its applications
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/RNN.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fangli-Ying/Introduction2Engineering/master?urlpath=tree/RNN.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyter.org/hub/hub/user-redirect/git-pull?repo=https://github.com/Fangli-Ying/Introduction2Engineering&urlpath=tree/Introduction2Engineering/RNN.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fangli-Ying/Introduction2Engineering/blob/master/RNN.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   RNN and its applications
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#natural-language-processing">
+   Natural Language Processing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rnn-for-nlp">
+   RNN for NLP
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gated-recurrent-unit">
+     Gated Recurrent Unit
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lstm">
+     LSTM
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>RNN and its applications</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   RNN and its applications
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#natural-language-processing">
+   Natural Language Processing
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rnn-for-nlp">
+   RNN for NLP
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gated-recurrent-unit">
+     Gated Recurrent Unit
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lstm">
+     LSTM
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="rnn-and-its-applications">
+<h1>RNN and its applications<a class="headerlink" href="#rnn-and-its-applications" title="Permalink to this headline">¶</a></h1>
+<p>Recurrent Neural Networks (RNNs) are a form of machine learning algorithm that are ideal for sequential data such as text, time series, financial data, speech, audio, video among others.</p>
+<p>RNNs are ideal for solving problems where the sequence is more important than the individual items themselves.</p>
+<p>An RNNs is essentially a fully connected neural network that contains a refactoring of some of its layers into a loop. That loop is typically an iteration over the addition or concatenation of two inputs, a matrix multiplication and a non-linear function.</p>
+<p>Among the text usages, the following tasks are among those RNNs perform well at:</p>
+<ul class="simple">
+<li><p>Sequence labelling</p></li>
+<li><p>Natural Language Processing (NLP) text classification</p></li>
+<li><p>Natural Language Processing (NLP) text generation</p></li>
+</ul>
+<p>RNNs effectively have an internal memory that allows the previous inputs to affect the subsequent predictions. It’s much easier to predict the next word in a sentence with more accuracy, if you know what the previous words were.</p>
+<p>Often with tasks well suited to RNNs, the sequence of the items is as or more important than the previous item in the sequence.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="natural-language-processing">
+<h1>Natural Language Processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this headline">¶</a></h1>
+<p>Natural Language Processing (NLP) is a sub-field of computer science and artificial intelligence, dealing with processing and generating natural language data. Although there is still research that is outside of the machine learning, most NLP is now based on language models produced by machine learning.</p>
+<p>NLP is a good use case for RNNs and is used in the article to explain how RNNs can be constructed.</p>
+<p>Language models
+The aim for a language model is to minimise how confused the model is having seen a given sequence of text.</p>
+<p>It is only necessary to train one language model per domain, as the language model encoder can be used for different purposes such as text generation and multiple different classifiers within that domain.</p>
+<p>As the longest part of training is usually creating the language model encoder, reusing the encoder can save significant training time.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="rnn-for-nlp">
+<h1>RNN for NLP<a class="headerlink" href="#rnn-for-nlp" title="Permalink to this headline">¶</a></h1>
+<p>Recurrent Neural Networks or RNN as they are called in short, are a very important variant of neural networks heavily used in Natural Language Processing.</p>
+<ul class="simple">
+<li><p>Conceptually they differ from a standard neural network as the standard input in a RNN is a word instead of the entire sample as in the case of a standard neural network. This gives the flexibility for the network to work with varying lengths of sentences, something which cannot be achieved in a standard neural network due to it’s fixed structure. It also provides an additional advantage of sharing features learned across different positions of text which can not be obtained in a standard neural network.</p></li>
+</ul>
+<p>A RNN treats each word of a sentence as a separate input occurring at time ‘t’ and uses the activation value at ‘t-1’ also, as an input in addition to the input at time ‘t’. The diagram below shows a detailed structure of an RNN architecture.</p>
+<p><img alt="RNN" src="_images/rnn.jpeg" /></p>
+<p>Apart from the architecture mentioned above there are three other types of architectures of RNN which are commonly used.</p>
+<ul class="simple">
+<li><p>Many to One RNN : Many to one architecture refers to an RNN architecture where many inputs (Tx) are used to give one output (Ty). A suitable example for using such an architecture will be a classification task.</p></li>
+</ul>
+<p><img alt="RNN" src="_images/12n.jpeg" /></p>
+<p>In the image above H represents the output of the activation function.</p>
+<ol class="simple">
+<li><p>One to Many RNN: One to Many architecture refers to a situation where a RNN generates a series of output values based on a single input value. A prime example for using such an architecture will be a music generation task, where an input is a jounre or the first note.</p></li>
+</ol>
+<p><img alt="RNN" src="_images/imgc.png" /></p>
+<ol class="simple">
+<li><p>Many to Many Architecture (Tx not equals Ty): This architecture refers to where many inputs are read to produce many outputs, where the length of inputs is not equal to the length of outputs. A prime example for using such an architecture is machine translation tasks.</p></li>
+</ol>
+<p><img alt="RNN" src="_images/n2n.png" /></p>
+<p>Encoder refers to the part of the network which reads the sentence to be translated, and, Decoder is the part of the network which translates the sentence into desired language.</p>
+<p>Limitations of RNN
+Apart from all of its usefulness RNN does have certain limitations major of which are :</p>
+<ul class="simple">
+<li><p>Examples of RNN architecture stated above are capable of capturing the dependencies in only one direction of language. Basically in case of Natural Language Processing it assumes that the word coming after has no effect on the meaning of the word coming before. With our experience of languages we know that it is certainly not true.</p></li>
+<li><p>RNN are also not very good in capturing long term dependencies and the problem of vanishing gradients resurface in RNN.
+Both these limitations give rise to new types of RNN architectures which are being discussed below.</p></li>
+</ul>
+<div class="section" id="gated-recurrent-unit">
+<h2>Gated Recurrent Unit<a class="headerlink" href="#gated-recurrent-unit" title="Permalink to this headline">¶</a></h2>
+<p>It is a modification in the basic recurrent unit which helps to capture long range dependencies and also help a lot in fixing vanishing gradient problem.
+For a more detailed explanation one can refer to <a class="reference external" href="https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be">https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be</a></p>
+<p>LSTM</p>
+<p><img alt="RNN" src="_images/GRU.png" /></p>
+</div>
+<div class="section" id="lstm">
+<h2>LSTM<a class="headerlink" href="#lstm" title="Permalink to this headline">¶</a></h2>
+<p>In LSTM architecture instead of having one update gate as in GRU there is an update gate and a forget gate.
+A more detailed explanation of LSTM is available at <a class="reference external" href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">http://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># data: https://download.pytorch.org/tutorial/data.zip</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">unicodedata</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># alphabet small + capital letters + &quot; .,;&#39;&quot;</span>
+<span class="n">ALL_LETTERS</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="s2">&quot; .,;&#39;&quot;</span>
+<span class="n">N_LETTERS</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ALL_LETTERS</span><span class="p">)</span>
+
+<span class="c1"># Turn a Unicode string to plain ASCII, thanks to https://stackoverflow.com/a/518232/2809427</span>
+<span class="k">def</span> <span class="nf">unicode_to_ascii</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s1">&#39;NFD&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">category</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;Mn&#39;</span>
+        <span class="ow">and</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ALL_LETTERS</span>
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">load_data</span><span class="p">():</span>
+    <span class="c1"># Build the category_lines dictionary, a list of names per language</span>
+    <span class="n">category_lines</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">all_categories</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">def</span> <span class="nf">find_files</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    
+    <span class="c1"># Read a file and split into lines</span>
+    <span class="k">def</span> <span class="nf">read_lines</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">unicode_to_ascii</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">find_files</span><span class="p">(</span><span class="s1">&#39;data/names/*.txt&#39;</span><span class="p">):</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">all_categories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
+        
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">read_lines</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">category_lines</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">lines</span>
+        
+    <span class="k">return</span> <span class="n">category_lines</span><span class="p">,</span> <span class="n">all_categories</span>
+
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">To represent a single letter, we use a “one-hot vector” of </span>
+<span class="sd">size &lt;1 x n_letters&gt;. A one-hot vector is filled with 0s</span>
+<span class="sd">except for a 1 at index of the current letter, e.g. &quot;b&quot; = &lt;0 1 0 0 0 ...&gt;.</span>
+
+<span class="sd">To make a word we join a bunch of those into a</span>
+<span class="sd">2D matrix &lt;line_length x 1 x n_letters&gt;.</span>
+
+<span class="sd">That extra 1 dimension is because PyTorch assumes</span>
+<span class="sd">everything is in batches - we’re just using a batch size of 1 here.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Find letter index from all_letters, e.g. &quot;a&quot; = 0</span>
+<span class="k">def</span> <span class="nf">letter_to_index</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">ALL_LETTERS</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+
+<span class="c1"># Just for demonstration, turn a letter into a &lt;1 x n_letters&gt; Tensor</span>
+<span class="k">def</span> <span class="nf">letter_to_tensor</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>
+    <span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N_LETTERS</span><span class="p">)</span>
+    <span class="n">tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">letter_to_index</span><span class="p">(</span><span class="n">letter</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">tensor</span>
+
+<span class="c1"># Turn a line into a &lt;line_length x 1 x n_letters&gt;,</span>
+<span class="c1"># or an array of one-hot letter vectors</span>
+<span class="k">def</span> <span class="nf">line_to_tensor</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N_LETTERS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+        <span class="n">tensor</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">letter_to_index</span><span class="p">(</span><span class="n">letter</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">tensor</span>
+
+
+<span class="k">def</span> <span class="nf">random_training_example</span><span class="p">(</span><span class="n">category_lines</span><span class="p">,</span> <span class="n">all_categories</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">random_choice</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">random_idx</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">random_idx</span><span class="p">]</span>
+    
+    <span class="n">category</span> <span class="o">=</span> <span class="n">random_choice</span><span class="p">(</span><span class="n">all_categories</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">random_choice</span><span class="p">(</span><span class="n">category_lines</span><span class="p">[</span><span class="n">category</span><span class="p">])</span>
+    <span class="n">category_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">all_categories</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">category</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+    <span class="n">line_tensor</span> <span class="o">=</span> <span class="n">line_to_tensor</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">category</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">category_tensor</span><span class="p">,</span> <span class="n">line_tensor</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\ProgramData\Anaconda3\lib\site-packages\pandas\compat\_optional.py:138: UserWarning: Pandas requires version &#39;2.7.0&#39; or newer of &#39;numexpr&#39; (version &#39;2.6.9&#39; currently installed).
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ALL_LETTERS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">unicode_to_ascii</span><span class="p">(</span><span class="s1">&#39;Ślusàrski&#39;</span><span class="p">))</span>
+    
+<span class="n">category_lines</span><span class="p">,</span> <span class="n">all_categories</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">category_lines</span><span class="p">[</span><span class="s1">&#39;Italian&#39;</span><span class="p">][:</span><span class="mi">5</span><span class="p">])</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">letter_to_tensor</span><span class="p">(</span><span class="s1">&#39;J&#39;</span><span class="p">))</span> <span class="c1"># [1, 57]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">line_to_tensor</span><span class="p">(</span><span class="s1">&#39;Jones&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="c1"># [5, 1, 57]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .,;&#39;
+Slusarski
+[&#39;Abandonato&#39;, &#39;Abatangelo&#39;, &#39;Abatantuono&#39;, &#39;Abate&#39;, &#39;Abategiovanni&#39;]
+tensor([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1.,
+         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+         0., 0., 0.]])
+torch.Size([5, 1, 57])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">ALL_LETTERS</span><span class="p">,</span> <span class="n">N_LETTERS</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">load_data</span><span class="p">,</span> <span class="n">letter_to_tensor</span><span class="p">,</span> <span class="n">line_to_tensor</span><span class="p">,</span> <span class="n">random_training_example</span>
+
+
+<span class="k">class</span> <span class="nc">RNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="c1"># implement RNN from scratch rather than using nn.RNN</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i2h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span> <span class="o">+</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i2o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span> <span class="o">+</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LogSoftmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_tensor</span><span class="p">,</span> <span class="n">hidden_tensor</span><span class="p">):</span>
+        <span class="n">combined</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">input_tensor</span><span class="p">,</span> <span class="n">hidden_tensor</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i2h</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i2o</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">hidden</span>
+    
+    <span class="k">def</span> <span class="nf">init_hidden</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+    
+<span class="n">category_lines</span><span class="p">,</span> <span class="n">all_categories</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+<span class="n">n_categories</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_categories</span><span class="p">)</span>
+
+<span class="n">n_hidden</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">rnn</span> <span class="o">=</span> <span class="n">RNN</span><span class="p">(</span><span class="n">N_LETTERS</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_categories</span><span class="p">)</span>
+
+<span class="c1"># one step</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">letter_to_tensor</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">hidden_tensor</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">init_hidden</span><span class="p">()</span>
+
+<span class="n">output</span><span class="p">,</span> <span class="n">next_hidden</span> <span class="o">=</span> <span class="n">rnn</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">,</span> <span class="n">hidden_tensor</span><span class="p">)</span>
+<span class="c1">#print(output.size())</span>
+<span class="c1">#print(next_hidden.size())</span>
+
+<span class="c1"># whole sequence/name</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">line_to_tensor</span><span class="p">(</span><span class="s1">&#39;Albert&#39;</span><span class="p">)</span>
+<span class="n">hidden_tensor</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">init_hidden</span><span class="p">()</span>
+
+<span class="n">output</span><span class="p">,</span> <span class="n">next_hidden</span> <span class="o">=</span> <span class="n">rnn</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">hidden_tensor</span><span class="p">)</span>
+<span class="c1">#print(output.size())</span>
+<span class="c1">#print(next_hidden.size())</span>
+
+<span class="c1">#</span>
+<span class="k">def</span> <span class="nf">category_from_output</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="n">category_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">all_categories</span><span class="p">[</span><span class="n">category_idx</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">category_from_output</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">NLLLoss</span><span class="p">()</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.005</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">rnn</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">line_tensor</span><span class="p">,</span> <span class="n">category_tensor</span><span class="p">):</span>
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">init_hidden</span><span class="p">()</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">line_tensor</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">output</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="n">rnn</span><span class="p">(</span><span class="n">line_tensor</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">hidden</span><span class="p">)</span>
+        
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">category_tensor</span><span class="p">)</span>
+    
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="n">current_loss</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">all_losses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">plot_steps</span><span class="p">,</span> <span class="n">print_steps</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">5000</span>
+<span class="n">n_iters</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iters</span><span class="p">):</span>
+    <span class="n">category</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">category_tensor</span><span class="p">,</span> <span class="n">line_tensor</span> <span class="o">=</span> <span class="n">random_training_example</span><span class="p">(</span><span class="n">category_lines</span><span class="p">,</span> <span class="n">all_categories</span><span class="p">)</span>
+    
+    <span class="n">output</span><span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">line_tensor</span><span class="p">,</span> <span class="n">category_tensor</span><span class="p">)</span>
+    <span class="n">current_loss</span> <span class="o">+=</span> <span class="n">loss</span> 
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">plot_steps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">all_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_loss</span> <span class="o">/</span> <span class="n">plot_steps</span><span class="p">)</span>
+        <span class="n">current_loss</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">print_steps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">guess</span> <span class="o">=</span> <span class="n">category_from_output</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="n">correct</span> <span class="o">=</span> <span class="s2">&quot;CORRECT&quot;</span> <span class="k">if</span> <span class="n">guess</span> <span class="o">==</span> <span class="n">category</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;WRONG (</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">n_iters</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">guess</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">correct</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_losses</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">input_line</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&gt; </span><span class="si">{</span><span class="n">input_line</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">line_tensor</span> <span class="o">=</span> <span class="n">line_to_tensor</span><span class="p">(</span><span class="n">input_line</span><span class="p">)</span>
+        
+        <span class="n">hidden</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">init_hidden</span><span class="p">()</span>
+    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">line_tensor</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">output</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="n">rnn</span><span class="p">(</span><span class="n">line_tensor</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">hidden</span><span class="p">)</span>
+        
+        <span class="n">guess</span> <span class="o">=</span> <span class="n">category_from_output</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">guess</span><span class="p">)</span>
+
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">sentence</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Input:&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sentence</span> <span class="o">==</span> <span class="s2">&quot;quit&quot;</span><span class="p">:</span>
+        <span class="k">break</span>
+    
+    <span class="n">predict</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="n">b882a226ed61</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">ALL_LETTERS</span><span class="p">,</span> <span class="n">N_LETTERS</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">load_data</span><span class="p">,</span> <span class="n">letter_to_tensor</span><span class="p">,</span> <span class="n">line_to_tensor</span><span class="p">,</span> <span class="n">random_training_example</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> 
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;utils&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="CNN%20and%20FC.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">FC and CNN Networks</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2022.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

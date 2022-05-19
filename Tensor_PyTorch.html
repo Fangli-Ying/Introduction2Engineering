@@ -176,6 +176,11 @@ const thebe_selector_output = ".output, .cell_output"
    FC and CNN Networks
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="RNN.html">
+   RNN and its applications
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -390,6 +395,12 @@ x_1 \, x_2 \cdots  x_n
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\ProgramData\Anaconda3\lib\site-packages\pandas\compat\_optional.py:138: UserWarning: Pandas requires version &#39;2.7.0&#39; or newer of &#39;numexpr&#39; (version &#39;2.6.9&#39; currently installed).
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -565,10 +576,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.40487732, 0.58834424, 0.22258428],
-       [0.78270034, 0.97569263, 0.28277159],
-       [0.69229717, 0.19110857, 0.42162228],
-       [0.23226961, 0.09819173, 0.84221603]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.57059937, 0.75342496, 0.17518346],
+       [0.95380826, 0.16518327, 0.49307208],
+       [0.00137279, 0.1672287 , 0.9574814 ],
+       [0.57518303, 0.93658967, 0.08616035]])
 </pre></div>
 </div>
 </div>
@@ -581,10 +592,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.4049, 0.5883, 0.2226],
-        [0.7827, 0.9757, 0.2828],
-        [0.6923, 0.1911, 0.4216],
-        [0.2323, 0.0982, 0.8422]], dtype=torch.float64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.5706, 0.7534, 0.1752],
+        [0.9538, 0.1652, 0.4931],
+        [0.0014, 0.1672, 0.9575],
+        [0.5752, 0.9366, 0.0862]], dtype=torch.float64)
 </pre></div>
 </div>
 </div>
@@ -596,10 +607,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.40487732, 0.58834424, 0.22258428],
-       [0.78270034, 0.97569263, 0.28277159],
-       [0.69229717, 0.19110857, 0.42162228],
-       [0.23226961, 0.09819173, 0.84221603]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.57059937, 0.75342496, 0.17518346],
+       [0.95380826, 0.16518327, 0.49307208],
+       [0.00137279, 0.1672287 , 0.9574814 ],
+       [0.57518303, 0.93658967, 0.08616035]])
 </pre></div>
 </div>
 </div>
@@ -613,10 +624,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.8098, 1.1767, 0.4452],
-        [1.5654, 1.9514, 0.5655],
-        [1.3846, 0.3822, 0.8432],
-        [0.4645, 0.1964, 1.6844]], dtype=torch.float64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1.1412, 1.5068, 0.3504],
+        [1.9076, 0.3304, 0.9861],
+        [0.0027, 0.3345, 1.9150],
+        [1.1504, 1.8732, 0.1723]], dtype=torch.float64)
 </pre></div>
 </div>
 </div>
@@ -629,10 +640,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.80975465, 1.17668849, 0.44516856],
-       [1.56540067, 1.95138527, 0.56554318],
-       [1.38459435, 0.38221714, 0.84324457],
-       [0.46453922, 0.19638345, 1.68443206]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.14119875, 1.50684991, 0.35036692],
+       [1.90761653, 0.33036655, 0.98614416],
+       [0.00274557, 0.33445741, 1.9149628 ],
+       [1.15036606, 1.87317935, 0.1723207 ]])
 </pre></div>
 </div>
 </div>
