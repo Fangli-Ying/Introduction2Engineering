@@ -20,5 +20,5 @@ chapters:
 - file: Practice_Pytorch
 - file: Pytorch_Intro
 - file: CNN and FC
- 
+- file: RNN
 
