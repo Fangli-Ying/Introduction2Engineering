@@ -21,4 +21,5 @@ chapters:
 - file: Pytorch_Intro
 - file: CNN and FC
 - file: RNN
+- file: GANs
 
