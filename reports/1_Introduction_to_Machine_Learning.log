@@ -17,23 +17,13 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Load World Happiness Report for 2017
-dataset_url = "./data/2017.csv"
-df_happiness = pd.read_csv(dataset_url)
-
-# Print dataset shape (rows and columns)
-print(f"Dataset shape: {df_happiness.shape}")
+- Blog: [More difficult examples](https://github.com/ageron/handson-ml2/blob/master/09_unsupervised_learning.ipynb)
 ------------------
 
-[1;31m---------------------------------------------------------------------------[0m
-[1;31mNameError[0m                                 Traceback (most recent call last)
-[1;32m<ipython-input-1-4e05e6bded9f>[0m in [0;36m<module>[1;34m[0m
-[0;32m      1[0m [1;31m# Load World Happiness Report for 2017[0m[1;33m[0m[1;33m[0m[1;33m[0m[0m
-[0;32m      2[0m [0mdataset_url[0m [1;33m=[0m [1;34m"./data/2017.csv"[0m[1;33m[0m[1;33m[0m[0m
-[1;32m----> 3[1;33m [0mdf_happiness[0m [1;33m=[0m [0mpd[0m[1;33m.[0m[0mread_csv[0m[1;33m([0m[0mdataset_url[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
-[0m[0;32m      4[0m [1;33m[0m[0m
-[0;32m      5[0m [1;31m# Print dataset shape (rows and columns)[0m[1;33m[0m[1;33m[0m[1;33m[0m[0m
+[1;36m  File [1;32m"<ipython-input-1-cbbb3de49c8d>"[1;36m, line [1;32m1[0m
+[1;33m    - Blog: [More difficult examples](https://github.com/ageron/handson-ml2/blob/master/09_unsupervised_learning.ipynb)[0m
+[1;37m                          ^[0m
+[1;31mSyntaxError[0m[1;31m:[0m invalid syntax
 
-[1;31mNameError[0m: name 'pd' is not defined
-NameError: name 'pd' is not defined
+SyntaxError: invalid syntax (<ipython-input-1-cbbb3de49c8d>, line 1)
 
