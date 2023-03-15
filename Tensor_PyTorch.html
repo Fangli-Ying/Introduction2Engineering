@@ -55,8 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Neural networks with PyTorch" href="NN_PyTorch.html" />
-    <link rel="prev" title="Artificial Neural Networks" href="NN.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -100,95 +98,20 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="1_Introduction_to_Machine_Learning.html">
    1. Introduction to Machine Learning
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="IntroductiontoMachineLearning.html">
-   A Brief Introduction to ML &amp; AI
+  <a class="reference internal" href="2_linear_regression.html">
+   2. Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="MaincategoriesofML.html">
-   What is Machine Learning, and how does it work? (video #1)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Class3.html">
-   Benefits and drawbacks of scikit-learn
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Class4.html">
-   Getting started in scikit-learn with the famous iris dataset
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="logistic_regression.html">
-   Logistic Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="DecisionTreeEn.html">
-   Conclusion on Descision Tree
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="linear_regression.html">
-   Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="svm.html">
-   Support Vector Machine Classification
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="NN.html">
-   Artificial Neural Networks
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Introduction to Deep Learning with PyTorch
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="NN_PyTorch.html">
-   Neural networks with PyTorch
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="TrainingNN_Pytorch.html">
-   Training Neural Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Practice_Pytorch.html">
-   Classifying Fashion-MNIST
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Pytorch_Intro.html">
-   Tensor Basics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="CNN%20and%20FC.html">
-   FC and CNN Networks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="RNN.html">
-   RNN and its applications
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="GANs.html">
-   GAN
+  <a class="reference internal" href="3_Logistic_regression.html">
+   3. Logistic Regression
   </a>
  </li>
 </ul>
@@ -586,10 +509,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.37573788, 0.83205619, 0.58454108],
-       [0.53043287, 0.97482019, 0.13058486],
-       [0.7202479 , 0.34477007, 0.91322369],
-       [0.91535009, 0.41157116, 0.31262729]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.8621322 , 0.72652614, 0.28223844],
+       [0.89884283, 0.13654153, 0.27030774],
+       [0.750785  , 0.78949498, 0.67612155],
+       [0.02090459, 0.30811184, 0.59492011]])
 </pre></div>
 </div>
 </div>
@@ -602,10 +525,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.3757, 0.8321, 0.5845],
-        [0.5304, 0.9748, 0.1306],
-        [0.7202, 0.3448, 0.9132],
-        [0.9154, 0.4116, 0.3126]], dtype=torch.float64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.8621, 0.7265, 0.2822],
+        [0.8988, 0.1365, 0.2703],
+        [0.7508, 0.7895, 0.6761],
+        [0.0209, 0.3081, 0.5949]], dtype=torch.float64)
 </pre></div>
 </div>
 </div>
@@ -617,10 +540,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.37573788, 0.83205619, 0.58454108],
-       [0.53043287, 0.97482019, 0.13058486],
-       [0.7202479 , 0.34477007, 0.91322369],
-       [0.91535009, 0.41157116, 0.31262729]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.8621322 , 0.72652614, 0.28223844],
+       [0.89884283, 0.13654153, 0.27030774],
+       [0.750785  , 0.78949498, 0.67612155],
+       [0.02090459, 0.30811184, 0.59492011]])
 </pre></div>
 </div>
 </div>
@@ -634,10 +557,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.7515, 1.6641, 1.1691],
-        [1.0609, 1.9496, 0.2612],
-        [1.4405, 0.6895, 1.8264],
-        [1.8307, 0.8231, 0.6253]], dtype=torch.float64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1.7243, 1.4531, 0.5645],
+        [1.7977, 0.2731, 0.5406],
+        [1.5016, 1.5790, 1.3522],
+        [0.0418, 0.6162, 1.1898]], dtype=torch.float64)
 </pre></div>
 </div>
 </div>
@@ -650,10 +573,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.75147577, 1.66411237, 1.16908217],
-       [1.06086575, 1.94964038, 0.26116972],
-       [1.4404958 , 0.68954014, 1.82644738],
-       [1.83070018, 0.82314231, 0.62525457]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.7242644 , 1.45305227, 0.56447687],
+       [1.79768566, 0.27308306, 0.54061548],
+       [1.50157   , 1.57898996, 1.3522431 ],
+       [0.04180918, 0.61622367, 1.18984022]])
 </pre></div>
 </div>
 </div>
@@ -685,21 +608,7 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="NN.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Artificial Neural Networks</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="NN_PyTorch.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Neural networks with PyTorch</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>
