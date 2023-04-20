@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naive Bayesian Methods &#8212; Introduction to Engineering</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Decision Trees &amp; Random Forests" href="6_Decision_trees_and_random_forests.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Introduction to Engineering
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_Introduction_to_Machine_Learning.html">
+   1. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_linear_regression.html">
+   2. Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3_Logistic_regression.html">
+   3. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_KNN.html">
+   4. K nearest Neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5_SVM.html">
+   Support Vector Machine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6_Decision_trees_and_random_forests.html">
+   Decision Trees &amp; Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Naive Bayesian Methods
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/7_Bayesian_methods.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fangli-Ying/Introduction2Engineering/master?urlpath=tree/7_Bayesian_methods.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyter.org/hub/hub/user-redirect/git-pull?repo=https://github.com/Fangli-Ying/Introduction2Engineering&urlpath=tree/Introduction2Engineering/7_Bayesian_methods.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fangli-Ying/Introduction2Engineering/blob/master/7_Bayesian_methods.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-bayes-algorithm-intuition">
+   Naive Bayes algorithm intuition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-naive-bayes-classifier-works">
+   How Naive Bayes Classifier Works?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-classification">
+   Bayesian Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-naive-bayes">
+     Gaussian Naive Bayes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-setup">
+   Environment setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multinomial-naive-bayes-algorithm">
+     Multinomial Naïve Bayes algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-classifying-text">
+     Example: Classifying Text
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayes-theorem">
+   Bayes’ theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thomas-bayes-1701-1761">
+     Thomas Bayes (1701-1761)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayes-legacy">
+     Bayes’ legacy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intuitive-explanation">
+     Intuitive explanation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-proof">
+     Quick proof
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-bayes">
+   Naïve Bayes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naive-bayes-in-a-nutshell">
+     Naïve Bayes in a nutshell
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Naive Bayesian Methods</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-bayes-algorithm-intuition">
+   Naive Bayes algorithm intuition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-naive-bayes-classifier-works">
+   How Naive Bayes Classifier Works?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-classification">
+   Bayesian Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-naive-bayes">
+     Gaussian Naive Bayes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-setup">
+   Environment setup
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multinomial-naive-bayes-algorithm">
+     Multinomial Naïve Bayes algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-classifying-text">
+     Example: Classifying Text
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayes-theorem">
+   Bayes’ theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thomas-bayes-1701-1761">
+     Thomas Bayes (1701-1761)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayes-legacy">
+     Bayes’ legacy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intuitive-explanation">
+     Intuitive explanation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-proof">
+     Quick proof
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naive-bayes">
+   Naïve Bayes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#naive-bayes-in-a-nutshell">
+     Naïve Bayes in a nutshell
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="naive-bayesian-methods">
+<h1>Naive Bayesian Methods<a class="headerlink" href="#naive-bayesian-methods" title="Permalink to this headline">¶</a></h1>
+<p>In machine learning, Naïve Bayes classification is a straightforward and powerful algorithm for the classification task. Naïve Bayes classification is based on applying Bayes’ theorem with strong independence assumption between the features. Naïve Bayes classification produces good results when we use it for textual data analysis such as Natural Language Processing.</p>
+<p>Naïve Bayes models are also known as simple Bayes or independent Bayes. All these names refer to the application of Bayes’ theorem in the classifier’s decision rule. Naïve Bayes classifier applies the Bayes’ theorem in practice. This classifier brings the power of Bayes’ theorem to machine learning.</p>
+<div class="section" id="naive-bayes-algorithm-intuition">
+<h2>Naive Bayes algorithm intuition<a class="headerlink" href="#naive-bayes-algorithm-intuition" title="Permalink to this headline">¶</a></h2>
+<p>Naïve Bayes Classifier uses the Bayes’ theorem to predict membership probabilities for each class such as the probability that given record or data point belongs to a particular class. The class with the highest probability is considered as the most likely class. This is also known as the <strong>Maximum A Posteriori (MAP)</strong>.</p>
+<p>The MAP for a hypothesis with 2 events A and B is</p>
+<p>MAP (A)</p>
+<p>= max (P (A | B))</p>
+<p>= max (P (B | A) * P (A))/P (B)</p>
+<p>= max (P (B | A) * P (A))</p>
+<p>Here, P (B) is evidence probability. It is used to normalize the result. It remains the same, So, removing it would not affect the result.</p>
+<p>Naïve Bayes Classifier assumes that all the features are unrelated to each other. Presence or absence of a feature does not influence the presence or absence of any other feature.</p>
+<p>In real world datasets, we test a hypothesis given multiple evidence on features. So, the calculations become quite complicated. To simplify the work, the feature independence approach is used to uncouple multiple evidence and treat each as an independent one.</p>
+<ul class="simple">
+<li><p>Video <a class="reference external" href="https://www.youtube.com/watch?v=O2L2Uv9pdDA">NB explained</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="how-naive-bayes-classifier-works">
+<h2>How Naive Bayes Classifier Works?<a class="headerlink" href="#how-naive-bayes-classifier-works" title="Permalink to this headline">¶</a></h2>
+<p>Let’s understand the working of Naive Bayes through an example. Given an example of weather conditions and playing sports. You need to calculate the probability of playing sports. Now, you need to classify whether players will play or not, based on the weather condition.</p>
+<p>First Approach (In case of a single feature)
+Naive Bayes classifier calculates the probability of an event in the following steps:</p>
+<ul class="simple">
+<li><p>Step 1: Calculate the prior probability for given class labels</p></li>
+<li><p>Step 2: Find Likelihood probability with each attribute for each class</p></li>
+<li><p>Step 3: Put these value in Bayes Formula and calculate posterior probability.</p></li>
+<li><p>Step 4: See which class has a higher probability, given the input belongs to the higher probability class.
+For simplifying prior and posterior probability calculation, you can use the two tables frequency and likelihood tables. Both of these tables will help you to calculate the prior and posterior probability. The Frequency table contains the occurrence of labels for all features. There are two likelihood tables. Likelihood Table 1 is showing prior probabilities of labels and Likelihood Table 2 is showing the posterior probability.</p></li>
+</ul>
+<p>For simplifying prior and posterior probability calculation, you can use the two tables frequency and likelihood tables. Both of these tables will help you to calculate the prior and posterior probability. The Frequency table contains the occurrence of labels for all features. There are two likelihood tables. Likelihood Table 1 is showing prior probabilities of labels and Likelihood Table 2 is showing the posterior probability.
+<img alt="leaf" src="_images/nb.PNG" /></p>
+<p><img alt="leaf" src="_images/NB.PNG" /></p>
+<p>Now suppose you want to calculate the probability of playing when the weather is overcast.</p>
+<p>Probability of playing:</p>
+<p>P(Yes | Overcast) = P(Overcast | Yes) P(Yes) / P (Overcast) …………………(1)</p>
+<p>Calculate Prior Probabilities:</p>
+<p>P(Overcast) = 4/14 = 0.29</p>
+<p>P(Yes)= 9/14 = 0.64</p>
+<p>Calculate Posterior Probabilities:</p>
+<p>P(Overcast |Yes) = 4/9 = 0.44</p>
+<p>Put Prior and Posterior probabilities in equation (1)</p>
+<p>P (Yes | Overcast) = 0.44 * 0.64 / 0.29 = 0.98(Higher)</p>
+<p>Similarly, you can calculate the probability of not playing:</p>
+<p>Probability of not playing:</p>
+<p>P(No | Overcast) = P(Overcast | No) P(No) / P (Overcast) …………………(2)</p>
+<p>Calculate Prior Probabilities:</p>
+<p>P(Overcast) = 4/14 = 0.29</p>
+<p>P(No)= 5/14 = 0.36</p>
+<p>Calculate Posterior Probabilities:</p>
+<p>P(Overcast |No) = 0/9 = 0</p>
+<p>Put Prior and Posterior probabilities in equation (2)</p>
+<p>P (No | Overcast) = 0 * 0.36 / 0.29 = 0</p>
+<p><strong>The probability of a ‘Yes’ class is higher</strong>. So you can determine here if the weather is overcast than players will play the sport.</p>
+</div>
+<div class="section" id="bayesian-classification">
+<h2>Bayesian Classification<a class="headerlink" href="#bayesian-classification" title="Permalink to this headline">¶</a></h2>
+<p>Naive Bayes classifiers are built on Bayesian classification methods. These rely on Bayes’s theorem, which is an equation describing the relationship of conditional probabilities of statistical quantities. In Bayesian classification, we’re interested in finding the probability of a label given some observed features, which we can write as P(L | features)
+. Bayes’s theorem tells us how to express this in terms of quantities we can compute more directly:</p>
+<p><img alt="leaf" src="_images/nb1.PNG" /></p>
+<p>If we are trying to decide between two labels—let’s call them L1
+and L2
+—then one way to make this decision is to compute the ratio of the posterior probabilities for each label:</p>
+<p><img alt="leaf" src="_images/nb2.PNG" /></p>
+<p>All we need now is some model by which we can compute P(features | Li)
+for each label. Such a model is called a generative model because it specifies the hypothetical random process that generates the data. Specifying this generative model for each label is the main piece of the training of such a Bayesian classifier. The general version of such a training step is a very difficult task, but we can make it simpler through the use of some simplifying assumptions about the form of this model.</p>
+<p>This is where the “naive” in “naive Bayes” comes in: if we make very naive assumptions about the generative model for each label, we can find a rough approximation of the generative model for each class, and then proceed with the Bayesian classification. Different types of naive Bayes classifiers rest on different naive assumptions about the data</p>
+<div class="section" id="gaussian-naive-bayes">
+<h3>Gaussian Naive Bayes<a class="headerlink" href="#gaussian-naive-bayes" title="Permalink to this headline">¶</a></h3>
+<p>Perhaps the easiest naive Bayes classifier to understand is Gaussian naive Bayes. In this classifier, the assumption is that data from each label is drawn from a simple Gaussian distribution.</p>
+<p>When we have continuous attribute values, we made an assumption that the values associated with each class are distributed according to Gaussian or Normal distribution. For example, suppose the training data contains a continuous attribute x. We first segment the data by the class, and then compute the mean and variance of x in each class. Let µi be the mean of the values and let σi be the variance of the values associated with the ith class. Suppose we have some observation value xi . Then, the probability distribution of xi given a class can be computed by the following equation –</p>
+<p><img alt="leaf" src="_images/GNB.PNG" /></p>
+<p>Imagine that you have the following data:</p>
+</div>
+</div>
+<div class="section" id="environment-setup">
+<h2>Environment setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">platform</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python version: </span><span class="si">{</span><span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version_tuple</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NumPy version: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python version: 3.7.11
+NumPy version: 1.19.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span><span class="p">;</span> <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\ProgramData\Anaconda3\lib\site-packages\pandas\compat\_optional.py:138: UserWarning: Pandas requires version &#39;2.7.0&#39; or newer of &#39;numexpr&#39; (version &#39;2.6.9&#39; currently installed).
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cluster_std</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7_Bayesian_methods_23_0.png" src="_images/7_Bayesian_methods_23_0.png" />
+</div>
+</div>
+<p>One extremely fast way to create a simple model is to assume that the data is described by a Gaussian distribution with no covariance between dimensions. This model can be fit by simply finding the mean and standard deviation of the points within each label, which is all you need to define such a distribution. The result of this naive Gaussian assumption is shown in the following figure:</p>
+<p><img alt="leaf" src="_images/gua.PNG" /></p>
+<p>The ellipses here represent the Gaussian generative model for each label, with larger probability toward the center of the ellipses. With this generative model in place for each class, we have a simple recipe to compute the likelihood P(features | L1)
+for any data point, and thus we can quickly compute the posterior ratio and determine which label is the most probable for a given point.</p>
+<p>This procedure is implemented in Scikit-Learn’s <strong>sklearn.naive_bayes.GaussianNB</strong> estimator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s generate some new data and predict the label:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Xnew</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">14</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">18</span><span class="p">]</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ynew</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Now</span> <span class="n">we</span> <span class="n">can</span> <span class="n">plot</span> <span class="n">this</span> <span class="n">new</span> <span class="n">data</span> <span class="n">to</span> <span class="n">get</span> <span class="n">an</span> <span class="n">idea</span> <span class="n">of</span> <span class="n">where</span> <span class="n">the</span> <span class="n">decision</span> <span class="n">boundary</span> <span class="ow">is</span><span class="p">:</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-6-773dc4205b33&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+    <span class="n">Now</span> <span class="n">we</span> <span class="n">can</span> <span class="n">plot</span> <span class="n">this</span> <span class="n">new</span> <span class="n">data</span> <span class="n">to</span> <span class="n">get</span> <span class="n">an</span> <span class="n">idea</span> <span class="n">of</span> <span class="n">where</span> <span class="n">the</span> <span class="n">decision</span> <span class="n">boundary</span> <span class="ow">is</span><span class="p">:</span>
+         <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
+<span class="n">lim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Xnew</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Xnew</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">ynew</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7_Bayesian_methods_31_0.png" src="_images/7_Bayesian_methods_31_0.png" />
+</div>
+</div>
+<p>We see a slightly curved boundary in the classifications—in general, the boundary in Gaussian naive Bayes is quadratic.</p>
+<p>A nice piece of this Bayesian formalism is that it naturally allows for probabilistic classification, which we can compute using the predict_proba method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yprob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">Xnew</span><span class="p">)</span>
+<span class="n">yprob</span><span class="p">[</span><span class="o">-</span><span class="mi">8</span><span class="p">:]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.89, 0.11],
+       [1.  , 0.  ],
+       [1.  , 0.  ],
+       [1.  , 0.  ],
+       [1.  , 0.  ],
+       [1.  , 0.  ],
+       [0.  , 1.  ],
+       [0.15, 0.85]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The columns give the posterior probabilities of the first and second label, respectively. If you are looking for estimates of uncertainty in your classification, Bayesian approaches like this can be a useful approach.</p>
+<p>Of course, the final classification will only be as good as the model assumptions that lead to it, which is why Gaussian naive Bayes often does not produce very good results. Still, in many cases—especially as the number of features becomes large—this assumption is not detrimental enough to prevent Gaussian naive Bayes from being a useful method.</p>
+<div class="section" id="multinomial-naive-bayes-algorithm">
+<h3>Multinomial Naïve Bayes algorithm<a class="headerlink" href="#multinomial-naive-bayes-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>With a Multinomial Naïve Bayes model, samples (feature vectors) represent the frequencies with which certain events have been generated by a multinomial (p1, … ,pn) where pi is the probability that event i occurs. Multinomial Naïve Bayes algorithm is preferred to use on data that is multinomially distributed. It is one of the standard algorithms which is used in text categorization classification.</p>
+<p>The Gaussian assumption just described is by no means the only simple assumption that could be used to specify the generative distribution for each label. Another useful example is multinomial naive Bayes, where the features are assumed to be generated from a simple multinomial distribution. The multinomial distribution describes the probability of observing counts among a number of categories, and thus multinomial naive Bayes is most appropriate for features that represent counts or count rates.</p>
+<p>The idea is precisely the same as before, except that instead of modeling the data distribution with the best-fit Gaussian, we model the data distribuiton with a best-fit multinomial distribution.</p>
+</div>
+<div class="section" id="example-classifying-text">
+<h3>Example: Classifying Text<a class="headerlink" href="#example-classifying-text" title="Permalink to this headline">¶</a></h3>
+<p>One place where multinomial naive Bayes is often used is in text classification, where the features are related to word counts or frequencies within the documents to be classified. We discussed the extraction of such features from text in Feature Engineering; here we will use the sparse word count features from the 20 Newsgroups corpus to show how we might classify these short documents into categories.</p>
+<p>Let’s download the data and take a look at the target names:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+<span class="c1">#https://ndownloader.figshare.com/files/5975967</span>
+<span class="c1">#E:/Researchcode/Introduction2Engineering_ClassBook/assets/20newsbydate</span>
+<span class="c1">#archive_path = &quot;C:/Users/Judy/scikit_learn_data/20news_home/20newsbydate.tar.gz&quot;</span>
+<span class="c1">#logger.debug(&quot;Decompressing %s&quot;, archive_path)</span>
+<span class="c1">#tarfile.open(archive_path, &quot;r:gz&quot;).extractall(path=target_dir)</span>
+<span class="c1">#os.remove(archive_path)</span>
+<span class="c1">#data =tarfile.open(archive_path, &quot;r:gz&quot;).extractall(path=target_dir)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">target_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;alt.atheism&#39;,
+ &#39;comp.graphics&#39;,
+ &#39;comp.os.ms-windows.misc&#39;,
+ &#39;comp.sys.ibm.pc.hardware&#39;,
+ &#39;comp.sys.mac.hardware&#39;,
+ &#39;comp.windows.x&#39;,
+ &#39;misc.forsale&#39;,
+ &#39;rec.autos&#39;,
+ &#39;rec.motorcycles&#39;,
+ &#39;rec.sport.baseball&#39;,
+ &#39;rec.sport.hockey&#39;,
+ &#39;sci.crypt&#39;,
+ &#39;sci.electronics&#39;,
+ &#39;sci.med&#39;,
+ &#39;sci.space&#39;,
+ &#39;soc.religion.christian&#39;,
+ &#39;talk.politics.guns&#39;,
+ &#39;talk.politics.mideast&#39;,
+ &#39;talk.politics.misc&#39;,
+ &#39;talk.religion.misc&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;talk.religion.misc&#39;</span><span class="p">,</span> <span class="s1">&#39;soc.religion.christian&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;sci.space&#39;</span><span class="p">,</span> <span class="s1">&#39;comp.graphics&#39;</span><span class="p">]</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="n">categories</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="n">categories</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is a representative entry from the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>From: dmcgee@uluhe.soest.hawaii.edu (Don McGee)
+Subject: Federal Hearing
+Originator: dmcgee@uluhe
+Organization: School of Ocean and Earth Science and Technology
+Distribution: usa
+Lines: 10
+
+
+Fact or rumor....?  Madalyn Murray O&#39;Hare an atheist who eliminated the
+use of the bible reading and prayer in public schools 15 years ago is now
+going to appear before the FCC with a petition to stop the reading of the
+Gospel on the airways of America.  And she is also campaigning to remove
+Christmas programs, songs, etc from the public schools.  If it is true
+then mail to Federal Communications Commission 1919 H Street Washington DC
+20054 expressing your opposition to her request.  Reference Petition number
+
+2493.
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to use this data for machine learning, we need to be able to convert the content of each string into a vector of numbers. For this we will use the TF-IDF vectorizer (discussed in Feature Engineering), and create a pipeline that attaches it to a multinomial naive Bayes classifier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">TfidfVectorizer</span><span class="p">(),</span> <span class="n">MultinomialNB</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this pipeline, we can apply the model to the training data, and predict labels for the test data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">train</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;list&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have predicted the labels for the test data, we can evaluate them to learn about the performance of the estimator. For example, here is the confusion matrix between the true and predicted labels for the test data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">mat</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">xticklabels</span><span class="o">=</span><span class="n">train</span><span class="o">.</span><span class="n">target_names</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">train</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;true label&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;predicted label&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7_Bayesian_methods_49_0.png" src="_images/7_Bayesian_methods_49_0.png" />
+</div>
+</div>
+<p>Evidently, even this very simple classifier can successfully separate space talk from computer talk, but it gets confused between talk about religion and talk about Christianity. This is perhaps an expected area of confusion!</p>
+<p>The very cool thing here is that we now have the tools to determine the category for any string, using the predict() method of this pipeline. Here’s a quick utility function that will return the prediction for a single string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict_category</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">):</span>
+
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">s</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">train</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try it out:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predict_category</span><span class="p">(</span><span class="s2">&quot;sending a payload to the ISS&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;sci.space&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predict_category</span><span class="p">(</span><span class="s1">&#39;discussing islam vs atheism&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;soc.religion.christian&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predict_category</span><span class="p">(</span><span class="s1">&#39;determining the screen resolution&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;comp.graphics&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remember that this is nothing more sophisticated than a simple probability model for the (weighted) frequency of each word in the string; nevertheless, the result is striking. Even a very naive algorithm, when used carefully and trained on a large set of high-dimensional data, can be surprisingly effective.</p>
+<p>When to Use Naive Bayes
+Because naive Bayesian classifiers make such stringent assumptions about data, they will generally not perform as well as a more complicated model. That said, they have several advantages:</p>
+<ul class="simple">
+<li><p>They are extremely fast for both training and prediction</p></li>
+<li><p>They provide straightforward probabilistic prediction</p></li>
+<li><p>They are often very easily interpretable</p></li>
+<li><p>They have very few (if any) tunable parameters</p></li>
+<li><p>These advantages mean a naive Bayesian classifier is often a good choice as an initial baseline classification. If it performs suitably, then congratulations: you have a very fast, very interpretable classifier for your problem. If it does not perform well, then you can begin exploring more sophisticated models, with some baseline knowledge of how well they should perform.</p></li>
+</ul>
+<p>Naive Bayes classifiers tend to perform especially well in one of the following situations:</p>
+<ul class="simple">
+<li><p>When the naive assumptions actually match the data (very rare in practice)</p></li>
+<li><p>For very well-separated categories, when model complexity is less important</p></li>
+<li><p>For very high-dimensional data, when model complexity is less important</p></li>
+<li></li>
+</ul>
+<p>The last two points seem distinct, but they actually are related: as the dimension of a dataset grows, it is much less likely for any two points to be found close together (after all, they must be close in every single dimension to be close overall). This means that clusters in high dimensions tend to be more separated, on average, than clusters in low dimensions, assuming the new dimensions actually add information. For this reason, simplistic classifiers like naive Bayes tend to work as well or better than more complicated classifiers as the dimensionality grows: once you have enough data, even a simple model can be very powerful.</p>
+<ul class="simple">
+<li><p>Kaggle <a class="reference external" href="https://www.kaggle.com/code/prashant111/naive-bayes-classifier-in-python">NB in python</a>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="bayes-theorem">
+<h2>Bayes’ theorem<a class="headerlink" href="#bayes-theorem" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="thomas-bayes-1701-1761">
+<h3>Thomas Bayes (1701-1761)<a class="headerlink" href="#thomas-bayes-1701-1761" title="Permalink to this headline">¶</a></h3>
+<p>English statistician, philosopher and presbyterian minister.</p>
+</div>
+<div class="section" id="bayes-legacy">
+<h3>Bayes’ legacy<a class="headerlink" href="#bayes-legacy" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Blaise Pascal (1623-1662) pioneered the study of probabilies of <em>effects</em> given <em>causes</em>.</p></li>
+<li><p>On the contrary, Thomas Bayes proposed a formula, known as <strong>Bayes’s theorem</strong>, for computing the probability of a <em>cause</em> given an <em>effect</em>.</p></li>
+</ul>
+</div>
+<div class="section" id="intuitive-explanation">
+<h3>Intuitive explanation<a class="headerlink" href="#intuitive-explanation" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>- Video [Decision Tree explained](https://www.youtube.com/watch?v=HZGCoVF3YvM).
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="quick-proof">
+<h3>Quick proof<a class="headerlink" href="#quick-proof" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>- Video [Decision Tree explained](https://www.youtube.com/watch?v=U_85TaXbeIo).
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="naive-bayes">
+<h2>Naïve Bayes<a class="headerlink" href="#naive-bayes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="naive-bayes-in-a-nutshell">
+<h3>Naïve Bayes in a nutshell<a class="headerlink" href="#naive-bayes-in-a-nutshell" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Set of (supervised) learning algorithms based on applying Bayes’ theorem.</p></li>
+<li><p>“Naïve” assumption: conditional independence between every pair of features given the value of the class variable.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="6_Decision_trees_and_random_forests.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Decision Trees &amp; Random Forests</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2023.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
