@@ -121,7 +121,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="5_SVM.html">
-   Support Vector Machine
+   5. Support Vector Machine
   </a>
  </li>
  <li class="toctree-l1">
@@ -131,7 +131,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="7_Bayesian_methods.html">
-   Naive Bayesian Methods
+   7. Naive Bayesian Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="8_k_means.html">
+   7. K-Means
   </a>
  </li>
 </ul>
@@ -757,7 +762,19 @@ A decision tree algorithm always tries to maximize the value of information gain
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scikit-learn version: 1.0.2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scikit-learn version: 0.20.3
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">8</span><span class="n">bd6a235de4c</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">DecisionTreeClassifier</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">DecisionTreeRegressor</span><span class="p">,</span>
+
+<span class="ne">ImportError</span>: cannot import name &#39;plot_tree&#39; from &#39;sklearn.tree&#39; (D:\ProgramData\Anaconda3\lib\site-packages\sklearn\tree\__init__.py)
 </pre></div>
 </div>
 </div>
@@ -854,46 +871,64 @@ A decision tree algorithm always tries to maximize the value of information gain
   </thead>
   <tbody>
     <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>5.5</td>
+      <td>2.4</td>
+      <td>3.8</td>
+      <td>1.1</td>
+      <td>1</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>5.7</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>120</th>
+      <td>6.9</td>
+      <td>3.2</td>
+      <td>5.7</td>
+      <td>2.3</td>
+      <td>2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>6.2</td>
+      <td>2.8</td>
+      <td>4.8</td>
+      <td>1.8</td>
+      <td>2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>5.7</td>
+      <td>2.9</td>
+      <td>4.2</td>
+      <td>1.3</td>
+      <td>1</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
       <th>38</th>
       <td>4.4</td>
       <td>3.0</td>
       <td>1.3</td>
-      <td>0.2</td>
-      <td>0</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>5.4</td>
-      <td>3.7</td>
-      <td>1.5</td>
-      <td>0.2</td>
-      <td>0</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>5.4</td>
-      <td>3.9</td>
-      <td>1.7</td>
-      <td>0.4</td>
-      <td>0</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>4.9</td>
-      <td>3.1</td>
-      <td>1.5</td>
-      <td>0.1</td>
-      <td>0</td>
-      <td>setosa</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>5.1</td>
-      <td>3.8</td>
-      <td>1.6</td>
       <td>0.2</td>
       <td>0</td>
       <td>setosa</td>
@@ -908,40 +943,22 @@ A decision tree algorithm always tries to maximize the value of information gain
       <td>versicolor</td>
     </tr>
     <tr>
-      <th>53</th>
-      <td>5.5</td>
-      <td>2.3</td>
-      <td>4.0</td>
+      <th>88</th>
+      <td>5.6</td>
+      <td>3.0</td>
+      <td>4.1</td>
       <td>1.3</td>
       <td>1</td>
       <td>versicolor</td>
     </tr>
     <tr>
-      <th>104</th>
-      <td>6.5</td>
-      <td>3.0</td>
-      <td>5.8</td>
-      <td>2.2</td>
-      <td>2</td>
-      <td>virginica</td>
-    </tr>
-    <tr>
-      <th>122</th>
-      <td>7.7</td>
-      <td>2.8</td>
-      <td>6.7</td>
-      <td>2.0</td>
-      <td>2</td>
-      <td>virginica</td>
-    </tr>
-    <tr>
-      <th>82</th>
-      <td>5.8</td>
-      <td>2.7</td>
-      <td>3.9</td>
-      <td>1.2</td>
-      <td>1</td>
-      <td>versicolor</td>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0</td>
+      <td>setosa</td>
     </tr>
   </tbody>
 </table>
@@ -1092,7 +1109,12 @@ y_train: (150,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeRegressor(max_depth=2)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeRegressor(ccp_alpha=0.0, criterion=&#39;mse&#39;, max_depth=2,
+                      max_features=None, max_leaf_nodes=None,
+                      min_impurity_decrease=0.0, min_impurity_split=None,
+                      min_samples_leaf=1, min_samples_split=2,
+                      min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                      random_state=None, splitter=&#39;best&#39;)
 </pre></div>
 </div>
 </div>
@@ -1265,8 +1287,8 @@ y_train: (150,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First DTR error: [0.08954699]
-Boosted ensemble error: [0.03263524]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First DTR error: [0.1301599]
+Boosted ensemble error: [0.04451791]
 </pre></div>
 </div>
 </div>

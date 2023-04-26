@@ -119,7 +119,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="5_SVM.html">
-   Support Vector Machine
+   5. Support Vector Machine
   </a>
  </li>
  <li class="toctree-l1">
@@ -129,7 +129,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="7_Bayesian_methods.html">
-   Naive Bayesian Methods
+   7. Naive Bayesian Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="8_k_means.html">
+   7. K-Means
   </a>
  </li>
 </ul>
@@ -354,8 +359,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.0000e+00, 5.7882e-39, 1.8754e+28],
-        [8.0439e+20, 2.6705e+23, 1.2915e-11]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.0000e+00, 6.2129e-41, 1.0920e-05],
+        [2.1253e-07, 6.6719e-10, 4.2279e+21]])
 </pre></div>
 </div>
 </div>
@@ -368,13 +373,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[0.2103, 0.6592, 0.7336, 0.3738],
-         [0.9470, 0.7837, 0.9407, 0.2473],
-         [0.0174, 0.5140, 0.0949, 0.2208]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[0.8017, 0.9527, 0.2800, 0.5826],
+         [0.7710, 0.3471, 0.5127, 0.8985],
+         [0.6175, 0.2174, 0.2787, 0.0041]],
 
-        [[0.6936, 0.5685, 0.9002, 0.8221],
-         [0.1940, 0.8942, 0.3892, 0.1831],
-         [0.0281, 0.3965, 0.7165, 0.0575]]])
+        [[0.6229, 0.2666, 0.9636, 0.3604],
+         [0.4756, 0.0703, 0.1274, 0.7784],
+         [0.2045, 0.3447, 0.0461, 0.2926]]])
 </pre></div>
 </div>
 </div>
@@ -453,8 +458,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.5768, 0.1269, 0.3858],
-        [0.4046, 0.0655, 0.8249]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.1790, 0.4461, 0.7423],
+        [0.5269, 0.6796, 0.9830]])
 </pre></div>
 </div>
 </div>
@@ -466,8 +471,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.8048, 0.5951, 0.0289],
-        [0.8042, 0.6009, 0.2362]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.5594, 0.2241, 0.1360],
+        [0.3870, 0.2223, 0.3901]])
 </pre></div>
 </div>
 </div>
@@ -480,8 +485,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1.3816, 0.7220, 0.4147],
-        [1.2088, 0.6664, 1.0611]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.7384, 0.6702, 0.8783],
+        [0.9139, 0.9020, 1.3731]])
 </pre></div>
 </div>
 </div>
@@ -494,8 +499,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1.3816, 0.7220, 0.4147],
-        [1.2088, 0.6664, 1.0611]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.7384, 0.6702, 0.8783],
+        [0.9139, 0.9020, 1.3731]])
 </pre></div>
 </div>
 </div>
@@ -507,8 +512,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.8048, 0.5951, 0.0289],
-        [0.8042, 0.6009, 0.2362]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.5594, 0.2241, 0.1360],
+        [0.3870, 0.2223, 0.3901]])
 </pre></div>
 </div>
 </div>
@@ -522,8 +527,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1.3816, 0.7220, 0.4147],
-        [1.2088, 0.6664, 1.0611]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.7384, 0.6702, 0.8783],
+        [0.9139, 0.9020, 1.3731]])
 </pre></div>
 </div>
 </div>
@@ -537,8 +542,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-0.8048, -0.5951, -0.0289],
-        [-0.8042, -0.6009, -0.2362]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-0.5594, -0.2241, -0.1360],
+        [-0.3870, -0.2223, -0.3901]])
 </pre></div>
 </div>
 </div>
@@ -551,8 +556,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-0.8048, -0.5951, -0.0289],
-        [-0.8042, -0.6009, -0.2362]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-0.5594, -0.2241, -0.1360],
+        [-0.3870, -0.2223, -0.3901]])
 </pre></div>
 </div>
 </div>
@@ -564,8 +569,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1.3816, 0.7220, 0.4147],
-        [1.2088, 0.6664, 1.0611]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.7384, 0.6702, 0.8783],
+        [0.9139, 0.9020, 1.3731]])
 </pre></div>
 </div>
 </div>
@@ -578,8 +583,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.8048, 0.5951, 0.0289],
-        [0.8042, 0.6009, 0.2362]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.5594, 0.2241, 0.1360],
+        [0.3870, 0.2223, 0.3901]])
 </pre></div>
 </div>
 </div>
@@ -594,11 +599,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.2534, 0.0555, 0.8246],
-        [0.8174, 0.2291, 0.6315],
-        [0.5328, 0.4841, 0.6490],
-        [0.2192, 0.6997, 0.1316],
-        [0.2770, 0.4266, 0.7340]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.9591, 0.0815, 0.2155],
+        [0.9921, 0.7229, 0.0931],
+        [0.5762, 0.7616, 0.4708],
+        [0.9564, 0.3539, 0.1860],
+        [0.6155, 0.7278, 0.6582]])
 </pre></div>
 </div>
 </div>
@@ -610,7 +615,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0.8174, 0.2291, 0.6315])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0.9921, 0.7229, 0.0931])
 </pre></div>
 </div>
 </div>
@@ -622,7 +627,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(0.2291)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(0.7229)
 </pre></div>
 </div>
 </div>
@@ -634,7 +639,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2290979027748108
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7229131460189819
 </pre></div>
 </div>
 </div>
@@ -648,8 +653,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0.8330, 0.3030, 0.2967, 0.5799, 0.0142, 0.6501, 0.3097, 0.0284, 0.7652,
-        0.0831, 0.7820, 0.5699, 0.5244, 0.0878, 0.4676, 0.9608])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0.6252, 0.0108, 0.2412, 0.3316, 0.8462, 0.3899, 0.3570, 0.6071, 0.2900,
+        0.6580, 0.5307, 0.4248, 0.0988, 0.3731, 0.3892, 0.9810])
 </pre></div>
 </div>
 </div>
@@ -662,8 +667,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.8330, 0.3030, 0.2967, 0.5799, 0.0142, 0.6501, 0.3097, 0.0284],
-        [0.7652, 0.0831, 0.7820, 0.5699, 0.5244, 0.0878, 0.4676, 0.9608]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.6252, 0.0108, 0.2412, 0.3316, 0.8462, 0.3899, 0.3570, 0.6071],
+        [0.2900, 0.6580, 0.5307, 0.4248, 0.0988, 0.3731, 0.3892, 0.9810]])
 </pre></div>
 </div>
 </div>
@@ -852,7 +857,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([-0.1682,  1.2025,  0.0391])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([ 0.0225, -0.6748, -0.8816])
 </pre></div>
 </div>
 </div>
@@ -865,7 +870,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0.5563, 0.2013, 0.0039], requires_grad=True)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([-1.0129, -0.5300, -0.8536], requires_grad=True)
 </pre></div>
 </div>
 </div>
@@ -885,7 +890,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([2.5563, 2.2013, 2.0039], grad_fn=&lt;AddBackward0&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([0.9871, 1.4700, 1.1464], grad_fn=&lt;AddBackward0&gt;)
 </pre></div>
 </div>
 </div>
@@ -898,7 +903,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([13.0696,  9.6910,  8.0312], grad_fn=&lt;MulBackward0&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1.9486, 4.3220, 2.6285], grad_fn=&lt;MulBackward0&gt;)
 </pre></div>
 </div>
 </div>
@@ -911,7 +916,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(10.2640, grad_fn=&lt;MeanBackward0&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(2.9664, grad_fn=&lt;MeanBackward0&gt;)
 </pre></div>
 </div>
 </div>
@@ -930,7 +935,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([3.4084, 2.9350, 2.6719])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1.3161, 1.9600, 1.5285])
 </pre></div>
 </div>
 </div>
@@ -959,7 +964,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([3.9197, 7.3375, 3.0726])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1.5135, 4.9001, 1.7578])
 </pre></div>
 </div>
 </div>
@@ -978,7 +983,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([-2.6651, -0.4147,  0.1740], requires_grad=True)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([ 0.0346, -2.3803,  1.4574], requires_grad=True)
 </pre></div>
 </div>
 </div>
@@ -990,7 +995,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([-2.6651, -0.4147,  0.1740])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([ 0.0346, -2.3803,  1.4574])
 </pre></div>
 </div>
 </div>
@@ -1004,7 +1009,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([-1.3937, -1.3693,  1.1460])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([-0.2767, -0.9687,  0.3961])
 </pre></div>
 </div>
 </div>
@@ -1019,7 +1024,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1.5269, 0.7216, 2.6094])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([1.7263, 3.8585, 2.1243])
 </pre></div>
 </div>
 </div>
@@ -1031,7 +1036,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([-0.4731, -1.2784,  0.6094], requires_grad=True)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([-0.2737,  1.8585,  0.1243], requires_grad=True)
 </pre></div>
 </div>
 </div>
