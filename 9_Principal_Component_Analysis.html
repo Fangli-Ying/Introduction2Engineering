@@ -1,0 +1,2546 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9. Principal Component Analysis &#8212; Introduction to Engineering</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="7. K-Means" href="8_k_means.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Introduction to Engineering
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_Introduction_to_Machine_Learning.html">
+   1. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_linear_regression.html">
+   2. Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3_Logistic_regression.html">
+   3. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_KNN.html">
+   4. K nearest Neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5_SVM.html">
+   5. Support Vector Machine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6_Decision_trees_and_random_forests.html">
+   6. Decision Trees &amp; Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7_Bayesian_methods.html">
+   7. Naive Bayesian Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="8_k_means.html">
+   7. K-Means
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   9. Principal Component Analysis
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/9_Principal_Component_Analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fangli-Ying/Introduction2Engineering/master?urlpath=tree/9_Principal_Component_Analysis.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyter.org/hub/hub/user-redirect/git-pull?repo=https://github.com/Fangli-Ying/Introduction2Engineering&urlpath=tree/Introduction2Engineering/9_Principal_Component_Analysis.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fangli-Ying/Introduction2Engineering/blob/master/9_Principal_Component_Analysis.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#curse-of-dimensionality">
+   Curse of Dimensionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sparseness">
+   Sparseness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implications-of-the-curse-of-dimensionality">
+   Implications of the Curse of Dimensionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dimensionality-reduction">
+   Dimensionality Reduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correlation-and-its-measurement">
+   Correlation and its Measurement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-selection">
+   Feature Selection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-extraction">
+   Feature Extraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-feature-extraction">
+   Linear Feature Extraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principal-component-analysis-pca">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-pca">
+   What is PCA
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-use-pca">
+   Why use PCA?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-the-pca-machine-learning-algorithm-works">
+   How the PCA Machine Learning Algorithm Works?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steps-involved-in-pca">
+   Steps involved in PCA
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca-for-data-visualization">
+   PCA for Data Visualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca-to-speed-up-machine-learning-algorithms">
+   PCA to Speed-Up Machine Learning Algorithms
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>9. Principal Component Analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#curse-of-dimensionality">
+   Curse of Dimensionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sparseness">
+   Sparseness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implications-of-the-curse-of-dimensionality">
+   Implications of the Curse of Dimensionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dimensionality-reduction">
+   Dimensionality Reduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correlation-and-its-measurement">
+   Correlation and its Measurement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-selection">
+   Feature Selection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-extraction">
+   Feature Extraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-feature-extraction">
+   Linear Feature Extraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principal-component-analysis-pca">
+   Principal Component Analysis (PCA)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-pca">
+   What is PCA
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-use-pca">
+   Why use PCA?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-the-pca-machine-learning-algorithm-works">
+   How the PCA Machine Learning Algorithm Works?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steps-involved-in-pca">
+   Steps involved in PCA
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca-for-data-visualization">
+   PCA for Data Visualization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca-to-speed-up-machine-learning-algorithms">
+   PCA to Speed-Up Machine Learning Algorithms
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="principal-component-analysis">
+<h1>9. Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Permalink to this headline">¶</a></h1>
+<p>Up until now, we have been looking in depth at supervised learning estimators: those estimators that predict labels based on labeled training data. Here we begin looking at several unsupervised estimators, which can highlight interesting aspects of the data without reference to any known labels.</p>
+<p>When implementing machine learning algorithms, the inclusion of more features might lead to worsening performance issues. Increasing the number of features will not always improve classification accuracy, which is also known as the curse of dimensionality. Hence, we apply dimensionality reduction to improve classification accuracy by selecting the optimal set of lower dimensionality features.</p>
+<p><strong>Principal component analysis (PCA)</strong> is essential for data science, machine learning, data visualization, statistics, and other quantitative fields.</p>
+<p><img alt="Dim" src="_images/dim.png" /></p>
+<p>There are two techniques to make dimensionality reduction:</p>
+<ul class="simple">
+<li><p>Feature Selection</p></li>
+<li><p>Feature Extraction</p></li>
+</ul>
+<p>It is essential to know about vector, matrix, and transpose matrix, eigenvalues, eigenvectors, and others to understand the concept of dimensionality reduction.</p>
+<div class="section" id="curse-of-dimensionality">
+<h2>Curse of Dimensionality<a class="headerlink" href="#curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
+<p>Dimensionality in a dataset becomes a severe impediment to achieve a reasonable efficiency for most algorithms. Increasing the number of features does not always improve accuracy. When data does not have enough features, the model is likely to underfit, and when data has too many features, it is likely to overfit. Hence it is called the curse of dimensionality. The curse of dimensionality is an astonishing paradox for data scientists, based on the exploding amount of n-dimensional spaces — as the number of dimensions, n, increases.</p>
+<p><img alt="Dim" src="_images/curse.png" /></p>
+</div>
+<div class="section" id="sparseness">
+<h2>Sparseness<a class="headerlink" href="#sparseness" title="Permalink to this headline">¶</a></h2>
+<p>The sparseness of data is the property of being scanty or scattered. It lacks denseness, and its high percentage of the variable’s cells do not contain actual data. Fundamentally full of “empty” or “N/A” values.</p>
+<p>Points in an n-dimensional space frequently become sparse as the number of dimensions grows. The distance between points will extend to grow as the number of dimensions increases.</p>
+<p><img alt="Dim" src="_images/Sparse_Matrix.webp" /></p>
+</div>
+<div class="section" id="implications-of-the-curse-of-dimensionality">
+<h2>Implications of the Curse of Dimensionality<a class="headerlink" href="#implications-of-the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
+<p>There are few implications of the curse of dimensionality:</p>
+<ul class="simple">
+<li><p>Optimization problems will be infeasible as the number of features increases.</p></li>
+<li><p>Due to the absolute scale of inherent points in an n-dimensional space, as n maintains to grow, the possibility of recognizing a particular point (or even a nearby point) proceeds to fall.</p></li>
+</ul>
+</div>
+<div class="section" id="dimensionality-reduction">
+<h2>Dimensionality Reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">¶</a></h2>
+<p>Dimensionality reduction eliminates some features of the dataset and creates a restricted set of features that contains all of the information needed to predict the target variables more efficiently and accurately.</p>
+<p>Reducing the number of features normally also reduces the output variability and complexity of the learning process. The covariance matrix is an important step in the dimensionality reduction process. It is a critical process to check the correlation between different features.</p>
+</div>
+<div class="section" id="correlation-and-its-measurement">
+<h2>Correlation and its Measurement<a class="headerlink" href="#correlation-and-its-measurement" title="Permalink to this headline">¶</a></h2>
+<p>There is a concept of correlation in machine learning that is called multicollinearity. Multicollinearity exists when one or more independent variables highly correlate with each other. Multicollinearity makes variables highly correlated to one another, which makes the variables’ coefficients highly unstable.</p>
+<p>The coefficient is a significant part of regression, and if this is unstable, then there will be a poor outcome of the regression result. Multicollinearity is confirmed by using <strong>Variance Inflation Factors</strong> (VIF). Therefore, if multicollinearity is suspected, it can be checked using the variance inflation factor (VIF).</p>
+<p><span class="math notranslate nohighlight">\(\text{VIF}_j = \frac{1}{1 - R_j^2}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\text{VIF}_j\)</span> is the VIF for the predictor variable <span class="math notranslate nohighlight">\(X_j\)</span>, and <span class="math notranslate nohighlight">\(R_j^2\)</span> is the coefficient of determination for the regression model where <span class="math notranslate nohighlight">\(X_j\)</span> is the response variable and all other predictor variables are used to predict <span class="math notranslate nohighlight">\(X_j\)</span>. The VIF measures the extent to which the variance of the estimated coefficient for <span class="math notranslate nohighlight">\(X_j\)</span> is inflated due to its linear dependence on other predictor variables in the model. A high VIF indicates strong collinearity between <span class="math notranslate nohighlight">\(X_j\)</span> and other predictors.</p>
+<p><img alt="Dim" src="_images/vif_plot.png" /></p>
+<p>Rules from VIF:</p>
+<ul class="simple">
+<li><p>A VIF of 1 would indicate complete independence from any other variable.</p></li>
+<li><p>A VIF between 5 and 10 indicates a very high level of collinearity [4].</p></li>
+<li><p>The closer we get to 1, the more ideal the scenario for predictive modeling.</p></li>
+<li><p>Each independent variable regresses against each independent variable, and we calculate the VIF.</p></li>
+</ul>
+<p>Heatmap also plays a crucial role in understanding the correlation between variables.</p>
+<p>The type of relationship between any two quantities varies over a period of time.</p>
+<p>Correlation varies from -1 to +1</p>
+<p>To be precise,</p>
+<ul class="simple">
+<li><p>Values that are close to +1 indicate a positive correlation.</p></li>
+<li><p>Values close to -1 indicate a negative correlation.</p></li>
+<li><p>Values close to 0 indicate no correlation at all.</p></li>
+</ul>
+<p><img alt="Dim" src="_images/cov.PNG" /></p>
+<p>A correlation from the representation of the heatmap:</p>
+<ul class="simple">
+<li><p>Among the first and the third features.</p></li>
+<li><p>Between the first and the fourth features.</p></li>
+<li><p>Between the third and the fourth features.</p></li>
+</ul>
+<p>Independent features:</p>
+<p>-The second feature is almost independent of the others.</p>
+<p>Here the correlation matrix and its pictorial representation have given the idea about the potential number of features reduction. Therefore, two features can be kept, and other features can be reduced apart from those two features.</p>
+<p>There are two ways of dimensionality reduction:</p>
+<ul class="simple">
+<li><p>Feature Selection</p></li>
+<li><p>Feature Extraction</p></li>
+</ul>
+<p>Dimensionality Reduction can ignore the components of lesser significance.</p>
+</div>
+<div class="section" id="feature-selection">
+<h2>Feature Selection<a class="headerlink" href="#feature-selection" title="Permalink to this headline">¶</a></h2>
+<p>In feature selection, usually, a subset of original features is selected.</p>
+<p><img alt="Dim" src="_images/feature_selection.png" /></p>
+</div>
+<div class="section" id="feature-extraction">
+<h2>Feature Extraction<a class="headerlink" href="#feature-extraction" title="Permalink to this headline">¶</a></h2>
+<p>In feature extraction, a set of new features are found. That is found through some mapping from the existing features. Moreover, mapping can be either linear or non-linear.</p>
+<p><img alt="Dim" src="_images/ff.png" /></p>
+</div>
+<div class="section" id="linear-feature-extraction">
+<h2>Linear Feature Extraction<a class="headerlink" href="#linear-feature-extraction" title="Permalink to this headline">¶</a></h2>
+<p>Linear feature extraction is straightforward to compute and analytically traceable.</p>
+<p>Widespread linear feature extraction methods:</p>
+<ul class="simple">
+<li><p>Principal Component Analysis (PCA): It seeks a projection that preserves as much information as possible in the data.</p></li>
+<li><p>Linear Discriminant Analysis (LDA):- It seeks a projection that best discriminates the data.</p></li>
+</ul>
+<p><img alt="Dim" src="_images/pcalda.jpeg" /></p>
+</div>
+<div class="section" id="principal-component-analysis-pca">
+<h2>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Permalink to this headline">¶</a></h2>
+<p>Principal Component Analysis (PCA) is an exploratory approach to reduce the data set’s dimensionality to 2D or 3D, used in exploratory data analysis for making predictive models. Principal Component Analysis is a linear transformation of data set that defines a new coordinate rule such that:</p>
+<p>The highest variance by any projection of the data set appears to laze on the first axis.
+The second biggest variance on the second axis, and so on.
+We can use principal component analysis (PCA) for the following purposes:</p>
+<ul class="simple">
+<li><p>To reduce the number of dimensions in the dataset.</p></li>
+<li><p>To find patterns in the high-dimensional dataset</p></li>
+<li><p>To visualize the data of high dimensionality</p></li>
+<li><p>To ignore noise</p></li>
+<li><p>To improve classification</p></li>
+<li><p>To gets a compact description</p></li>
+<li><p>To captures as much of the original variance in the data as possible</p></li>
+</ul>
+<p>In summary, we can define principal component analysis (PCA) as the transformation of any high number of variables into a smaller number of uncorrelated variables called principal components (PCs), developed to capture as much of the data’s variance as possible.</p>
+<ul class="simple">
+<li><ol class="simple">
+<li><p>Math of PCA <a class="reference external" href="https://towardsdatascience.com/the-mathematics-behind-principal-component-analysis-fff2d7f4b643">Math of PCA</a>.</p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>More math of PCA <a class="reference external" href="https://medium.com/analytics-vidhya/the-math-of-principal-component-analysis-pca-bf7da48247fc">Math of PCA</a>.</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="what-is-pca">
+<h2>What is PCA<a class="headerlink" href="#what-is-pca" title="Permalink to this headline">¶</a></h2>
+<p>Principal Component Analysis (PCA) is a <strong>linear dimensionality reduction</strong> technique that can be utilized for extracting information from a high-dimensional space by projecting it into a lower-dimensional sub-space. It tries to preserve the essential parts that have more variation of the data and remove the non-essential parts with fewer variation.</p>
+<p>Dimensions are nothing but features that represent the data. For example, A 28 X 28 image has 784 picture elements (pixels) that are the dimensions or features which together represent that image.</p>
+<p>One important thing to note about PCA is that it is an <strong>Unsupervised dimensionality reduction</strong> technique, you can cluster the similar data points based on the feature correlation between them without any supervision (or labels)</p>
+<p>According to Wikipedia, PCA is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables (entities each of which takes on various numerical values) into a set of values of linearly uncorrelated variables called principal components.</p>
+<ul class="simple">
+<li><p>Wiki of PCA <a class="reference external" href="https://en.wikipedia.org/wiki/Principal_component_analysis">Wiki</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="why-use-pca">
+<h2>Why use PCA?<a class="headerlink" href="#why-use-pca" title="Permalink to this headline">¶</a></h2>
+<p>By reducing the number of features, PCA can help:</p>
+<ul class="simple">
+<li><p>Reduce the risk of overfitting a model to noisy features.</p></li>
+<li><p>Speed-up the training of a machine learning algorithm</p></li>
+<li><p><strong>Make simpler data vizualisations</strong>. When working on any data related problem, the challenge in today’s world is the sheer volume of data, and the variables/features that define that data. To solve a problem where data is the key, you need extensive data exploration like finding out how the variables are correlated or understanding the distribution of a few variables. Considering that there are a large number of variables or dimensions along which the data is distributed, visualization can be a challenge and almost impossible.Hence, PCA can do that for you since it projects the data into a lower dimension, thereby allowing you to visualize the data in a 2D or 3D space with a naked eye.</p></li>
+</ul>
+<p>For example, the Iris dataset has 4 features… hard to plot a 4D graph.</p>
+<p><img alt="Dim" src="_images/iris.webp" /></p>
+<p>However, we can use PCA to reduce the number of features to 3 and plot on a 3D graph.</p>
+<p><img alt="Dim" src="_images/3dpca.webp" /></p>
+<p><img alt="Dim" src="_images/2dpca.webp" /></p>
+</div>
+<div class="section" id="how-the-pca-machine-learning-algorithm-works">
+<h2>How the PCA Machine Learning Algorithm Works?<a class="headerlink" href="#how-the-pca-machine-learning-algorithm-works" title="Permalink to this headline">¶</a></h2>
+<p>PCA identifies the intrinsic dimension of a dataset.</p>
+<p>In other words, it identifies the smallest number of features required to make an accurate prediction.</p>
+<p>A dataset may have a lot of features, but not all features are essential to the prediction.</p>
+<p><img alt="Dim" src="_images/noise.webp" /></p>
+<p>The features kept are the ones that have significant variance.</p>
+<ul class="simple">
+<li><p>The linear mapping of the data to a lower-dimensional space is performed in a way that maximizes the variance of the data.</p></li>
+<li><p>PCA assumes that features with low variance are irrelevant and features with high variance are informative.</p></li>
+</ul>
+</div>
+<div class="section" id="steps-involved-in-pca">
+<h2>Steps involved in PCA<a class="headerlink" href="#steps-involved-in-pca" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Standardize the PCA.</p></li>
+<li><p>Calculate the covariance matrix.</p></li>
+<li><p>Find the eigenvalues and eigenvectors for the covariance matrix.</p></li>
+<li><p>Plot the vectors on the scaled data.</p></li>
+</ul>
+<p><img alt="Dim" src="_images/steps.jpeg" /></p>
+</div>
+<div class="section" id="pca-for-data-visualization">
+<h2>PCA for Data Visualization<a class="headerlink" href="#pca-for-data-visualization" title="Permalink to this headline">¶</a></h2>
+<p>For a lot of machine learning applications, it helps to visualize your data. Visualizing two- or three-dimensional data is not that challenging. However, even the Iris data set used in this part of the tutorial is four-dimensional. You can use PCA to reduce that four-dimensional data into two  or three dimensions so that you can plot, and hopefully, understand the data better.</p>
+<p>STEP 1: LOAD THE IRIS DATA SET</p>
+<p>The iris data set comes with scikit-learn and doesn’t require you to download any files from some external websites. The code below will load the Iris data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data&quot;</span>
+
+<span class="c1"># load dataset into Pandas DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sepal length&#39;</span><span class="p">,</span><span class="s1">&#39;sepal width&#39;</span><span class="p">,</span><span class="s1">&#39;petal length&#39;</span><span class="p">,</span><span class="s1">&#39;petal width&#39;</span><span class="p">,</span><span class="s1">&#39;target&#39;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\ProgramData\Anaconda3\lib\site-packages\pandas\compat\_optional.py:138: UserWarning: Pandas requires version &#39;2.7.0&#39; or newer of &#39;numexpr&#39; (version &#39;2.6.9&#39; currently installed).
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal length</th>
+      <th>sepal width</th>
+      <th>petal length</th>
+      <th>petal width</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>Iris-virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>STEP 2: STANDARDIZE THE DATA</p>
+<p>PCA is affected by scale, so you need to scale the features in your data before applying PCA. Use StandardScaler to help you standardize the data set’s features onto unit scale (mean = 0 and variance = 1), which is a requirement for the optimal performance of many machine learning algorithms. If you don’t scale your data, it can have a negative effect on your algorithm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal width&#39;</span><span class="p">]</span>
+
+<span class="c1"># Separating out the features</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Separating out the target</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;target&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[5.1, 3.5, 1.4, 0.2],
+       [4.9, 3. , 1.4, 0.2],
+       [4.7, 3.2, 1.3, 0.2],
+       [4.6, 3.1, 1.5, 0.2],
+       [5. , 3.6, 1.4, 0.2],
+       [5.4, 3.9, 1.7, 0.4],
+       [4.6, 3.4, 1.4, 0.3],
+       [5. , 3.4, 1.5, 0.2],
+       [4.4, 2.9, 1.4, 0.2],
+       [4.9, 3.1, 1.5, 0.1],
+       [5.4, 3.7, 1.5, 0.2],
+       [4.8, 3.4, 1.6, 0.2],
+       [4.8, 3. , 1.4, 0.1],
+       [4.3, 3. , 1.1, 0.1],
+       [5.8, 4. , 1.2, 0.2],
+       [5.7, 4.4, 1.5, 0.4],
+       [5.4, 3.9, 1.3, 0.4],
+       [5.1, 3.5, 1.4, 0.3],
+       [5.7, 3.8, 1.7, 0.3],
+       [5.1, 3.8, 1.5, 0.3],
+       [5.4, 3.4, 1.7, 0.2],
+       [5.1, 3.7, 1.5, 0.4],
+       [4.6, 3.6, 1. , 0.2],
+       [5.1, 3.3, 1.7, 0.5],
+       [4.8, 3.4, 1.9, 0.2],
+       [5. , 3. , 1.6, 0.2],
+       [5. , 3.4, 1.6, 0.4],
+       [5.2, 3.5, 1.5, 0.2],
+       [5.2, 3.4, 1.4, 0.2],
+       [4.7, 3.2, 1.6, 0.2],
+       [4.8, 3.1, 1.6, 0.2],
+       [5.4, 3.4, 1.5, 0.4],
+       [5.2, 4.1, 1.5, 0.1],
+       [5.5, 4.2, 1.4, 0.2],
+       [4.9, 3.1, 1.5, 0.1],
+       [5. , 3.2, 1.2, 0.2],
+       [5.5, 3.5, 1.3, 0.2],
+       [4.9, 3.1, 1.5, 0.1],
+       [4.4, 3. , 1.3, 0.2],
+       [5.1, 3.4, 1.5, 0.2],
+       [5. , 3.5, 1.3, 0.3],
+       [4.5, 2.3, 1.3, 0.3],
+       [4.4, 3.2, 1.3, 0.2],
+       [5. , 3.5, 1.6, 0.6],
+       [5.1, 3.8, 1.9, 0.4],
+       [4.8, 3. , 1.4, 0.3],
+       [5.1, 3.8, 1.6, 0.2],
+       [4.6, 3.2, 1.4, 0.2],
+       [5.3, 3.7, 1.5, 0.2],
+       [5. , 3.3, 1.4, 0.2],
+       [7. , 3.2, 4.7, 1.4],
+       [6.4, 3.2, 4.5, 1.5],
+       [6.9, 3.1, 4.9, 1.5],
+       [5.5, 2.3, 4. , 1.3],
+       [6.5, 2.8, 4.6, 1.5],
+       [5.7, 2.8, 4.5, 1.3],
+       [6.3, 3.3, 4.7, 1.6],
+       [4.9, 2.4, 3.3, 1. ],
+       [6.6, 2.9, 4.6, 1.3],
+       [5.2, 2.7, 3.9, 1.4],
+       [5. , 2. , 3.5, 1. ],
+       [5.9, 3. , 4.2, 1.5],
+       [6. , 2.2, 4. , 1. ],
+       [6.1, 2.9, 4.7, 1.4],
+       [5.6, 2.9, 3.6, 1.3],
+       [6.7, 3.1, 4.4, 1.4],
+       [5.6, 3. , 4.5, 1.5],
+       [5.8, 2.7, 4.1, 1. ],
+       [6.2, 2.2, 4.5, 1.5],
+       [5.6, 2.5, 3.9, 1.1],
+       [5.9, 3.2, 4.8, 1.8],
+       [6.1, 2.8, 4. , 1.3],
+       [6.3, 2.5, 4.9, 1.5],
+       [6.1, 2.8, 4.7, 1.2],
+       [6.4, 2.9, 4.3, 1.3],
+       [6.6, 3. , 4.4, 1.4],
+       [6.8, 2.8, 4.8, 1.4],
+       [6.7, 3. , 5. , 1.7],
+       [6. , 2.9, 4.5, 1.5],
+       [5.7, 2.6, 3.5, 1. ],
+       [5.5, 2.4, 3.8, 1.1],
+       [5.5, 2.4, 3.7, 1. ],
+       [5.8, 2.7, 3.9, 1.2],
+       [6. , 2.7, 5.1, 1.6],
+       [5.4, 3. , 4.5, 1.5],
+       [6. , 3.4, 4.5, 1.6],
+       [6.7, 3.1, 4.7, 1.5],
+       [6.3, 2.3, 4.4, 1.3],
+       [5.6, 3. , 4.1, 1.3],
+       [5.5, 2.5, 4. , 1.3],
+       [5.5, 2.6, 4.4, 1.2],
+       [6.1, 3. , 4.6, 1.4],
+       [5.8, 2.6, 4. , 1.2],
+       [5. , 2.3, 3.3, 1. ],
+       [5.6, 2.7, 4.2, 1.3],
+       [5.7, 3. , 4.2, 1.2],
+       [5.7, 2.9, 4.2, 1.3],
+       [6.2, 2.9, 4.3, 1.3],
+       [5.1, 2.5, 3. , 1.1],
+       [5.7, 2.8, 4.1, 1.3],
+       [6.3, 3.3, 6. , 2.5],
+       [5.8, 2.7, 5.1, 1.9],
+       [7.1, 3. , 5.9, 2.1],
+       [6.3, 2.9, 5.6, 1.8],
+       [6.5, 3. , 5.8, 2.2],
+       [7.6, 3. , 6.6, 2.1],
+       [4.9, 2.5, 4.5, 1.7],
+       [7.3, 2.9, 6.3, 1.8],
+       [6.7, 2.5, 5.8, 1.8],
+       [7.2, 3.6, 6.1, 2.5],
+       [6.5, 3.2, 5.1, 2. ],
+       [6.4, 2.7, 5.3, 1.9],
+       [6.8, 3. , 5.5, 2.1],
+       [5.7, 2.5, 5. , 2. ],
+       [5.8, 2.8, 5.1, 2.4],
+       [6.4, 3.2, 5.3, 2.3],
+       [6.5, 3. , 5.5, 1.8],
+       [7.7, 3.8, 6.7, 2.2],
+       [7.7, 2.6, 6.9, 2.3],
+       [6. , 2.2, 5. , 1.5],
+       [6.9, 3.2, 5.7, 2.3],
+       [5.6, 2.8, 4.9, 2. ],
+       [7.7, 2.8, 6.7, 2. ],
+       [6.3, 2.7, 4.9, 1.8],
+       [6.7, 3.3, 5.7, 2.1],
+       [7.2, 3.2, 6. , 1.8],
+       [6.2, 2.8, 4.8, 1.8],
+       [6.1, 3. , 4.9, 1.8],
+       [6.4, 2.8, 5.6, 2.1],
+       [7.2, 3. , 5.8, 1.6],
+       [7.4, 2.8, 6.1, 1.9],
+       [7.9, 3.8, 6.4, 2. ],
+       [6.4, 2.8, 5.6, 2.2],
+       [6.3, 2.8, 5.1, 1.5],
+       [6.1, 2.6, 5.6, 1.4],
+       [7.7, 3. , 6.1, 2.3],
+       [6.3, 3.4, 5.6, 2.4],
+       [6.4, 3.1, 5.5, 1.8],
+       [6. , 3. , 4.8, 1.8],
+       [6.9, 3.1, 5.4, 2.1],
+       [6.7, 3.1, 5.6, 2.4],
+       [6.9, 3.1, 5.1, 2.3],
+       [5.8, 2.7, 5.1, 1.9],
+       [6.8, 3.2, 5.9, 2.3],
+       [6.7, 3.3, 5.7, 2.5],
+       [6.7, 3. , 5.2, 2.3],
+       [6.3, 2.5, 5. , 1.9],
+       [6.5, 3. , 5.2, 2. ],
+       [6.2, 3.4, 5.4, 2.3],
+       [5.9, 3. , 5.1, 1.8]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standardizing the features</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-9.00681170e-01,  1.03205722e+00, -1.34127240e+00,
+        -1.31297673e+00],
+       [-1.14301691e+00, -1.24957601e-01, -1.34127240e+00,
+        -1.31297673e+00],
+       [-1.38535265e+00,  3.37848329e-01, -1.39813811e+00,
+        -1.31297673e+00],
+       [-1.50652052e+00,  1.06445364e-01, -1.28440670e+00,
+        -1.31297673e+00],
+       [-1.02184904e+00,  1.26346019e+00, -1.34127240e+00,
+        -1.31297673e+00],
+       [-5.37177559e-01,  1.95766909e+00, -1.17067529e+00,
+        -1.05003079e+00],
+       [-1.50652052e+00,  8.00654259e-01, -1.34127240e+00,
+        -1.18150376e+00],
+       [-1.02184904e+00,  8.00654259e-01, -1.28440670e+00,
+        -1.31297673e+00],
+       [-1.74885626e+00, -3.56360566e-01, -1.34127240e+00,
+        -1.31297673e+00],
+       [-1.14301691e+00,  1.06445364e-01, -1.28440670e+00,
+        -1.44444970e+00],
+       [-5.37177559e-01,  1.49486315e+00, -1.28440670e+00,
+        -1.31297673e+00],
+       [-1.26418478e+00,  8.00654259e-01, -1.22754100e+00,
+        -1.31297673e+00],
+       [-1.26418478e+00, -1.24957601e-01, -1.34127240e+00,
+        -1.44444970e+00],
+       [-1.87002413e+00, -1.24957601e-01, -1.51186952e+00,
+        -1.44444970e+00],
+       [-5.25060772e-02,  2.18907205e+00, -1.45500381e+00,
+        -1.31297673e+00],
+       [-1.73673948e-01,  3.11468391e+00, -1.28440670e+00,
+        -1.05003079e+00],
+       [-5.37177559e-01,  1.95766909e+00, -1.39813811e+00,
+        -1.05003079e+00],
+       [-9.00681170e-01,  1.03205722e+00, -1.34127240e+00,
+        -1.18150376e+00],
+       [-1.73673948e-01,  1.72626612e+00, -1.17067529e+00,
+        -1.18150376e+00],
+       [-9.00681170e-01,  1.72626612e+00, -1.28440670e+00,
+        -1.18150376e+00],
+       [-5.37177559e-01,  8.00654259e-01, -1.17067529e+00,
+        -1.31297673e+00],
+       [-9.00681170e-01,  1.49486315e+00, -1.28440670e+00,
+        -1.05003079e+00],
+       [-1.50652052e+00,  1.26346019e+00, -1.56873522e+00,
+        -1.31297673e+00],
+       [-9.00681170e-01,  5.69251294e-01, -1.17067529e+00,
+        -9.18557817e-01],
+       [-1.26418478e+00,  8.00654259e-01, -1.05694388e+00,
+        -1.31297673e+00],
+       [-1.02184904e+00, -1.24957601e-01, -1.22754100e+00,
+        -1.31297673e+00],
+       [-1.02184904e+00,  8.00654259e-01, -1.22754100e+00,
+        -1.05003079e+00],
+       [-7.79513300e-01,  1.03205722e+00, -1.28440670e+00,
+        -1.31297673e+00],
+       [-7.79513300e-01,  8.00654259e-01, -1.34127240e+00,
+        -1.31297673e+00],
+       [-1.38535265e+00,  3.37848329e-01, -1.22754100e+00,
+        -1.31297673e+00],
+       [-1.26418478e+00,  1.06445364e-01, -1.22754100e+00,
+        -1.31297673e+00],
+       [-5.37177559e-01,  8.00654259e-01, -1.28440670e+00,
+        -1.05003079e+00],
+       [-7.79513300e-01,  2.42047502e+00, -1.28440670e+00,
+        -1.44444970e+00],
+       [-4.16009689e-01,  2.65187798e+00, -1.34127240e+00,
+        -1.31297673e+00],
+       [-1.14301691e+00,  1.06445364e-01, -1.28440670e+00,
+        -1.44444970e+00],
+       [-1.02184904e+00,  3.37848329e-01, -1.45500381e+00,
+        -1.31297673e+00],
+       [-4.16009689e-01,  1.03205722e+00, -1.39813811e+00,
+        -1.31297673e+00],
+       [-1.14301691e+00,  1.06445364e-01, -1.28440670e+00,
+        -1.44444970e+00],
+       [-1.74885626e+00, -1.24957601e-01, -1.39813811e+00,
+        -1.31297673e+00],
+       [-9.00681170e-01,  8.00654259e-01, -1.28440670e+00,
+        -1.31297673e+00],
+       [-1.02184904e+00,  1.03205722e+00, -1.39813811e+00,
+        -1.18150376e+00],
+       [-1.62768839e+00, -1.74477836e+00, -1.39813811e+00,
+        -1.18150376e+00],
+       [-1.74885626e+00,  3.37848329e-01, -1.39813811e+00,
+        -1.31297673e+00],
+       [-1.02184904e+00,  1.03205722e+00, -1.22754100e+00,
+        -7.87084847e-01],
+       [-9.00681170e-01,  1.72626612e+00, -1.05694388e+00,
+        -1.05003079e+00],
+       [-1.26418478e+00, -1.24957601e-01, -1.34127240e+00,
+        -1.18150376e+00],
+       [-9.00681170e-01,  1.72626612e+00, -1.22754100e+00,
+        -1.31297673e+00],
+       [-1.50652052e+00,  3.37848329e-01, -1.34127240e+00,
+        -1.31297673e+00],
+       [-6.58345429e-01,  1.49486315e+00, -1.28440670e+00,
+        -1.31297673e+00],
+       [-1.02184904e+00,  5.69251294e-01, -1.34127240e+00,
+        -1.31297673e+00],
+       [ 1.40150837e+00,  3.37848329e-01,  5.35295827e-01,
+         2.64698913e-01],
+       [ 6.74501145e-01,  3.37848329e-01,  4.21564419e-01,
+         3.96171883e-01],
+       [ 1.28034050e+00,  1.06445364e-01,  6.49027235e-01,
+         3.96171883e-01],
+       [-4.16009689e-01, -1.74477836e+00,  1.37235899e-01,
+         1.33225943e-01],
+       [ 7.95669016e-01, -5.87763531e-01,  4.78430123e-01,
+         3.96171883e-01],
+       [-1.73673948e-01, -5.87763531e-01,  4.21564419e-01,
+         1.33225943e-01],
+       [ 5.53333275e-01,  5.69251294e-01,  5.35295827e-01,
+         5.27644853e-01],
+       [-1.14301691e+00, -1.51337539e+00, -2.60824029e-01,
+        -2.61192967e-01],
+       [ 9.16836886e-01, -3.56360566e-01,  4.78430123e-01,
+         1.33225943e-01],
+       [-7.79513300e-01, -8.19166497e-01,  8.03701950e-02,
+         2.64698913e-01],
+       [-1.02184904e+00, -2.43898725e+00, -1.47092621e-01,
+        -2.61192967e-01],
+       [ 6.86617933e-02, -1.24957601e-01,  2.50967307e-01,
+         3.96171883e-01],
+       [ 1.89829664e-01, -1.97618132e+00,  1.37235899e-01,
+        -2.61192967e-01],
+       [ 3.10997534e-01, -3.56360566e-01,  5.35295827e-01,
+         2.64698913e-01],
+       [-2.94841818e-01, -3.56360566e-01, -9.02269170e-02,
+         1.33225943e-01],
+       [ 1.03800476e+00,  1.06445364e-01,  3.64698715e-01,
+         2.64698913e-01],
+       [-2.94841818e-01, -1.24957601e-01,  4.21564419e-01,
+         3.96171883e-01],
+       [-5.25060772e-02, -8.19166497e-01,  1.94101603e-01,
+        -2.61192967e-01],
+       [ 4.32165405e-01, -1.97618132e+00,  4.21564419e-01,
+         3.96171883e-01],
+       [-2.94841818e-01, -1.28197243e+00,  8.03701950e-02,
+        -1.29719997e-01],
+       [ 6.86617933e-02,  3.37848329e-01,  5.92161531e-01,
+         7.90590793e-01],
+       [ 3.10997534e-01, -5.87763531e-01,  1.37235899e-01,
+         1.33225943e-01],
+       [ 5.53333275e-01, -1.28197243e+00,  6.49027235e-01,
+         3.96171883e-01],
+       [ 3.10997534e-01, -5.87763531e-01,  5.35295827e-01,
+         1.75297293e-03],
+       [ 6.74501145e-01, -3.56360566e-01,  3.07833011e-01,
+         1.33225943e-01],
+       [ 9.16836886e-01, -1.24957601e-01,  3.64698715e-01,
+         2.64698913e-01],
+       [ 1.15917263e+00, -5.87763531e-01,  5.92161531e-01,
+         2.64698913e-01],
+       [ 1.03800476e+00, -1.24957601e-01,  7.05892939e-01,
+         6.59117823e-01],
+       [ 1.89829664e-01, -3.56360566e-01,  4.21564419e-01,
+         3.96171883e-01],
+       [-1.73673948e-01, -1.05056946e+00, -1.47092621e-01,
+        -2.61192967e-01],
+       [-4.16009689e-01, -1.51337539e+00,  2.35044910e-02,
+        -1.29719997e-01],
+       [-4.16009689e-01, -1.51337539e+00, -3.33612130e-02,
+        -2.61192967e-01],
+       [-5.25060772e-02, -8.19166497e-01,  8.03701950e-02,
+         1.75297293e-03],
+       [ 1.89829664e-01, -8.19166497e-01,  7.62758643e-01,
+         5.27644853e-01],
+       [-5.37177559e-01, -1.24957601e-01,  4.21564419e-01,
+         3.96171883e-01],
+       [ 1.89829664e-01,  8.00654259e-01,  4.21564419e-01,
+         5.27644853e-01],
+       [ 1.03800476e+00,  1.06445364e-01,  5.35295827e-01,
+         3.96171883e-01],
+       [ 5.53333275e-01, -1.74477836e+00,  3.64698715e-01,
+         1.33225943e-01],
+       [-2.94841818e-01, -1.24957601e-01,  1.94101603e-01,
+         1.33225943e-01],
+       [-4.16009689e-01, -1.28197243e+00,  1.37235899e-01,
+         1.33225943e-01],
+       [-4.16009689e-01, -1.05056946e+00,  3.64698715e-01,
+         1.75297293e-03],
+       [ 3.10997534e-01, -1.24957601e-01,  4.78430123e-01,
+         2.64698913e-01],
+       [-5.25060772e-02, -1.05056946e+00,  1.37235899e-01,
+         1.75297293e-03],
+       [-1.02184904e+00, -1.74477836e+00, -2.60824029e-01,
+        -2.61192967e-01],
+       [-2.94841818e-01, -8.19166497e-01,  2.50967307e-01,
+         1.33225943e-01],
+       [-1.73673948e-01, -1.24957601e-01,  2.50967307e-01,
+         1.75297293e-03],
+       [-1.73673948e-01, -3.56360566e-01,  2.50967307e-01,
+         1.33225943e-01],
+       [ 4.32165405e-01, -3.56360566e-01,  3.07833011e-01,
+         1.33225943e-01],
+       [-9.00681170e-01, -1.28197243e+00, -4.31421141e-01,
+        -1.29719997e-01],
+       [-1.73673948e-01, -5.87763531e-01,  1.94101603e-01,
+         1.33225943e-01],
+       [ 5.53333275e-01,  5.69251294e-01,  1.27454998e+00,
+         1.71090158e+00],
+       [-5.25060772e-02, -8.19166497e-01,  7.62758643e-01,
+         9.22063763e-01],
+       [ 1.52267624e+00, -1.24957601e-01,  1.21768427e+00,
+         1.18500970e+00],
+       [ 5.53333275e-01, -3.56360566e-01,  1.04708716e+00,
+         7.90590793e-01],
+       [ 7.95669016e-01, -1.24957601e-01,  1.16081857e+00,
+         1.31648267e+00],
+       [ 2.12851559e+00, -1.24957601e-01,  1.61574420e+00,
+         1.18500970e+00],
+       [-1.14301691e+00, -1.28197243e+00,  4.21564419e-01,
+         6.59117823e-01],
+       [ 1.76501198e+00, -3.56360566e-01,  1.44514709e+00,
+         7.90590793e-01],
+       [ 1.03800476e+00, -1.28197243e+00,  1.16081857e+00,
+         7.90590793e-01],
+       [ 1.64384411e+00,  1.26346019e+00,  1.33141568e+00,
+         1.71090158e+00],
+       [ 7.95669016e-01,  3.37848329e-01,  7.62758643e-01,
+         1.05353673e+00],
+       [ 6.74501145e-01, -8.19166497e-01,  8.76490051e-01,
+         9.22063763e-01],
+       [ 1.15917263e+00, -1.24957601e-01,  9.90221459e-01,
+         1.18500970e+00],
+       [-1.73673948e-01, -1.28197243e+00,  7.05892939e-01,
+         1.05353673e+00],
+       [-5.25060772e-02, -5.87763531e-01,  7.62758643e-01,
+         1.57942861e+00],
+       [ 6.74501145e-01,  3.37848329e-01,  8.76490051e-01,
+         1.44795564e+00],
+       [ 7.95669016e-01, -1.24957601e-01,  9.90221459e-01,
+         7.90590793e-01],
+       [ 2.24968346e+00,  1.72626612e+00,  1.67260991e+00,
+         1.31648267e+00],
+       [ 2.24968346e+00, -1.05056946e+00,  1.78634131e+00,
+         1.44795564e+00],
+       [ 1.89829664e-01, -1.97618132e+00,  7.05892939e-01,
+         3.96171883e-01],
+       [ 1.28034050e+00,  3.37848329e-01,  1.10395287e+00,
+         1.44795564e+00],
+       [-2.94841818e-01, -5.87763531e-01,  6.49027235e-01,
+         1.05353673e+00],
+       [ 2.24968346e+00, -5.87763531e-01,  1.67260991e+00,
+         1.05353673e+00],
+       [ 5.53333275e-01, -8.19166497e-01,  6.49027235e-01,
+         7.90590793e-01],
+       [ 1.03800476e+00,  5.69251294e-01,  1.10395287e+00,
+         1.18500970e+00],
+       [ 1.64384411e+00,  3.37848329e-01,  1.27454998e+00,
+         7.90590793e-01],
+       [ 4.32165405e-01, -5.87763531e-01,  5.92161531e-01,
+         7.90590793e-01],
+       [ 3.10997534e-01, -1.24957601e-01,  6.49027235e-01,
+         7.90590793e-01],
+       [ 6.74501145e-01, -5.87763531e-01,  1.04708716e+00,
+         1.18500970e+00],
+       [ 1.64384411e+00, -1.24957601e-01,  1.16081857e+00,
+         5.27644853e-01],
+       [ 1.88617985e+00, -5.87763531e-01,  1.33141568e+00,
+         9.22063763e-01],
+       [ 2.49201920e+00,  1.72626612e+00,  1.50201279e+00,
+         1.05353673e+00],
+       [ 6.74501145e-01, -5.87763531e-01,  1.04708716e+00,
+         1.31648267e+00],
+       [ 5.53333275e-01, -5.87763531e-01,  7.62758643e-01,
+         3.96171883e-01],
+       [ 3.10997534e-01, -1.05056946e+00,  1.04708716e+00,
+         2.64698913e-01],
+       [ 2.24968346e+00, -1.24957601e-01,  1.33141568e+00,
+         1.44795564e+00],
+       [ 5.53333275e-01,  8.00654259e-01,  1.04708716e+00,
+         1.57942861e+00],
+       [ 6.74501145e-01,  1.06445364e-01,  9.90221459e-01,
+         7.90590793e-01],
+       [ 1.89829664e-01, -1.24957601e-01,  5.92161531e-01,
+         7.90590793e-01],
+       [ 1.28034050e+00,  1.06445364e-01,  9.33355755e-01,
+         1.18500970e+00],
+       [ 1.03800476e+00,  1.06445364e-01,  1.04708716e+00,
+         1.57942861e+00],
+       [ 1.28034050e+00,  1.06445364e-01,  7.62758643e-01,
+         1.44795564e+00],
+       [-5.25060772e-02, -8.19166497e-01,  7.62758643e-01,
+         9.22063763e-01],
+       [ 1.15917263e+00,  3.37848329e-01,  1.21768427e+00,
+         1.44795564e+00],
+       [ 1.03800476e+00,  5.69251294e-01,  1.10395287e+00,
+         1.71090158e+00],
+       [ 1.03800476e+00, -1.24957601e-01,  8.19624347e-01,
+         1.44795564e+00],
+       [ 5.53333275e-01, -1.28197243e+00,  7.05892939e-01,
+         9.22063763e-01],
+       [ 7.95669016e-01, -1.24957601e-01,  8.19624347e-01,
+         1.05353673e+00],
+       [ 4.32165405e-01,  8.00654259e-01,  9.33355755e-01,
+         1.44795564e+00],
+       [ 6.86617933e-02, -1.24957601e-01,  7.62758643e-01,
+         7.90590793e-01]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>STEP 3: PCA PROJECTION TO 2D</p>
+<p>The original data has four columns (sepal length, sepal width, petal length and petal width). In this section, the code projects the original data, which is four-dimensional, into two dimensions. After dimensionality reduction, there usually isn’t a particular meaning assigned to each principal component. The new components are just the two main dimensions of variation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">principalComponents</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">principalDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">principalComponents</span>
+             <span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;principal component 1&#39;</span><span class="p">,</span> <span class="s1">&#39;principal component 2&#39;</span><span class="p">])</span>
+<span class="n">principalDf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>principal component 1</th>
+      <th>principal component 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-2.264542</td>
+      <td>0.505704</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-2.086426</td>
+      <td>-0.655405</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-2.367950</td>
+      <td>-0.318477</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-2.304197</td>
+      <td>-0.575368</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-2.388777</td>
+      <td>0.674767</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>1.870522</td>
+      <td>0.382822</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>1.558492</td>
+      <td>-0.905314</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>1.520845</td>
+      <td>0.266795</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>1.376391</td>
+      <td>1.016362</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>0.959299</td>
+      <td>-0.022284</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">finalDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">principalDf</span><span class="p">,</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;target&#39;</span><span class="p">]]],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">finalDf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>principal component 1</th>
+      <th>principal component 2</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-2.264542</td>
+      <td>0.505704</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-2.086426</td>
+      <td>-0.655405</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-2.367950</td>
+      <td>-0.318477</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-2.304197</td>
+      <td>-0.575368</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-2.388777</td>
+      <td>0.674767</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>1.870522</td>
+      <td>0.382822</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>1.558492</td>
+      <td>-0.905314</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>1.520845</td>
+      <td>0.266795</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>1.376391</td>
+      <td>1.016362</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>0.959299</td>
+      <td>-0.022284</td>
+      <td>Iris-virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>Concatenating DataFrame along axis = 1. finalDf is the final DataFrame before plotting the data.</p>
+<p>STEP 4: VISUALIZE 2D PROJECTION</p>
+<p>This section is just plotting two-dimensional data. Notice on the graph below that the classes seem well separated from each other.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;2 component PCA&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">targets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Iris-setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;Iris-versicolor&#39;</span><span class="p">,</span> <span class="s1">&#39;Iris-virginica&#39;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">target</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span><span class="n">colors</span><span class="p">):</span>
+    <span class="n">indicesToKeep</span> <span class="o">=</span> <span class="n">finalDf</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">finalDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indicesToKeep</span><span class="p">,</span> <span class="s1">&#39;principal component 1&#39;</span><span class="p">]</span>
+               <span class="p">,</span> <span class="n">finalDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indicesToKeep</span><span class="p">,</span> <span class="s1">&#39;principal component 2&#39;</span><span class="p">]</span>
+               <span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">color</span>
+               <span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 800x800 with 1 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The explained variance tells you how much information (variance) can be attributed to each of the principal components. This is important because while you can convert four-dimensional space to a two-dimensional space, you lose some of the variance (information) when you do this. By using the attribute explained_variance_ratio_, you can see that the first principal component contains 72.77 percent of the variance, and the second principal component contains 23.03 percent of the variance. Together, the two components contain 95.80 percent of the information.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explained_variance_ratio_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="mi">57961</span><span class="n">b195768</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">explained_variance_ratio_</span>
+
+<span class="ne">NameError</span>: name &#39;explained_variance_ratio_&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pca-to-speed-up-machine-learning-algorithms">
+<h2>PCA to Speed-Up Machine Learning Algorithms<a class="headerlink" href="#pca-to-speed-up-machine-learning-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>While there are other ways to speed up machine learning algorithms, one less commonly known way is to use PCA. For this section, we aren’t using the Iris data set, as it only has 150 rows and four feature columns. The MNIST database of handwritten digits is more suitable, as it has 784 feature columns (784 dimensions), a training set of 60,000 examples and a test set of 10,000 examples.</p>
+<p>STEP 1: DOWNLOAD AND LOAD THE DATA</p>
+<p>You can also add a data_home parameter to fetch_mldata to change where you download the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="s1">&#39;mnist_784&#39;</span><span class="p">)</span>
+<span class="n">mnist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;data&#39;: array([[0., 0., 0., ..., 0., 0., 0.],
+        [0., 0., 0., ..., 0., 0., 0.],
+        [0., 0., 0., ..., 0., 0., 0.],
+        ...,
+        [0., 0., 0., ..., 0., 0., 0.],
+        [0., 0., 0., ..., 0., 0., 0.],
+        [0., 0., 0., ..., 0., 0., 0.]]),
+ &#39;target&#39;: array([&#39;5&#39;, &#39;0&#39;, &#39;4&#39;, ..., &#39;4&#39;, &#39;5&#39;, &#39;6&#39;], dtype=object),
+ &#39;feature_names&#39;: [&#39;pixel1&#39;,
+  &#39;pixel2&#39;,
+  &#39;pixel3&#39;,
+  &#39;pixel4&#39;,
+  &#39;pixel5&#39;,
+  &#39;pixel6&#39;,
+  &#39;pixel7&#39;,
+  &#39;pixel8&#39;,
+  &#39;pixel9&#39;,
+  &#39;pixel10&#39;,
+  &#39;pixel11&#39;,
+  &#39;pixel12&#39;,
+  &#39;pixel13&#39;,
+  &#39;pixel14&#39;,
+  &#39;pixel15&#39;,
+  &#39;pixel16&#39;,
+  &#39;pixel17&#39;,
+  &#39;pixel18&#39;,
+  &#39;pixel19&#39;,
+  &#39;pixel20&#39;,
+  &#39;pixel21&#39;,
+  &#39;pixel22&#39;,
+  &#39;pixel23&#39;,
+  &#39;pixel24&#39;,
+  &#39;pixel25&#39;,
+  &#39;pixel26&#39;,
+  &#39;pixel27&#39;,
+  &#39;pixel28&#39;,
+  &#39;pixel29&#39;,
+  &#39;pixel30&#39;,
+  &#39;pixel31&#39;,
+  &#39;pixel32&#39;,
+  &#39;pixel33&#39;,
+  &#39;pixel34&#39;,
+  &#39;pixel35&#39;,
+  &#39;pixel36&#39;,
+  &#39;pixel37&#39;,
+  &#39;pixel38&#39;,
+  &#39;pixel39&#39;,
+  &#39;pixel40&#39;,
+  &#39;pixel41&#39;,
+  &#39;pixel42&#39;,
+  &#39;pixel43&#39;,
+  &#39;pixel44&#39;,
+  &#39;pixel45&#39;,
+  &#39;pixel46&#39;,
+  &#39;pixel47&#39;,
+  &#39;pixel48&#39;,
+  &#39;pixel49&#39;,
+  &#39;pixel50&#39;,
+  &#39;pixel51&#39;,
+  &#39;pixel52&#39;,
+  &#39;pixel53&#39;,
+  &#39;pixel54&#39;,
+  &#39;pixel55&#39;,
+  &#39;pixel56&#39;,
+  &#39;pixel57&#39;,
+  &#39;pixel58&#39;,
+  &#39;pixel59&#39;,
+  &#39;pixel60&#39;,
+  &#39;pixel61&#39;,
+  &#39;pixel62&#39;,
+  &#39;pixel63&#39;,
+  &#39;pixel64&#39;,
+  &#39;pixel65&#39;,
+  &#39;pixel66&#39;,
+  &#39;pixel67&#39;,
+  &#39;pixel68&#39;,
+  &#39;pixel69&#39;,
+  &#39;pixel70&#39;,
+  &#39;pixel71&#39;,
+  &#39;pixel72&#39;,
+  &#39;pixel73&#39;,
+  &#39;pixel74&#39;,
+  &#39;pixel75&#39;,
+  &#39;pixel76&#39;,
+  &#39;pixel77&#39;,
+  &#39;pixel78&#39;,
+  &#39;pixel79&#39;,
+  &#39;pixel80&#39;,
+  &#39;pixel81&#39;,
+  &#39;pixel82&#39;,
+  &#39;pixel83&#39;,
+  &#39;pixel84&#39;,
+  &#39;pixel85&#39;,
+  &#39;pixel86&#39;,
+  &#39;pixel87&#39;,
+  &#39;pixel88&#39;,
+  &#39;pixel89&#39;,
+  &#39;pixel90&#39;,
+  &#39;pixel91&#39;,
+  &#39;pixel92&#39;,
+  &#39;pixel93&#39;,
+  &#39;pixel94&#39;,
+  &#39;pixel95&#39;,
+  &#39;pixel96&#39;,
+  &#39;pixel97&#39;,
+  &#39;pixel98&#39;,
+  &#39;pixel99&#39;,
+  &#39;pixel100&#39;,
+  &#39;pixel101&#39;,
+  &#39;pixel102&#39;,
+  &#39;pixel103&#39;,
+  &#39;pixel104&#39;,
+  &#39;pixel105&#39;,
+  &#39;pixel106&#39;,
+  &#39;pixel107&#39;,
+  &#39;pixel108&#39;,
+  &#39;pixel109&#39;,
+  &#39;pixel110&#39;,
+  &#39;pixel111&#39;,
+  &#39;pixel112&#39;,
+  &#39;pixel113&#39;,
+  &#39;pixel114&#39;,
+  &#39;pixel115&#39;,
+  &#39;pixel116&#39;,
+  &#39;pixel117&#39;,
+  &#39;pixel118&#39;,
+  &#39;pixel119&#39;,
+  &#39;pixel120&#39;,
+  &#39;pixel121&#39;,
+  &#39;pixel122&#39;,
+  &#39;pixel123&#39;,
+  &#39;pixel124&#39;,
+  &#39;pixel125&#39;,
+  &#39;pixel126&#39;,
+  &#39;pixel127&#39;,
+  &#39;pixel128&#39;,
+  &#39;pixel129&#39;,
+  &#39;pixel130&#39;,
+  &#39;pixel131&#39;,
+  &#39;pixel132&#39;,
+  &#39;pixel133&#39;,
+  &#39;pixel134&#39;,
+  &#39;pixel135&#39;,
+  &#39;pixel136&#39;,
+  &#39;pixel137&#39;,
+  &#39;pixel138&#39;,
+  &#39;pixel139&#39;,
+  &#39;pixel140&#39;,
+  &#39;pixel141&#39;,
+  &#39;pixel142&#39;,
+  &#39;pixel143&#39;,
+  &#39;pixel144&#39;,
+  &#39;pixel145&#39;,
+  &#39;pixel146&#39;,
+  &#39;pixel147&#39;,
+  &#39;pixel148&#39;,
+  &#39;pixel149&#39;,
+  &#39;pixel150&#39;,
+  &#39;pixel151&#39;,
+  &#39;pixel152&#39;,
+  &#39;pixel153&#39;,
+  &#39;pixel154&#39;,
+  &#39;pixel155&#39;,
+  &#39;pixel156&#39;,
+  &#39;pixel157&#39;,
+  &#39;pixel158&#39;,
+  &#39;pixel159&#39;,
+  &#39;pixel160&#39;,
+  &#39;pixel161&#39;,
+  &#39;pixel162&#39;,
+  &#39;pixel163&#39;,
+  &#39;pixel164&#39;,
+  &#39;pixel165&#39;,
+  &#39;pixel166&#39;,
+  &#39;pixel167&#39;,
+  &#39;pixel168&#39;,
+  &#39;pixel169&#39;,
+  &#39;pixel170&#39;,
+  &#39;pixel171&#39;,
+  &#39;pixel172&#39;,
+  &#39;pixel173&#39;,
+  &#39;pixel174&#39;,
+  &#39;pixel175&#39;,
+  &#39;pixel176&#39;,
+  &#39;pixel177&#39;,
+  &#39;pixel178&#39;,
+  &#39;pixel179&#39;,
+  &#39;pixel180&#39;,
+  &#39;pixel181&#39;,
+  &#39;pixel182&#39;,
+  &#39;pixel183&#39;,
+  &#39;pixel184&#39;,
+  &#39;pixel185&#39;,
+  &#39;pixel186&#39;,
+  &#39;pixel187&#39;,
+  &#39;pixel188&#39;,
+  &#39;pixel189&#39;,
+  &#39;pixel190&#39;,
+  &#39;pixel191&#39;,
+  &#39;pixel192&#39;,
+  &#39;pixel193&#39;,
+  &#39;pixel194&#39;,
+  &#39;pixel195&#39;,
+  &#39;pixel196&#39;,
+  &#39;pixel197&#39;,
+  &#39;pixel198&#39;,
+  &#39;pixel199&#39;,
+  &#39;pixel200&#39;,
+  &#39;pixel201&#39;,
+  &#39;pixel202&#39;,
+  &#39;pixel203&#39;,
+  &#39;pixel204&#39;,
+  &#39;pixel205&#39;,
+  &#39;pixel206&#39;,
+  &#39;pixel207&#39;,
+  &#39;pixel208&#39;,
+  &#39;pixel209&#39;,
+  &#39;pixel210&#39;,
+  &#39;pixel211&#39;,
+  &#39;pixel212&#39;,
+  &#39;pixel213&#39;,
+  &#39;pixel214&#39;,
+  &#39;pixel215&#39;,
+  &#39;pixel216&#39;,
+  &#39;pixel217&#39;,
+  &#39;pixel218&#39;,
+  &#39;pixel219&#39;,
+  &#39;pixel220&#39;,
+  &#39;pixel221&#39;,
+  &#39;pixel222&#39;,
+  &#39;pixel223&#39;,
+  &#39;pixel224&#39;,
+  &#39;pixel225&#39;,
+  &#39;pixel226&#39;,
+  &#39;pixel227&#39;,
+  &#39;pixel228&#39;,
+  &#39;pixel229&#39;,
+  &#39;pixel230&#39;,
+  &#39;pixel231&#39;,
+  &#39;pixel232&#39;,
+  &#39;pixel233&#39;,
+  &#39;pixel234&#39;,
+  &#39;pixel235&#39;,
+  &#39;pixel236&#39;,
+  &#39;pixel237&#39;,
+  &#39;pixel238&#39;,
+  &#39;pixel239&#39;,
+  &#39;pixel240&#39;,
+  &#39;pixel241&#39;,
+  &#39;pixel242&#39;,
+  &#39;pixel243&#39;,
+  &#39;pixel244&#39;,
+  &#39;pixel245&#39;,
+  &#39;pixel246&#39;,
+  &#39;pixel247&#39;,
+  &#39;pixel248&#39;,
+  &#39;pixel249&#39;,
+  &#39;pixel250&#39;,
+  &#39;pixel251&#39;,
+  &#39;pixel252&#39;,
+  &#39;pixel253&#39;,
+  &#39;pixel254&#39;,
+  &#39;pixel255&#39;,
+  &#39;pixel256&#39;,
+  &#39;pixel257&#39;,
+  &#39;pixel258&#39;,
+  &#39;pixel259&#39;,
+  &#39;pixel260&#39;,
+  &#39;pixel261&#39;,
+  &#39;pixel262&#39;,
+  &#39;pixel263&#39;,
+  &#39;pixel264&#39;,
+  &#39;pixel265&#39;,
+  &#39;pixel266&#39;,
+  &#39;pixel267&#39;,
+  &#39;pixel268&#39;,
+  &#39;pixel269&#39;,
+  &#39;pixel270&#39;,
+  &#39;pixel271&#39;,
+  &#39;pixel272&#39;,
+  &#39;pixel273&#39;,
+  &#39;pixel274&#39;,
+  &#39;pixel275&#39;,
+  &#39;pixel276&#39;,
+  &#39;pixel277&#39;,
+  &#39;pixel278&#39;,
+  &#39;pixel279&#39;,
+  &#39;pixel280&#39;,
+  &#39;pixel281&#39;,
+  &#39;pixel282&#39;,
+  &#39;pixel283&#39;,
+  &#39;pixel284&#39;,
+  &#39;pixel285&#39;,
+  &#39;pixel286&#39;,
+  &#39;pixel287&#39;,
+  &#39;pixel288&#39;,
+  &#39;pixel289&#39;,
+  &#39;pixel290&#39;,
+  &#39;pixel291&#39;,
+  &#39;pixel292&#39;,
+  &#39;pixel293&#39;,
+  &#39;pixel294&#39;,
+  &#39;pixel295&#39;,
+  &#39;pixel296&#39;,
+  &#39;pixel297&#39;,
+  &#39;pixel298&#39;,
+  &#39;pixel299&#39;,
+  &#39;pixel300&#39;,
+  &#39;pixel301&#39;,
+  &#39;pixel302&#39;,
+  &#39;pixel303&#39;,
+  &#39;pixel304&#39;,
+  &#39;pixel305&#39;,
+  &#39;pixel306&#39;,
+  &#39;pixel307&#39;,
+  &#39;pixel308&#39;,
+  &#39;pixel309&#39;,
+  &#39;pixel310&#39;,
+  &#39;pixel311&#39;,
+  &#39;pixel312&#39;,
+  &#39;pixel313&#39;,
+  &#39;pixel314&#39;,
+  &#39;pixel315&#39;,
+  &#39;pixel316&#39;,
+  &#39;pixel317&#39;,
+  &#39;pixel318&#39;,
+  &#39;pixel319&#39;,
+  &#39;pixel320&#39;,
+  &#39;pixel321&#39;,
+  &#39;pixel322&#39;,
+  &#39;pixel323&#39;,
+  &#39;pixel324&#39;,
+  &#39;pixel325&#39;,
+  &#39;pixel326&#39;,
+  &#39;pixel327&#39;,
+  &#39;pixel328&#39;,
+  &#39;pixel329&#39;,
+  &#39;pixel330&#39;,
+  &#39;pixel331&#39;,
+  &#39;pixel332&#39;,
+  &#39;pixel333&#39;,
+  &#39;pixel334&#39;,
+  &#39;pixel335&#39;,
+  &#39;pixel336&#39;,
+  &#39;pixel337&#39;,
+  &#39;pixel338&#39;,
+  &#39;pixel339&#39;,
+  &#39;pixel340&#39;,
+  &#39;pixel341&#39;,
+  &#39;pixel342&#39;,
+  &#39;pixel343&#39;,
+  &#39;pixel344&#39;,
+  &#39;pixel345&#39;,
+  &#39;pixel346&#39;,
+  &#39;pixel347&#39;,
+  &#39;pixel348&#39;,
+  &#39;pixel349&#39;,
+  &#39;pixel350&#39;,
+  &#39;pixel351&#39;,
+  &#39;pixel352&#39;,
+  &#39;pixel353&#39;,
+  &#39;pixel354&#39;,
+  &#39;pixel355&#39;,
+  &#39;pixel356&#39;,
+  &#39;pixel357&#39;,
+  &#39;pixel358&#39;,
+  &#39;pixel359&#39;,
+  &#39;pixel360&#39;,
+  &#39;pixel361&#39;,
+  &#39;pixel362&#39;,
+  &#39;pixel363&#39;,
+  &#39;pixel364&#39;,
+  &#39;pixel365&#39;,
+  &#39;pixel366&#39;,
+  &#39;pixel367&#39;,
+  &#39;pixel368&#39;,
+  &#39;pixel369&#39;,
+  &#39;pixel370&#39;,
+  &#39;pixel371&#39;,
+  &#39;pixel372&#39;,
+  &#39;pixel373&#39;,
+  &#39;pixel374&#39;,
+  &#39;pixel375&#39;,
+  &#39;pixel376&#39;,
+  &#39;pixel377&#39;,
+  &#39;pixel378&#39;,
+  &#39;pixel379&#39;,
+  &#39;pixel380&#39;,
+  &#39;pixel381&#39;,
+  &#39;pixel382&#39;,
+  &#39;pixel383&#39;,
+  &#39;pixel384&#39;,
+  &#39;pixel385&#39;,
+  &#39;pixel386&#39;,
+  &#39;pixel387&#39;,
+  &#39;pixel388&#39;,
+  &#39;pixel389&#39;,
+  &#39;pixel390&#39;,
+  &#39;pixel391&#39;,
+  &#39;pixel392&#39;,
+  &#39;pixel393&#39;,
+  &#39;pixel394&#39;,
+  &#39;pixel395&#39;,
+  &#39;pixel396&#39;,
+  &#39;pixel397&#39;,
+  &#39;pixel398&#39;,
+  &#39;pixel399&#39;,
+  &#39;pixel400&#39;,
+  &#39;pixel401&#39;,
+  &#39;pixel402&#39;,
+  &#39;pixel403&#39;,
+  &#39;pixel404&#39;,
+  &#39;pixel405&#39;,
+  &#39;pixel406&#39;,
+  &#39;pixel407&#39;,
+  &#39;pixel408&#39;,
+  &#39;pixel409&#39;,
+  &#39;pixel410&#39;,
+  &#39;pixel411&#39;,
+  &#39;pixel412&#39;,
+  &#39;pixel413&#39;,
+  &#39;pixel414&#39;,
+  &#39;pixel415&#39;,
+  &#39;pixel416&#39;,
+  &#39;pixel417&#39;,
+  &#39;pixel418&#39;,
+  &#39;pixel419&#39;,
+  &#39;pixel420&#39;,
+  &#39;pixel421&#39;,
+  &#39;pixel422&#39;,
+  &#39;pixel423&#39;,
+  &#39;pixel424&#39;,
+  &#39;pixel425&#39;,
+  &#39;pixel426&#39;,
+  &#39;pixel427&#39;,
+  &#39;pixel428&#39;,
+  &#39;pixel429&#39;,
+  &#39;pixel430&#39;,
+  &#39;pixel431&#39;,
+  &#39;pixel432&#39;,
+  &#39;pixel433&#39;,
+  &#39;pixel434&#39;,
+  &#39;pixel435&#39;,
+  &#39;pixel436&#39;,
+  &#39;pixel437&#39;,
+  &#39;pixel438&#39;,
+  &#39;pixel439&#39;,
+  &#39;pixel440&#39;,
+  &#39;pixel441&#39;,
+  &#39;pixel442&#39;,
+  &#39;pixel443&#39;,
+  &#39;pixel444&#39;,
+  &#39;pixel445&#39;,
+  &#39;pixel446&#39;,
+  &#39;pixel447&#39;,
+  &#39;pixel448&#39;,
+  &#39;pixel449&#39;,
+  &#39;pixel450&#39;,
+  &#39;pixel451&#39;,
+  &#39;pixel452&#39;,
+  &#39;pixel453&#39;,
+  &#39;pixel454&#39;,
+  &#39;pixel455&#39;,
+  &#39;pixel456&#39;,
+  &#39;pixel457&#39;,
+  &#39;pixel458&#39;,
+  &#39;pixel459&#39;,
+  &#39;pixel460&#39;,
+  &#39;pixel461&#39;,
+  &#39;pixel462&#39;,
+  &#39;pixel463&#39;,
+  &#39;pixel464&#39;,
+  &#39;pixel465&#39;,
+  &#39;pixel466&#39;,
+  &#39;pixel467&#39;,
+  &#39;pixel468&#39;,
+  &#39;pixel469&#39;,
+  &#39;pixel470&#39;,
+  &#39;pixel471&#39;,
+  &#39;pixel472&#39;,
+  &#39;pixel473&#39;,
+  &#39;pixel474&#39;,
+  &#39;pixel475&#39;,
+  &#39;pixel476&#39;,
+  &#39;pixel477&#39;,
+  &#39;pixel478&#39;,
+  &#39;pixel479&#39;,
+  &#39;pixel480&#39;,
+  &#39;pixel481&#39;,
+  &#39;pixel482&#39;,
+  &#39;pixel483&#39;,
+  &#39;pixel484&#39;,
+  &#39;pixel485&#39;,
+  &#39;pixel486&#39;,
+  &#39;pixel487&#39;,
+  &#39;pixel488&#39;,
+  &#39;pixel489&#39;,
+  &#39;pixel490&#39;,
+  &#39;pixel491&#39;,
+  &#39;pixel492&#39;,
+  &#39;pixel493&#39;,
+  &#39;pixel494&#39;,
+  &#39;pixel495&#39;,
+  &#39;pixel496&#39;,
+  &#39;pixel497&#39;,
+  &#39;pixel498&#39;,
+  &#39;pixel499&#39;,
+  &#39;pixel500&#39;,
+  &#39;pixel501&#39;,
+  &#39;pixel502&#39;,
+  &#39;pixel503&#39;,
+  &#39;pixel504&#39;,
+  &#39;pixel505&#39;,
+  &#39;pixel506&#39;,
+  &#39;pixel507&#39;,
+  &#39;pixel508&#39;,
+  &#39;pixel509&#39;,
+  &#39;pixel510&#39;,
+  &#39;pixel511&#39;,
+  &#39;pixel512&#39;,
+  &#39;pixel513&#39;,
+  &#39;pixel514&#39;,
+  &#39;pixel515&#39;,
+  &#39;pixel516&#39;,
+  &#39;pixel517&#39;,
+  &#39;pixel518&#39;,
+  &#39;pixel519&#39;,
+  &#39;pixel520&#39;,
+  &#39;pixel521&#39;,
+  &#39;pixel522&#39;,
+  &#39;pixel523&#39;,
+  &#39;pixel524&#39;,
+  &#39;pixel525&#39;,
+  &#39;pixel526&#39;,
+  &#39;pixel527&#39;,
+  &#39;pixel528&#39;,
+  &#39;pixel529&#39;,
+  &#39;pixel530&#39;,
+  &#39;pixel531&#39;,
+  &#39;pixel532&#39;,
+  &#39;pixel533&#39;,
+  &#39;pixel534&#39;,
+  &#39;pixel535&#39;,
+  &#39;pixel536&#39;,
+  &#39;pixel537&#39;,
+  &#39;pixel538&#39;,
+  &#39;pixel539&#39;,
+  &#39;pixel540&#39;,
+  &#39;pixel541&#39;,
+  &#39;pixel542&#39;,
+  &#39;pixel543&#39;,
+  &#39;pixel544&#39;,
+  &#39;pixel545&#39;,
+  &#39;pixel546&#39;,
+  &#39;pixel547&#39;,
+  &#39;pixel548&#39;,
+  &#39;pixel549&#39;,
+  &#39;pixel550&#39;,
+  &#39;pixel551&#39;,
+  &#39;pixel552&#39;,
+  &#39;pixel553&#39;,
+  &#39;pixel554&#39;,
+  &#39;pixel555&#39;,
+  &#39;pixel556&#39;,
+  &#39;pixel557&#39;,
+  &#39;pixel558&#39;,
+  &#39;pixel559&#39;,
+  &#39;pixel560&#39;,
+  &#39;pixel561&#39;,
+  &#39;pixel562&#39;,
+  &#39;pixel563&#39;,
+  &#39;pixel564&#39;,
+  &#39;pixel565&#39;,
+  &#39;pixel566&#39;,
+  &#39;pixel567&#39;,
+  &#39;pixel568&#39;,
+  &#39;pixel569&#39;,
+  &#39;pixel570&#39;,
+  &#39;pixel571&#39;,
+  &#39;pixel572&#39;,
+  &#39;pixel573&#39;,
+  &#39;pixel574&#39;,
+  &#39;pixel575&#39;,
+  &#39;pixel576&#39;,
+  &#39;pixel577&#39;,
+  &#39;pixel578&#39;,
+  &#39;pixel579&#39;,
+  &#39;pixel580&#39;,
+  &#39;pixel581&#39;,
+  &#39;pixel582&#39;,
+  &#39;pixel583&#39;,
+  &#39;pixel584&#39;,
+  &#39;pixel585&#39;,
+  &#39;pixel586&#39;,
+  &#39;pixel587&#39;,
+  &#39;pixel588&#39;,
+  &#39;pixel589&#39;,
+  &#39;pixel590&#39;,
+  &#39;pixel591&#39;,
+  &#39;pixel592&#39;,
+  &#39;pixel593&#39;,
+  &#39;pixel594&#39;,
+  &#39;pixel595&#39;,
+  &#39;pixel596&#39;,
+  &#39;pixel597&#39;,
+  &#39;pixel598&#39;,
+  &#39;pixel599&#39;,
+  &#39;pixel600&#39;,
+  &#39;pixel601&#39;,
+  &#39;pixel602&#39;,
+  &#39;pixel603&#39;,
+  &#39;pixel604&#39;,
+  &#39;pixel605&#39;,
+  &#39;pixel606&#39;,
+  &#39;pixel607&#39;,
+  &#39;pixel608&#39;,
+  &#39;pixel609&#39;,
+  &#39;pixel610&#39;,
+  &#39;pixel611&#39;,
+  &#39;pixel612&#39;,
+  &#39;pixel613&#39;,
+  &#39;pixel614&#39;,
+  &#39;pixel615&#39;,
+  &#39;pixel616&#39;,
+  &#39;pixel617&#39;,
+  &#39;pixel618&#39;,
+  &#39;pixel619&#39;,
+  &#39;pixel620&#39;,
+  &#39;pixel621&#39;,
+  &#39;pixel622&#39;,
+  &#39;pixel623&#39;,
+  &#39;pixel624&#39;,
+  &#39;pixel625&#39;,
+  &#39;pixel626&#39;,
+  &#39;pixel627&#39;,
+  &#39;pixel628&#39;,
+  &#39;pixel629&#39;,
+  &#39;pixel630&#39;,
+  &#39;pixel631&#39;,
+  &#39;pixel632&#39;,
+  &#39;pixel633&#39;,
+  &#39;pixel634&#39;,
+  &#39;pixel635&#39;,
+  &#39;pixel636&#39;,
+  &#39;pixel637&#39;,
+  &#39;pixel638&#39;,
+  &#39;pixel639&#39;,
+  &#39;pixel640&#39;,
+  &#39;pixel641&#39;,
+  &#39;pixel642&#39;,
+  &#39;pixel643&#39;,
+  &#39;pixel644&#39;,
+  &#39;pixel645&#39;,
+  &#39;pixel646&#39;,
+  &#39;pixel647&#39;,
+  &#39;pixel648&#39;,
+  &#39;pixel649&#39;,
+  &#39;pixel650&#39;,
+  &#39;pixel651&#39;,
+  &#39;pixel652&#39;,
+  &#39;pixel653&#39;,
+  &#39;pixel654&#39;,
+  &#39;pixel655&#39;,
+  &#39;pixel656&#39;,
+  &#39;pixel657&#39;,
+  &#39;pixel658&#39;,
+  &#39;pixel659&#39;,
+  &#39;pixel660&#39;,
+  &#39;pixel661&#39;,
+  &#39;pixel662&#39;,
+  &#39;pixel663&#39;,
+  &#39;pixel664&#39;,
+  &#39;pixel665&#39;,
+  &#39;pixel666&#39;,
+  &#39;pixel667&#39;,
+  &#39;pixel668&#39;,
+  &#39;pixel669&#39;,
+  &#39;pixel670&#39;,
+  &#39;pixel671&#39;,
+  &#39;pixel672&#39;,
+  &#39;pixel673&#39;,
+  &#39;pixel674&#39;,
+  &#39;pixel675&#39;,
+  &#39;pixel676&#39;,
+  &#39;pixel677&#39;,
+  &#39;pixel678&#39;,
+  &#39;pixel679&#39;,
+  &#39;pixel680&#39;,
+  &#39;pixel681&#39;,
+  &#39;pixel682&#39;,
+  &#39;pixel683&#39;,
+  &#39;pixel684&#39;,
+  &#39;pixel685&#39;,
+  &#39;pixel686&#39;,
+  &#39;pixel687&#39;,
+  &#39;pixel688&#39;,
+  &#39;pixel689&#39;,
+  &#39;pixel690&#39;,
+  &#39;pixel691&#39;,
+  &#39;pixel692&#39;,
+  &#39;pixel693&#39;,
+  &#39;pixel694&#39;,
+  &#39;pixel695&#39;,
+  &#39;pixel696&#39;,
+  &#39;pixel697&#39;,
+  &#39;pixel698&#39;,
+  &#39;pixel699&#39;,
+  &#39;pixel700&#39;,
+  &#39;pixel701&#39;,
+  &#39;pixel702&#39;,
+  &#39;pixel703&#39;,
+  &#39;pixel704&#39;,
+  &#39;pixel705&#39;,
+  &#39;pixel706&#39;,
+  &#39;pixel707&#39;,
+  &#39;pixel708&#39;,
+  &#39;pixel709&#39;,
+  &#39;pixel710&#39;,
+  &#39;pixel711&#39;,
+  &#39;pixel712&#39;,
+  &#39;pixel713&#39;,
+  &#39;pixel714&#39;,
+  &#39;pixel715&#39;,
+  &#39;pixel716&#39;,
+  &#39;pixel717&#39;,
+  &#39;pixel718&#39;,
+  &#39;pixel719&#39;,
+  &#39;pixel720&#39;,
+  &#39;pixel721&#39;,
+  &#39;pixel722&#39;,
+  &#39;pixel723&#39;,
+  &#39;pixel724&#39;,
+  &#39;pixel725&#39;,
+  &#39;pixel726&#39;,
+  &#39;pixel727&#39;,
+  &#39;pixel728&#39;,
+  &#39;pixel729&#39;,
+  &#39;pixel730&#39;,
+  &#39;pixel731&#39;,
+  &#39;pixel732&#39;,
+  &#39;pixel733&#39;,
+  &#39;pixel734&#39;,
+  &#39;pixel735&#39;,
+  &#39;pixel736&#39;,
+  &#39;pixel737&#39;,
+  &#39;pixel738&#39;,
+  &#39;pixel739&#39;,
+  &#39;pixel740&#39;,
+  &#39;pixel741&#39;,
+  &#39;pixel742&#39;,
+  &#39;pixel743&#39;,
+  &#39;pixel744&#39;,
+  &#39;pixel745&#39;,
+  &#39;pixel746&#39;,
+  &#39;pixel747&#39;,
+  &#39;pixel748&#39;,
+  &#39;pixel749&#39;,
+  &#39;pixel750&#39;,
+  &#39;pixel751&#39;,
+  &#39;pixel752&#39;,
+  &#39;pixel753&#39;,
+  &#39;pixel754&#39;,
+  &#39;pixel755&#39;,
+  &#39;pixel756&#39;,
+  &#39;pixel757&#39;,
+  &#39;pixel758&#39;,
+  &#39;pixel759&#39;,
+  &#39;pixel760&#39;,
+  &#39;pixel761&#39;,
+  &#39;pixel762&#39;,
+  &#39;pixel763&#39;,
+  &#39;pixel764&#39;,
+  &#39;pixel765&#39;,
+  &#39;pixel766&#39;,
+  &#39;pixel767&#39;,
+  &#39;pixel768&#39;,
+  &#39;pixel769&#39;,
+  &#39;pixel770&#39;,
+  &#39;pixel771&#39;,
+  &#39;pixel772&#39;,
+  &#39;pixel773&#39;,
+  &#39;pixel774&#39;,
+  &#39;pixel775&#39;,
+  &#39;pixel776&#39;,
+  &#39;pixel777&#39;,
+  &#39;pixel778&#39;,
+  &#39;pixel779&#39;,
+  &#39;pixel780&#39;,
+  &#39;pixel781&#39;,
+  &#39;pixel782&#39;,
+  &#39;pixel783&#39;,
+  &#39;pixel784&#39;],
+ &#39;DESCR&#39;: &quot;**Author**: Yann LeCun, Corinna Cortes, Christopher J.C. Burges  \n**Source**: [MNIST Website](http://yann.lecun.com/exdb/mnist/) - Date unknown  \n**Please cite**:  \n\nThe MNIST database of handwritten digits with 784 features, raw data available at: http://yann.lecun.com/exdb/mnist/. It can be split in a training set of the first 60,000 examples, and a test set of 10,000 examples  \n\nIt is a subset of a larger set available from NIST. The digits have been size-normalized and centered in a fixed-size image. It is a good database for people who want to try learning techniques and pattern recognition methods on real-world data while spending minimal efforts on preprocessing and formatting. The original black and white (bilevel) images from NIST were size normalized to fit in a 20x20 pixel box while preserving their aspect ratio. The resulting images contain grey levels as a result of the anti-aliasing technique used by the normalization algorithm. the images were centered in a 28x28 image by computing the center of mass of the pixels, and translating the image so as to position this point at the center of the 28x28 field.  \n\nWith some classification methods (particularly template-based methods, such as SVM and K-nearest neighbors), the error rate improves when the digits are centered by bounding box rather than center of mass. If you do this kind of pre-processing, you should report it in your publications. The MNIST database was constructed from NIST&#39;s NIST originally designated SD-3 as their training set and SD-1 as their test set. However, SD-3 is much cleaner and easier to recognize than SD-1. The reason for this can be found on the fact that SD-3 was collected among Census Bureau employees, while SD-1 was collected among high-school students. Drawing sensible conclusions from learning experiments requires that the result be independent of the choice of training set and test among the complete set of samples. Therefore it was necessary to build a new database by mixing NIST&#39;s datasets.  \n\nThe MNIST training set is composed of 30,000 patterns from SD-3 and 30,000 patterns from SD-1. Our test set was composed of 5,000 patterns from SD-3 and 5,000 patterns from SD-1. The 60,000 pattern training set contained examples from approximately 250 writers. We made sure that the sets of writers of the training set and test set were disjoint. SD-1 contains 58,527 digit images written by 500 different writers. In contrast to SD-3, where blocks of data from each writer appeared in sequence, the data in SD-1 is scrambled. Writer identities for SD-1 is available and we used this information to unscramble the writers. We then split SD-1 in two: characters written by the first 250 writers went into our new training set. The remaining 250 writers were placed in our test set. Thus we had two sets with nearly 30,000 examples each. The new training set was completed with enough examples from SD-3, starting at pattern # 0, to make a full set of 60,000 training patterns. Similarly, the new test set was completed with SD-3 examples starting at pattern # 35,000 to make a full set with 60,000 test patterns. Only a subset of 10,000 test images (5,000 from SD-1 and 5,000 from SD-3) is available on this site. The full 60,000 sample training set is available.\n\nDownloaded from openml.org.&quot;,
+ &#39;details&#39;: {&#39;id&#39;: &#39;554&#39;,
+  &#39;name&#39;: &#39;mnist_784&#39;,
+  &#39;version&#39;: &#39;1&#39;,
+  &#39;description_version&#39;: &#39;1&#39;,
+  &#39;format&#39;: &#39;ARFF&#39;,
+  &#39;creator&#39;: [&#39;Yann LeCun&#39;, &#39;Corinna Cortes&#39;, &#39;Christopher J.C. Burges&#39;],
+  &#39;upload_date&#39;: &#39;2014-09-29T03:28:38&#39;,
+  &#39;language&#39;: &#39;English&#39;,
+  &#39;licence&#39;: &#39;Public&#39;,
+  &#39;url&#39;: &#39;https://api.openml.org/data/v1/download/52667/mnist_784.arff&#39;,
+  &#39;parquet_url&#39;: &#39;http://openml1.win.tue.nl/dataset554/dataset_554.pq&#39;,
+  &#39;file_id&#39;: &#39;52667&#39;,
+  &#39;default_target_attribute&#39;: &#39;class&#39;,
+  &#39;tag&#39;: [&#39;AzurePilot&#39;,
+   &#39;OpenML-CC18&#39;,
+   &#39;OpenML100&#39;,
+   &#39;study_1&#39;,
+   &#39;study_123&#39;,
+   &#39;study_41&#39;,
+   &#39;study_99&#39;,
+   &#39;vision&#39;],
+  &#39;visibility&#39;: &#39;public&#39;,
+  &#39;minio_url&#39;: &#39;http://openml1.win.tue.nl/dataset554/dataset_554.pq&#39;,
+  &#39;status&#39;: &#39;active&#39;,
+  &#39;processing_date&#39;: &#39;2020-11-20 20:12:09&#39;,
+  &#39;md5_checksum&#39;: &#39;0298d579eb1b86163de7723944c7e495&#39;},
+ &#39;categories&#39;: {},
+ &#39;url&#39;: &#39;https://www.openml.org/d/554&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The images that you downloaded are contained in mnist.data and has a shape of (70000, 784) meaning there are 70,000 images with 784 dimensions (784 features).</p>
+<p>The labels (the integers 0–9) are contained in mnist.target. The features are 784 dimensional (28 x 28 images), and the labels are numbers from 0–9.</p>
+<p>STEP 2: SPLIT DATA INTO TRAINING AND TEST SETS</p>
+<p>The code below performs a train test split which puts 6/7th of the data into a training set and 1/7 of the data into a test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># test_size: what proportion of original data is used for test set</span>
+<span class="n">train_img</span><span class="p">,</span> <span class="n">test_img</span><span class="p">,</span> <span class="n">train_lbl</span><span class="p">,</span> <span class="n">test_lbl</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span> <span class="n">mnist</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">mnist</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>STEP 3: STANDARDIZE THE DATA</p>
+<p>The text in this paragraph is almost an exact copy of what was written earlier. PCA is affected by scale, so you need to scale the features in the data before applying PCA. You can transform the data onto unit scale (mean = 0 and variance = 1), which is a requirement for the optimal performance of many machine learning algorithms. StandardScaler helps standardize the data set’s features. You fit on the training set and transform on the training and test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="c1"># Fit on training set only.</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_img</span><span class="p">)</span>
+
+<span class="c1"># Apply transform to both the training set and the test set.</span>
+<span class="n">train_img</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_img</span><span class="p">)</span>
+<span class="n">test_img</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>STEP 4: IMPORT AND APPLY PCA</p>
+<p>Notice the code below has .95 for the number of components parameter. It means that scikit-learn chooses the minimum number of principal components such that 95 percent of the variance is retained.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># Make an instance of the Model</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="mf">.95</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fit PCA on the training set. You are only fitting PCA on the training set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=0.95, random_state=None,
+  svd_solver=&#39;auto&#39;, tol=0.0, whiten=False)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can find out how many components PCA has after fitting the model using pca.n_components_. In this case, 95 percent of the variance amounts to 330 principal components.</p>
+<p>STEP 5: APPLY THE MAPPING (TRANSFORM) TO THE TRAINING SET AND THE TEST SET.</p>
+<ol class="simple">
+<li><p>Import the model you want to use.
+In sklearn, all machine learning models are implemented as Python classes.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Make an instance of the model.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># all parameters not specified are set to their defaults</span>
+<span class="c1"># default solver is incredibly slow which is why it was changed to &#39;lbfgs&#39;</span>
+<span class="n">logisticRegr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span> <span class="o">=</span> <span class="s1">&#39;lbfgs&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Train the model on the data, storing the information learned from the data.</p></li>
+</ol>
+<p>The model is learning the relationship between digits and labels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logisticRegr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_img</span><span class="p">,</span> <span class="n">train_lbl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:460: FutureWarning: Default multi_class will be changed to &#39;auto&#39; in 0.22. Specify the multi_class option to silence this warning.
+  &quot;this warning.&quot;, FutureWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+D:\ProgramData\Anaconda3\lib\site-packages\sklearn\linear_model\logistic.py:758: ConvergenceWarning: lbfgs failed to converge. Increase the number of iterations.
+  &quot;of iterations.&quot;, ConvergenceWarning)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, max_iter=100, multi_class=&#39;warn&#39;,
+          n_jobs=None, penalty=&#39;l2&#39;, random_state=None, solver=&#39;lbfgs&#39;,
+          tol=0.0001, verbose=0, warm_start=False)
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Predict the labels of new data (new images).</p></li>
+</ol>
+<p>This part uses the information the model learned during the model training process. The code below predicts for one observation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict for One Observation (image)</span>
+<span class="n">logisticRegr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_img</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;0&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict for One Observation (image)</span>
+<span class="n">logisticRegr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_img</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;0&#39;, &#39;4&#39;, &#39;1&#39;, &#39;2&#39;, &#39;4&#39;, &#39;4&#39;, &#39;7&#39;, &#39;1&#39;, &#39;1&#39;, &#39;7&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>STEP 7: MEASURING MODEL PERFORMANCE</p>
+<p>While accuracy is not always the best metric for machine learning algorithms (precision, recall, F1 score, ROC curve, etc., would be better), it is used here for simplicity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logisticRegr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_img</span><span class="p">,</span> <span class="n">test_lbl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9082
+</pre></div>
+</div>
+</div>
+</div>
+<p>TESTING THE TIME TO FIT LOGISTIC REGRESSION AFTER PCA</p>
+<p>The whole purpose of this section of the tutorial was to show that you can use PCA to speed up the fitting of machine learning algorithms. The table below shows how long it took to fit logistic regression on my MacBook after using PCA (retaining different amounts of variance each time).</p>
+<p><img alt="Dim" src="_images/6_pca-in-python.jpg" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="8_k_means.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">7. K-Means</p>
+        </div>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2023.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

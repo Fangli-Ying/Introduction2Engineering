@@ -53,6 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9. Principal Component Analysis" href="9_Principal_Component_Analysis.html" />
     <link rel="prev" title="7. Naive Bayesian Methods" href="7_Bayesian_methods.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -136,6 +137,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    7. K-Means
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="9_Principal_Component_Analysis.html">
+   9. Principal Component Analysis
   </a>
  </li>
 </ul>
@@ -483,7 +489,7 @@ Partitional clustering divides data objects into nonoverlapping groups. In other
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1b9b3faec08&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x2cbbb436cc8&gt;
 </pre></div>
 </div>
 <img alt="_images/8_k_means_23_1.png" src="_images/8_k_means_23_1.png" />
@@ -533,16 +539,16 @@ Partitional clustering divides data objects into nonoverlapping groups. In other
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 3, 2, 0, 0, 3, 2, 2, 0, 1, 3, 3, 1, 1, 0, 3, 2, 3, 1, 0, 3, 2,
-       1, 0, 3, 3, 1, 3, 3, 1, 3, 3, 0, 3, 0, 3, 3, 3, 1, 3, 2, 1, 1, 2,
-       2, 2, 3, 1, 1, 1, 0, 2, 3, 0, 3, 0, 1, 1, 2, 2, 1, 3, 3, 0, 1, 0,
-       3, 1, 1, 1, 2, 1, 2, 1, 1, 1, 0, 2, 3, 2, 2, 1, 2, 1, 0, 0, 0, 2,
-       1, 2, 2, 0, 2, 1, 2, 0, 1, 2, 3, 2, 0, 2, 3, 3, 3, 1, 2, 1, 2, 1,
-       0, 0, 2, 3, 3, 2, 3, 2, 1, 0, 2, 1, 2, 0, 1, 2, 1, 0, 1, 1, 2, 0,
-       1, 0, 1, 2, 3, 1, 0, 0, 2, 2, 1, 0, 3, 0, 2, 1, 3, 0, 3, 3, 2, 3,
-       2, 3, 3, 3, 0, 0, 3, 0, 0, 2, 2, 1, 0, 0, 3, 0, 1, 0, 2, 0, 3, 1,
-       0, 0, 0, 2, 2, 0, 0, 1, 2, 3, 2, 1, 0, 3, 2, 3, 2, 3, 3, 1, 1, 3,
-       0, 3])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 2, 1, 3, 1, 2, 3, 0, 1, 3, 3, 2, 2, 1, 0, 1, 1, 2, 2, 2, 3, 1,
+       1, 1, 1, 2, 1, 3, 3, 2, 1, 1, 1, 2, 1, 0, 1, 1, 2, 3, 3, 3, 2, 0,
+       3, 3, 3, 3, 1, 0, 2, 2, 0, 2, 3, 3, 1, 2, 0, 3, 0, 0, 1, 2, 0, 3,
+       1, 3, 3, 1, 1, 2, 3, 0, 1, 3, 0, 2, 3, 0, 3, 0, 3, 3, 2, 3, 2, 3,
+       2, 2, 0, 1, 3, 2, 3, 3, 2, 1, 0, 0, 1, 1, 1, 0, 1, 2, 1, 3, 3, 3,
+       2, 2, 2, 3, 0, 0, 0, 1, 3, 0, 3, 0, 1, 1, 1, 1, 3, 0, 2, 3, 0, 2,
+       1, 2, 3, 2, 2, 2, 3, 0, 0, 2, 1, 0, 0, 3, 0, 0, 3, 0, 3, 2, 0, 0,
+       3, 3, 2, 1, 1, 1, 3, 1, 1, 2, 3, 2, 2, 0, 3, 1, 3, 3, 2, 0, 3, 0,
+       2, 3, 3, 3, 0, 1, 0, 1, 1, 2, 0, 2, 1, 0, 3, 3, 2, 2, 1, 3, 0, 1,
+       2, 0])
 </pre></div>
 </div>
 </div>
@@ -556,10 +562,10 @@ Partitional clustering divides data objects into nonoverlapping groups. In other
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.60657196,  1.58244451],
-       [ 9.75175772,  5.73966995],
-       [ 4.054442  , -4.30544313],
-       [-1.11738762,  8.96171222]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ -9.84468758,  -7.73612581],
+       [  7.39272953,  -2.80999815],
+       [ -6.73321939,  -3.83150011],
+       [ -9.1149007 , -10.7508907 ]])
 </pre></div>
 </div>
 </div>
@@ -583,7 +589,7 @@ Partitional clustering divides data objects into nonoverlapping groups. In other
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1b9b4b478c8&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x2cbbc241b88&gt;
 </pre></div>
 </div>
 <img alt="_images/8_k_means_39_1.png" src="_images/8_k_means_39_1.png" />
@@ -652,7 +658,7 @@ Partitional clustering divides data objects into nonoverlapping groups. In other
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1b9b4bda448&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x2cbbc2e0a88&gt;
 </pre></div>
 </div>
 <img alt="_images/8_k_means_43_1.png" src="_images/8_k_means_43_1.png" />
@@ -695,6 +701,13 @@ Partitional clustering divides data objects into nonoverlapping groups. In other
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">7. Naive Bayesian Methods</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="9_Principal_Component_Analysis.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">9. Principal Component Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
