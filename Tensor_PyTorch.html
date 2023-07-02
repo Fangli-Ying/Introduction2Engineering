@@ -144,6 +144,26 @@ const thebe_selector_output = ".output, .cell_output"
    9. Principal Component Analysis
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_DBSCAN.html">
+   10 DBSCAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_ensemble-learning-techniques-tutorial.html">
+   11. Ensemble learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_Nerual_Nets_with_Pytorch.html">
+   12 Artificial Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_Recurrent_Neural_Networks_Pytorch.html">
+   13 Recurrent Neural Networks
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -539,10 +559,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.200809  , 0.08544596, 0.38277231],
-       [0.0419331 , 0.91726673, 0.58493555],
-       [0.79627484, 0.08312361, 0.4022789 ],
-       [0.39864685, 0.2119464 , 0.18701356]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.32054614, 0.04591336, 0.67957203],
+       [0.13902545, 0.40198211, 0.07146528],
+       [0.88938805, 0.45768347, 0.29553371],
+       [0.83088415, 0.75417731, 0.43765145]])
 </pre></div>
 </div>
 </div>
@@ -555,10 +575,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.2008, 0.0854, 0.3828],
-        [0.0419, 0.9173, 0.5849],
-        [0.7963, 0.0831, 0.4023],
-        [0.3986, 0.2119, 0.1870]], dtype=torch.float64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.3205, 0.0459, 0.6796],
+        [0.1390, 0.4020, 0.0715],
+        [0.8894, 0.4577, 0.2955],
+        [0.8309, 0.7542, 0.4377]], dtype=torch.float64)
 </pre></div>
 </div>
 </div>
@@ -570,10 +590,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.200809  , 0.08544596, 0.38277231],
-       [0.0419331 , 0.91726673, 0.58493555],
-       [0.79627484, 0.08312361, 0.4022789 ],
-       [0.39864685, 0.2119464 , 0.18701356]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.32054614, 0.04591336, 0.67957203],
+       [0.13902545, 0.40198211, 0.07146528],
+       [0.88938805, 0.45768347, 0.29553371],
+       [0.83088415, 0.75417731, 0.43765145]])
 </pre></div>
 </div>
 </div>
@@ -587,10 +607,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.4016, 0.1709, 0.7655],
-        [0.0839, 1.8345, 1.1699],
-        [1.5925, 0.1662, 0.8046],
-        [0.7973, 0.4239, 0.3740]], dtype=torch.float64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.6411, 0.0918, 1.3591],
+        [0.2781, 0.8040, 0.1429],
+        [1.7788, 0.9154, 0.5911],
+        [1.6618, 1.5084, 0.8753]], dtype=torch.float64)
 </pre></div>
 </div>
 </div>
@@ -603,10 +623,10 @@ y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.40161801, 0.17089192, 0.76554462],
-       [0.0838662 , 1.83453346, 1.16987109],
-       [1.59254969, 0.16624722, 0.80455781],
-       [0.7972937 , 0.4238928 , 0.37402712]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.64109227, 0.09182671, 1.35914406],
+       [0.2780509 , 0.80396422, 0.14293056],
+       [1.77877609, 0.91536695, 0.59106743],
+       [1.66176831, 1.50835461, 0.8753029 ]])
 </pre></div>
 </div>
 </div>
