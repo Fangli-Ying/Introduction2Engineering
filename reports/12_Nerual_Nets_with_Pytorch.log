@@ -17,46 +17,34 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# import variable from pytorch library
-from torch.autograd import Variable
+# random numpy array
+array = np.random.rand(2,2)
+print("{} {}\n".format(type(array),array))
 
-# define variable
-var = Variable(torch.ones(3), requires_grad = True)
-var
+# from numpy to tensor
+from_numpy_to_tensor = torch.from_numpy(array)
+print("{}\n".format(from_numpy_to_tensor))
 
-- Assume we have equation y = x^2
-- Define x = [2,4] variable
-- After calculation we find that y = [4,16] (y = x^2)
-- Recap o equation is that o = (1/2)*sum(y) = (1/2)*sum(x^2)
-- deriavative of o = x
-- Result is equal to x so gradients are [2,4]
-- Lets implement
+# from tensor to numpy
+tensor = from_numpy_to_tensor
+from_tensor_to_numpy = tensor.numpy()
+print("{} {}\n".format(type(from_tensor_to_numpy),from_tensor_to_numpy))
 
-# lets make basic backward propagation
-# we have an equation that is y = x^2
-array = [2,4]
-tensor = torch.Tensor(array)
-x = Variable(tensor, requires_grad = True)
-y = x**2
-print(" y =  ",y)
-
-# recap o equation o = 1/2*sum(y)
-o = (1/2)*sum(y)
-print(" o =  ",o)
-
-# backward
-o.backward() # calculates gradients
-
-# As I defined, variables accumulates gradients. In this part there is only one variable x.
-# Therefore variable x should be have gradients
-# Lets look at gradients with x.grad
-print("gradients: ",x.grad)
+### Basic Math with Pytorch
+- Resize: view()
+- a and b are tensor.
+- Addition: torch.add(a,b) = a + b
+- Subtraction: a.sub(b) = a - b
+- Element wise multiplication: torch.mul(a,b) = a * b 
+- Element wise division: torch.div(a,b) = a / b 
+- Mean: a.mean()
+- Standart Deviation (std): a.std()
 ------------------
 
-[1;36m  File [1;32m"<ipython-input-8-5168fbb567b3>"[1;36m, line [1;32m8[0m
-[1;33m    - Assume we have equation y = x^2[0m
-[1;37m              ^[0m
+[1;36m  File [1;32m"<ipython-input-7-eaafb792d8a9>"[1;36m, line [1;32m16[0m
+[1;33m    - a and b are tensor.[0m
+[1;37m                ^[0m
 [1;31mSyntaxError[0m[1;31m:[0m invalid syntax
 
-SyntaxError: invalid syntax (<ipython-input-8-5168fbb567b3>, line 8)
+SyntaxError: invalid syntax (<ipython-input-7-eaafb792d8a9>, line 16)
 
