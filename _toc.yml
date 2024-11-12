@@ -4,22 +4,18 @@
 format: jb-book
 root: intro
 chapters:
-- file: Introduction to Machine Learning
-- file: IntroductiontoMachineLearning
-- file: MaincategoriesofML
-- file: Class3
-- file: Class4
-- file: logistic_regression
-- file: DecisionTreeEn
-- file: linear_regression
-- file: svm
-- file: NN
-- file: Tensor_PyTorch
-- file: NN_PyTorch
-- file: TrainingNN_Pytorch
-- file: Practice_Pytorch
-- file: Pytorch_Intro
-- file: CNN and FC
-- file: RNN
-- file: GANs
+- file: 1_Introduction_to_Machine_Learning
+- file: 2_linear_regression
+- file: 3_Logistic_regression
+- file: 4_KNN
+- file: 5_SVM
+- file: 6_Decision_trees_and_random_forests
+- file: 7_Bayesian_methods
+- file: 8_k_means
+- file: 9_Principal_Component_Analysis
+- file: 10_DBSCAN
+- file: 11_ensemble-learning-techniques-tutorial
+- file: 12_Nerual_Nets_with_Pytorch
+- file: 13_Recurrent_Neural_Networks_Pytorch
+
 

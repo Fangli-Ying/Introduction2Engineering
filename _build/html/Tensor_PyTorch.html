@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Deep Learning with PyTorch &#8212; Introduction to Engineering</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Introduction to Engineering
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_Introduction_to_Machine_Learning.html">
+   1. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_linear_regression.html">
+   2. Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3_Logistic_regression.html">
+   3. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_KNN.html">
+   4. K nearest Neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5_SVM.html">
+   5. Support Vector Machine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6_Decision_trees_and_random_forests.html">
+   6. Decision Trees &amp; Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7_Bayesian_methods.html">
+   7. Naive Bayesian Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="8_k_means.html">
+   8. K-Means
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="9_Principal_Component_Analysis.html">
+   9. Principal Component Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_DBSCAN.html">
+   10 DBSCAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_ensemble-learning-techniques-tutorial.html">
+   11. Ensemble learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_Nerual_Nets_with_Pytorch.html">
+   12 Artificial Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_Recurrent_Neural_Networks_Pytorch.html">
+   13 Recurrent Neural Networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Tensor_PyTorch.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fangli-Ying/Introduction2Engineering/master?urlpath=tree/Tensor_PyTorch.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyter.org/hub/hub/user-redirect/git-pull?repo=https://github.com/Fangli-Ying/Introduction2Engineering&urlpath=tree/Introduction2Engineering/Tensor_PyTorch.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fangli-Ying/Introduction2Engineering/blob/master/Tensor_PyTorch.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-networks">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tensors">
+   Tensors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stack-them-up">
+     Stack them up!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy-to-torch-and-back">
+   Numpy to Torch and back
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction to Deep Learning with PyTorch</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-networks">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tensors">
+   Tensors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stack-them-up">
+     Stack them up!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy-to-torch-and-back">
+   Numpy to Torch and back
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-deep-learning-with-pytorch">
+<h1>Introduction to Deep Learning with PyTorch<a class="headerlink" href="#introduction-to-deep-learning-with-pytorch" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, you’ll get introduced to <a class="reference external" href="http://pytorch.org/">PyTorch</a>, a framework for building and training neural networks. PyTorch in a lot of ways behaves like the arrays you love from Numpy. These Numpy arrays, after all, are just tensors. PyTorch takes these tensors and makes it simple to move them to GPUs for the faster processing needed when training neural networks. It also provides a module that automatically calculates gradients (for backpropagation!) and another module specifically for building neural networks. All together, PyTorch ends up being more coherent with Python and the Numpy/Scipy stack compared to TensorFlow and other frameworks.</p>
+<div class="section" id="neural-networks">
+<h2>Neural Networks<a class="headerlink" href="#neural-networks" title="Permalink to this headline">¶</a></h2>
+<p>Deep Learning is based on artificial neural networks which have been around in some form since the late 1950s. The networks are built from individual parts approximating neurons, typically called units or simply “neurons.” Each unit has some number of weighted inputs. These weighted inputs are summed together (a linear combination) then passed through an activation function to get the unit’s output.</p>
+<img src="assets/simple_neuron.png" width=400px>
+<p>Mathematically this looks like:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+y &amp;= f(w_1 x_1 + w_2 x_2 + b) \\
+y &amp;= f\left(\sum_i w_i x_i +b \right)
+\end{align}
+\end{split}\]</div>
+<p>With vectors this is the dot/inner product of two vectors:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+h = \begin{bmatrix}
+x_1 \, x_2 \cdots  x_n
+\end{bmatrix}
+\cdot 
+\begin{bmatrix}
+           w_1 \\
+           w_2 \\
+           \vdots \\
+           w_n
+\end{bmatrix}
+\end{split}\]</div>
+</div>
+<div class="section" id="tensors">
+<h2>Tensors<a class="headerlink" href="#tensors" title="Permalink to this headline">¶</a></h2>
+<p>It turns out neural network computations are just a bunch of linear algebra operations on <em>tensors</em>, a generalization of matrices. A vector is a 1-dimensional tensor, a matrix is a 2-dimensional tensor, an array with three indices is a 3-dimensional tensor (RGB color images for example). The fundamental data structure for neural networks are tensors and PyTorch (as well as pretty much every other deep learning framework) is built around tensors.</p>
+<img src="assets/tensor_examples.svg" width=600px>
+<p>With the basics covered, it’s time to explore how we can use PyTorch to build a simple neural network.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, import PyTorch</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\ProgramData\Anaconda3\lib\site-packages\pandas\compat\_optional.py:138: UserWarning: Pandas requires version &#39;2.7.0&#39; or newer of &#39;numexpr&#39; (version &#39;2.6.9&#39; currently installed).
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">activation</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Sigmoid activation function </span>
+<span class="sd">    </span>
+<span class="sd">        Arguments</span>
+<span class="sd">        ---------</span>
+<span class="sd">        x: torch.Tensor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Generate some data</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c1"># Set the random seed so things are predictable</span>
+
+<span class="c1"># Features are 5 random normal variables</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="c1"># True weights for our data, random normal variables again</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="c1"># and a true bias term</span>
+<span class="n">bias</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Above I generated data we can use to get the output of our simple network. This is all just random for now, going forward we’ll start using normal data. Going through each relevant line:</p>
+<p><code class="docutils literal notranslate"><span class="pre">features</span> <span class="pre">=</span> <span class="pre">torch.randn((1,</span> <span class="pre">5))</span></code> creates a tensor with shape <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">5)</span></code>, one row and five columns, that contains values randomly distributed according to the normal distribution with a mean of zero and standard deviation of one.</p>
+<p><code class="docutils literal notranslate"><span class="pre">weights</span> <span class="pre">=</span> <span class="pre">torch.randn_like(features)</span></code> creates another tensor with the same shape as <code class="docutils literal notranslate"><span class="pre">features</span></code>, again containing values from a normal distribution.</p>
+<p>Finally, <code class="docutils literal notranslate"><span class="pre">bias</span> <span class="pre">=</span> <span class="pre">torch.randn((1,</span> <span class="pre">1))</span></code> creates a single value from a normal distribution.</p>
+<p>PyTorch tensors can be added, multiplied, subtracted, etc, just like Numpy arrays. In general, you’ll use PyTorch tensors pretty much the same way you’d use Numpy arrays. They come with some nice benefits though such as GPU acceleration which we’ll get to later. For now, use the generated data to calculate the output of this simple single layer network.</p>
+<blockquote>
+<div><p><strong>Exercise</strong>: Calculate the output of the network with input features <code class="docutils literal notranslate"><span class="pre">features</span></code>, weights <code class="docutils literal notranslate"><span class="pre">weights</span></code>, and bias <code class="docutils literal notranslate"><span class="pre">bias</span></code>. Similar to Numpy, PyTorch has a <a class="reference external" href="https://pytorch.org/docs/stable/torch.html#torch.sum"><code class="docutils literal notranslate"><span class="pre">torch.sum()</span></code></a> function, as well as a <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> method on tensors, for taking sums. Use the function <code class="docutils literal notranslate"><span class="pre">activation</span></code> defined above as the activation function.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Solution</span>
+
+<span class="c1"># Now, make our labels from our data and true weights</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">activation</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">features</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">activation</span><span class="p">((</span><span class="n">features</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.1595]])
+tensor([[0.1595]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can do the multiplication and sum in the same operation using a matrix multiplication. In general, you’ll want to use matrix multiplications since they are more efficient and accelerated using modern libraries and high-performance computing on GPUs.</p>
+<p>Here, we want to do a matrix multiplication of the features and the weights. For this we can use <a class="reference external" href="https://pytorch.org/docs/stable/torch.html#torch.mm"><code class="docutils literal notranslate"><span class="pre">torch.mm()</span></code></a> or <a class="reference external" href="https://pytorch.org/docs/stable/torch.html#torch.matmul"><code class="docutils literal notranslate"><span class="pre">torch.matmul()</span></code></a> which is somewhat more complicated and supports broadcasting. If we try to do it with <code class="docutils literal notranslate"><span class="pre">features</span></code> and <code class="docutils literal notranslate"><span class="pre">weights</span></code> as they are, we’ll get an error</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span>                              <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">13</span><span class="o">-</span><span class="mi">15</span><span class="n">d592eb5279</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+
+<span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">size</span> <span class="n">mismatch</span><span class="p">,</span> <span class="n">m1</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span> <span class="n">x</span> <span class="mi">5</span><span class="p">],</span> <span class="n">m2</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span> <span class="n">x</span> <span class="mi">5</span><span class="p">]</span> <span class="n">at</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">soumith</span><span class="o">/</span><span class="n">minicondabuild3</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">bld</span><span class="o">/</span><span class="n">pytorch_1524590658547</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">aten</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">TH</span><span class="o">/</span><span class="n">generic</span><span class="o">/</span><span class="n">THTensorMath</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">2033</span>
+</pre></div>
+</div>
+<p>As you’re building neural networks in any framework, you’ll see this often. Really often. What’s happening here is our tensors aren’t the correct shapes to perform a matrix multiplication. Remember that for matrix multiplications, the number of columns in the first tensor must equal to the number of rows in the second column. Both <code class="docutils literal notranslate"><span class="pre">features</span></code> and <code class="docutils literal notranslate"><span class="pre">weights</span></code> have the same shape, <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">5)</span></code>. This means we need to change the shape of <code class="docutils literal notranslate"><span class="pre">weights</span></code> to get the matrix multiplication to work.</p>
+<p><strong>Note:</strong> To see the shape of a tensor called <code class="docutils literal notranslate"><span class="pre">tensor</span></code>, use <code class="docutils literal notranslate"><span class="pre">tensor.shape</span></code>. If you’re building neural networks, you’ll be using this method often.</p>
+<p>There are a few options here: <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor.reshape"><code class="docutils literal notranslate"><span class="pre">weights.reshape()</span></code></a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor.resize_"><code class="docutils literal notranslate"><span class="pre">weights.resize_()</span></code></a>, and <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor.view"><code class="docutils literal notranslate"><span class="pre">weights.view()</span></code></a>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">weights.reshape(a,</span> <span class="pre">b)</span></code> will return a new tensor with the same data as <code class="docutils literal notranslate"><span class="pre">weights</span></code> with size <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code> sometimes, and sometimes a clone, as in it copies the data to another part of memory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weights.resize_(a,</span> <span class="pre">b)</span></code> returns the same tensor with a different shape. However, if the new shape results in fewer elements than the original tensor, some elements will be removed from the tensor (but not from memory). If the new shape results in more elements than the original tensor, new elements will be uninitialized in memory. Here I should note that the underscore at the end of the method denotes that this method is performed <strong>in-place</strong>. Here is a great forum thread to <a class="reference external" href="https://discuss.pytorch.org/t/what-is-in-place-operation/16244">read more about in-place operations</a> in PyTorch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weights.view(a,</span> <span class="pre">b)</span></code> will return a new tensor with the same data as <code class="docutils literal notranslate"><span class="pre">weights</span></code> with size <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">b)</span></code>.</p></li>
+</ul>
+<p>I usually use <code class="docutils literal notranslate"><span class="pre">.view()</span></code>, but any of the three methods will work for this. So, now we can reshape <code class="docutils literal notranslate"><span class="pre">weights</span></code> to have five rows and one column with something like <code class="docutils literal notranslate"><span class="pre">weights.view(5,</span> <span class="pre">1)</span></code>.</p>
+<blockquote>
+<div><p><strong>Exercise</strong>: Calculate the output of our little network using matrix multiplication.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Solution</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">activation</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">weights</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">bias</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="stack-them-up">
+<h3>Stack them up!<a class="headerlink" href="#stack-them-up" title="Permalink to this headline">¶</a></h3>
+<p>That’s how you can calculate the output for a single neuron. The real power of this algorithm happens when you start stacking these individual units into layers and stacks of layers, into a network of neurons. The output of one layer of neurons becomes the input for the next layer. With multiple input units and output units, we now need to express the weights as a matrix.</p>
+<img src='assets/multilayer_diagram_weights.png' width=450px>
+<p>The first layer shown on the bottom here are the inputs, understandably called the <strong>input layer</strong>. The middle layer is called the <strong>hidden layer</strong>, and the final layer (on the right) is the <strong>output layer</strong>. We can express this network mathematically with matrices again and use matrix multiplication to get linear combinations for each unit in one operation. For example, the hidden layer (<span class="math notranslate nohighlight">\(h_1\)</span> and <span class="math notranslate nohighlight">\(h_2\)</span> here) can be calculated</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vec{h} = [h_1 \, h_2] = 
+\begin{bmatrix}
+x_1 \, x_2 \cdots \, x_n
+\end{bmatrix}
+\cdot 
+\begin{bmatrix}
+           w_{11} &amp; w_{12} \\
+           w_{21} &amp;w_{22} \\
+           \vdots &amp;\vdots \\
+           w_{n1} &amp;w_{n2}
+\end{bmatrix}
+\end{split}\]</div>
+<p>The output for this small network is found by treating the hidden layer as inputs for the output unit. The network output is expressed simply</p>
+<div class="math notranslate nohighlight">
+\[
+y =  f_2 \! \left(\, f_1 \! \left(\vec{x} \, \mathbf{W_1}\right) \mathbf{W_2} \right)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Generate some data</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c1"># Set the random seed so things are predictable</span>
+
+<span class="c1"># Features are 3 random normal variables</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Define the size of each layer in our network</span>
+<span class="n">n_input</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>     <span class="c1"># Number of input units, must match number of input features</span>
+<span class="n">n_hidden</span> <span class="o">=</span> <span class="mi">2</span>                    <span class="c1"># Number of hidden units </span>
+<span class="n">n_output</span> <span class="o">=</span> <span class="mi">1</span>                    <span class="c1"># Number of output units</span>
+
+<span class="c1"># Weights for inputs to hidden layer</span>
+<span class="n">W1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_input</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>
+<span class="c1"># Weights for hidden layer to output layer</span>
+<span class="n">W2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_output</span><span class="p">)</span>
+
+<span class="c1"># and bias terms for hidden and output layers</span>
+<span class="n">B1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">))</span>
+<span class="n">B2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_output</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Exercise:</strong> Calculate the output for this multi-layer network using the weights <code class="docutils literal notranslate"><span class="pre">W1</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">W2</span></code>, and the biases, <code class="docutils literal notranslate"><span class="pre">B1</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">B2</span></code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Solution</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">activation</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">W1</span><span class="p">)</span> <span class="o">+</span> <span class="n">B1</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">activation</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">W2</span><span class="p">)</span> <span class="o">+</span> <span class="n">B2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.3171]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you did this correctly, you should see the output <code class="docutils literal notranslate"><span class="pre">tensor([[</span> <span class="pre">0.3171]])</span></code>.</p>
+<p>The number of hidden units a parameter of the network, often called a <strong>hyperparameter</strong> to differentiate it from the weights and biases parameters. As you’ll see later when we discuss training a neural network, the more hidden units a network has, and the more layers, the better able it is to learn from data and make accurate predictions.</p>
+</div>
+</div>
+<div class="section" id="numpy-to-torch-and-back">
+<h2>Numpy to Torch and back<a class="headerlink" href="#numpy-to-torch-and-back" title="Permalink to this headline">¶</a></h2>
+<p>Special bonus section! PyTorch has a great feature for converting between Numpy arrays and Torch tensors. To create a tensor from a Numpy array, use <code class="docutils literal notranslate"><span class="pre">torch.from_numpy()</span></code>. To convert a tensor to a Numpy array, use the <code class="docutils literal notranslate"><span class="pre">.numpy()</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.88074361, 0.11326587, 0.99263678],
+       [0.77453297, 0.27000439, 0.73464227],
+       [0.65627762, 0.02627098, 0.97089925],
+       [0.94501996, 0.42656121, 0.52094342]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.8807, 0.1133, 0.9926],
+        [0.7745, 0.2700, 0.7346],
+        [0.6563, 0.0263, 0.9709],
+        [0.9450, 0.4266, 0.5209]], dtype=torch.float64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.88074361, 0.11326587, 0.99263678],
+       [0.77453297, 0.27000439, 0.73464227],
+       [0.65627762, 0.02627098, 0.97089925],
+       [0.94501996, 0.42656121, 0.52094342]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The memory is shared between the Numpy array and Torch tensor, so if you change the values in-place of one object, the other will change as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiply PyTorch Tensor by 2, in place</span>
+<span class="n">b</span><span class="o">.</span><span class="n">mul_</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[1.7615, 0.2265, 1.9853],
+        [1.5491, 0.5400, 1.4693],
+        [1.3126, 0.0525, 1.9418],
+        [1.8900, 0.8531, 1.0419]], dtype=torch.float64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numpy array matches new values from Tensor</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.76148722, 0.22653174, 1.98527356],
+       [1.54906593, 0.54000877, 1.46928454],
+       [1.31255525, 0.05254196, 1.94179851],
+       [1.89003992, 0.85312243, 1.04188683]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2023.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

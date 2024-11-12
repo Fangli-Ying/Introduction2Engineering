@@ -1,0 +1,25 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: Introduction to Machine Learning
+- file: IntroductiontoMachineLearning
+- file: MaincategoriesofML
+- file: Class3
+- file: Class4
+- file: logistic_regression
+- file: DecisionTreeEn
+- file: linear_regression
+- file: svm
+- file: NN
+- file: Tensor_PyTorch
+- file: NN_PyTorch
+- file: TrainingNN_Pytorch
+- file: Practice_Pytorch
+- file: Pytorch_Intro
+- file: CNN and FC
+- file: RNN
+- file: GANs
+

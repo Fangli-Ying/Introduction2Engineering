@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. K-Means &#8212; Introduction to Engineering</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9. Principal Component Analysis" href="9_Principal_Component_Analysis.html" />
+    <link rel="prev" title="7. Naive Bayesian Methods" href="7_Bayesian_methods.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Introduction to Engineering</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to Introduction to Engineering
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="1_Introduction_to_Machine_Learning.html">
+   1. Introduction to Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="2_linear_regression.html">
+   2. Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="3_Logistic_regression.html">
+   3. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="4_KNN.html">
+   4. K nearest Neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="5_SVM.html">
+   5. Support Vector Machine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="6_Decision_trees_and_random_forests.html">
+   6. Decision Trees &amp; Random Forests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="7_Bayesian_methods.html">
+   7. Naive Bayesian Methods
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. K-Means
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="9_Principal_Component_Analysis.html">
+   9. Principal Component Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_DBSCAN.html">
+   10 DBSCAN
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_ensemble-learning-techniques-tutorial.html">
+   11. Ensemble learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_Nerual_Nets_with_Pytorch.html">
+   12 Artificial Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_Recurrent_Neural_Networks_Pytorch.html">
+   13 Recurrent Neural Networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/8_k_means.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Fangli-Ying/Introduction2Engineering/master?urlpath=tree/8_k_means.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyter.org/hub/hub/user-redirect/git-pull?repo=https://github.com/Fangli-Ying/Introduction2Engineering&urlpath=tree/Introduction2Engineering/8_k_means.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/Fangli-Ying/Introduction2Engineering/blob/master/8_k_means.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-clustering">
+   What Is Clustering?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview-of-clustering-techniques">
+   Overview of Clustering Techniques
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-perform-k-means-clustering">
+   How to Perform K-Means Clustering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-version-of-kmeans-in-python">
+   Simple Version of Kmeans in Python
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#full-code-version-for-simple-kmeans-in-python">
+     Full code version for simple kmeans in python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>8. K-Means</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-clustering">
+   What Is Clustering?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview-of-clustering-techniques">
+   Overview of Clustering Techniques
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-perform-k-means-clustering">
+   How to Perform K-Means Clustering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-version-of-kmeans-in-python">
+   Simple Version of Kmeans in Python
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#full-code-version-for-simple-kmeans-in-python">
+     Full code version for simple kmeans in python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="k-means">
+<h1>8. K-Means<a class="headerlink" href="#k-means" title="Permalink to this headline">¶</a></h1>
+<p><strong>K-means clustering</strong>, a method used for vector quantization, originally from signal processing, that aims to partition n observations into k groups or clusters(usual notation)in which each observation belongs to the cluster with the closest mean(cluster centers or cluster centroid), serving as a prototype of the cluster. K-Means clustering can be used an unsupervised machine learning technique to identify clusters of data objects in a dataset when we have unlabelled data which is data without defined categories or groups.</p>
+<p>There are many various kinds of clustering methods, but k-means is one of the oldest and most approachable. The algorithm follows an easy or simple way to classify a given data set through a certain number of clusters. It works iteratively to assign each data point to one of K groups based on the features that are provided. Data points are clustered based on feature similarity. The K-Means algorithm depends upon
+finding the number of clusters and data labels for a pre-defined value of K. To find the
+number of clusters in the data, we need to run the K-Means clustering algorithm for different
+values of K and compare the results. So, the performance of K-Means algorithm depends
+upon the value of K. We should choose the optimal value of K that gives us best
+performance. There are different techniques available to find the optimal value of K. The
+most common technique is the elbow method. The K-Means clustering algorithm uses an
+iterative procedure to deliver a final result. The algorithm requires number of clusters K and
+the data set as input. The data set is a collection of features for each data point.</p>
+<ul class="simple">
+<li><p>Video <a class="reference external" href="https://www.youtube.com/watch?v=4b5d3muPQmA">Kmeans</a>.</p></li>
+</ul>
+<p>Note that the unsupervised k-means algorithm has a loose relationship to the k-nearest neighbor classifier, a well-liked supervised machine learning technique for classification that’s often confused with k-means because of the name.</p>
+<div class="section" id="what-is-clustering">
+<h2>What Is Clustering?<a class="headerlink" href="#what-is-clustering" title="Permalink to this headline">¶</a></h2>
+<p>Clustering is a set of techniques used to partition data into groups, or clusters. Clusters are loosely defined as groups of data objects that are more similar to other objects in their cluster than they are to data objects in other clusters. In practice, clustering helps identify two qualities of data:</p>
+<ul class="simple">
+<li><p>Meaningfulness</p></li>
+<li><p>Usefulness</p></li>
+</ul>
+<p><strong>Meaningful clusters</strong> expand domain knowledge. For example, in the medical field, researchers applied clustering to gene expression experiments. The clustering results identified groups of patients who respond differently to medical treatments.</p>
+<p><strong>Useful clusters</strong>, on the other hand, serve as an intermediate step in a data pipeline. For example, businesses use clustering for customer segmentation. The clustering results segment customers into groups with similar purchase histories, which businesses can then use to create targeted advertising campaigns.</p>
+</div>
+<div class="section" id="overview-of-clustering-techniques">
+<h2>Overview of Clustering Techniques<a class="headerlink" href="#overview-of-clustering-techniques" title="Permalink to this headline">¶</a></h2>
+<p>You can perform clustering using many different approaches, in fact, that there are entire categories of clustering algorithms. Each of these categories has its own unique strengths and weaknesses. This means that certain clustering algorithms will result in more natural cluster assignments depending on the input data.</p>
+<blockquote>
+<div><p>Note: If you’re interested in learning about clustering algorithms not mentioned in this section, then check out A Comprehensive Survey of Clustering Algorithms for an excellent review of popular techniques.</p>
+</div></blockquote>
+<p>Selecting an appropriate clustering algorithm for your dataset is often difficult due to the number of choices available. Some important factors that affect this decision include the characteristics of the clusters, the features of the dataset, the number of outliers, and the number of data objects.</p>
+<p>You’ll explore how these factors help determine which approach is most appropriate by looking at three popular categories of clustering algorithms:</p>
+<ul class="simple">
+<li><p>Partitional clustering</p></li>
+<li><p>Hierarchical clustering</p></li>
+<li><p>Density-based clustering</p></li>
+</ul>
+<p>It’s worth reviewing these categories at a high level before jumping right into k-means. You’ll learn the strengths and weaknesses of each category to provide context for how k-means fits into the landscape of clustering algorithms.</p>
+<p><strong>Partitional Clustering</strong>
+Partitional clustering divides data objects into nonoverlapping groups. In other words, no object can be a member of more than one cluster, and every cluster must have at least one object.</p>
+<p>These techniques require the user to specify the number of clusters, indicated by the variable k. Many partitional clustering algorithms work through an iterative process to assign subsets of data points into k clusters. Two examples of partitional clustering algorithms are k-means and k-medoids.</p>
+<p>These algorithms are both nondeterministic, meaning they could produce different results from two separate runs even if the runs were based on the same input.</p>
+<p>Partitional clustering methods have several strengths:</p>
+<ul class="simple">
+<li><p>They work well when clusters have a spherical shape.</p></li>
+<li><p>They’re scalable with respect to algorithm complexity.</p></li>
+</ul>
+<p>They also have several weaknesses:</p>
+<ul class="simple">
+<li><p>They’re not well suited for clusters with complex shapes and different sizes.</p></li>
+<li><p>They break down when used with clusters of different densities.</p></li>
+</ul>
+<p><strong>Hierarchical Clustering</strong></p>
+<p>Hierarchical clustering determines cluster assignments by building a hierarchy. This is implemented by either a bottom-up or a top-down approach:</p>
+<p>Agglomerative clustering is the bottom-up approach. It merges the two points that are the most similar until all points have been merged into a single cluster.</p>
+<p>Divisive clustering is the top-down approach. It starts with all points as one cluster and splits the least similar clusters at each step until only single data points remain.</p>
+<p>These methods produce a tree-based hierarchy of points called a dendrogram. Similar to partitional clustering, in hierarchical clustering the number of clusters (k) is often predetermined by the user. Clusters are assigned by cutting the dendrogram at a specified depth that results in k groups of smaller dendrograms.</p>
+<p>Unlike many partitional clustering techniques, hierarchical clustering is a deterministic process, meaning cluster assignments won’t change when you run an algorithm twice on the same input data.</p>
+<p>The strengths of hierarchical clustering methods include the following:</p>
+<ul class="simple">
+<li><p>They often reveal the finer details about the relationships between data objects.</p></li>
+<li><p>They provide an interpretable dendrogram.</p></li>
+</ul>
+<p>The weaknesses of hierarchical clustering methods include the following:</p>
+<ul class="simple">
+<li><p>They’re computationally expensive with respect to algorithm complexity.</p></li>
+<li><p>They’re sensitive to noise and outliers.</p></li>
+</ul>
+<p><strong>Density-Based Clustering</strong></p>
+<p>Density-based clustering determines cluster assignments based on the density of data points in a region. Clusters are assigned where there are high densities of data points separated by low-density regions.</p>
+<p>Unlike the other clustering categories, this approach doesn’t require the user to specify the number of clusters. Instead, there is a distance-based parameter that acts as a tunable threshold. This threshold determines how close points must be to be considered a cluster member.</p>
+<p>Examples of density-based clustering algorithms include Density-Based Spatial Clustering of Applications with Noise, or DBSCAN, and Ordering Points To Identify the Clustering Structure, or OPTICS.</p>
+<p>The strengths of density-based clustering methods include the following:</p>
+<ul class="simple">
+<li><p>They excel at identifying clusters of nonspherical shapes.</p></li>
+<li><p>They’re resistant to outliers.</p></li>
+</ul>
+<p>The weaknesses of density-based clustering methods include the following:</p>
+<ul class="simple">
+<li><p>They aren’t well suited for clustering in high-dimensional spaces.</p></li>
+<li><p>They have trouble identifying clusters of varying densities.</p></li>
+</ul>
+</div>
+<div class="section" id="how-to-perform-k-means-clustering">
+<h2>How to Perform K-Means Clustering<a class="headerlink" href="#how-to-perform-k-means-clustering" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we will learn the conventional version of the k-means algorithm step-by step. Understanding the details of the algorithm is a fundamental step in the process of writing your k-means clustering pipeline in Python. What you learn in this section will help you decide if k-means is the right choice to solve your clustering problem.</p>
+<p><strong>Understanding the K-Means Algorithm</strong></p>
+<p>Conventional k-means requires only a few steps. The first step is to randomly select k centroids, where k is equal to the number of clusters you choose. <strong>Centroids</strong> are data points representing the center of a cluster.</p>
+<p>The main element of the algorithm works by a two-step process called <strong>expectation-maximization</strong>. The expectation step assigns each data point to its nearest centroid. Then, the maximization step computes the mean of all the points for each cluster and sets the new centroid. Here’s what the conventional version of the k-means algorithm looks like:</p>
+<p><img alt="image" src="_images/kmeans.PNG" /></p>
+<p>The quality of the cluster assignments is determined by computing <strong>the sum of the squared error (SSE)</strong> after the centroids <strong>converge</strong>, or match the previous iteration’s assignment. The SSE is defined as the sum of the squared Euclidean distances of each point to its closest centroid. Since this is a measure of error, the objective of k-means is to try to minimize this value.</p>
+<p>The figure below shows the centroids and SSE updating through the first five iterations from two different runs of the k-means algorithm on the same dataset:</p>
+<p><img alt="image" src="_images/center.webp" /></p>
+<p>The purpose of this figure is to show that the initialization of the centroids is an important step. It also highlights the use of SSE as a measure of clustering performance. After choosing a number of clusters and the initial centroids, the expectation-maximization step is repeated until the centroid positions reach convergence and are unchanged.</p>
+<p>The random initialization step causes the k-means algorithm to be <strong>nondeterministic</strong>, meaning that cluster assignments will vary if you run the same algorithm twice on the same dataset. Researchers commonly run several initializations of the entire k-means algorithm and choose the cluster assignments from the initialization with the lowest SSE.</p>
+</div>
+<div class="section" id="simple-version-of-kmeans-in-python">
+<h2>Simple Version of Kmeans in Python<a class="headerlink" href="#simple-version-of-kmeans-in-python" title="Permalink to this headline">¶</a></h2>
+<p><strong>The Data Set We Will Use In This Tutorial</strong></p>
+<p>In this tutorial, we will be using a data set of data generated using scikit-learn.</p>
+<p>Let’s import scikit-learn’s make_blobs function to create this artificial data. Open up a Jupyter Notebook and start your Python script with the following statement:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s use the “make_blobs” function to create some artificial data!</p>
+<p>More specifically, here is how you could create a data set with 200 samples that has 2 features and 4 cluster centers. The standard deviation within each cluster will be set to 1.8.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_data</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">centers</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="mf">1.8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you print this raw_data object, you’ll notice that it is actually a Python tuple. The first element of this tuple is a NumPy array with 200 observations. Each observation contains 2 features (just like we specified with our make_blobs function!).</p>
+<p>Now that our data has been created, we can move on to importing other important open-source libraries into our Python script.</p>
+<p><strong>The Imports We Will Use In This Tutorial</strong></p>
+<p>This tutorial will make use of a number of popular open-source Python libraries, including pandas, NumPy, and matplotlib. Let’s continue our Python script by adding the following imports:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\ProgramData\Anaconda3\lib\site-packages\pandas\compat\_optional.py:138: UserWarning: Pandas requires version &#39;2.7.0&#39; or newer of &#39;numexpr&#39; (version &#39;2.6.9&#39; currently installed).
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first group of imports in this code block is for manipulating large data sets. The second group of imports is for creating data visualizations.</p>
+<p>Let’s move on to visualizing our data set nex</p>
+<p><strong>Visualizing Our Data Set</strong></p>
+<p>In our make_blobs function, we specified for our data set to have 4 cluster centers. The best way to verify that this has been handled correctly is by creating some quick data visualizations.</p>
+<p>To start, let’s use the following command to plot all of the rows in the first column of our data set against all of the rows in the second column of our data set:</p>
+<p><img alt="image" src="_images/first-scatterplot.png" /></p>
+<blockquote>
+<div><p>Note: your data set will appear differently than mine since this is randomly-generated data.</p>
+</div></blockquote>
+<p>This image seems to indicate that our data set has only three clusters. This is because two of the clusters are very close to each other.</p>
+<p>To fix this, we need to reference the second element of our raw_data tuple, which is a NumPy array that contains the cluster to which each observation belongs.</p>
+<p>If we color our data set using each observation’s cluster, the unique clusters will quickly become clear. Here is the code to do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1bef66bb588&gt;
+</pre></div>
+</div>
+<img alt="_images/8_k_means_23_1.png" src="_images/8_k_means_23_1.png" />
+</div>
+</div>
+<p>We can now see that our data set has four unique clusters. Let’s move on to building our K means cluster model in Python!</p>
+<p><strong>Building and Training Our K Means Clustering Model</strong></p>
+<p>The first step to building our K means clustering algorithm is importing it from scikit-learn. To do this, add the following command to your Python script:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, lets create an instance of this KMeans class with a parameter of n_clusters=4 and assign it to the variable model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s train our model by invoking the fit method on it and passing in the first element of our raw_data tuple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KMeans(algorithm=&#39;auto&#39;, copy_x=True, init=&#39;k-means++&#39;, max_iter=300,
+    n_clusters=4, n_init=10, n_jobs=None, precompute_distances=&#39;auto&#39;,
+    random_state=None, tol=0.0001, verbose=0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll explore how to make predictions with this K means clustering model.</p>
+<p>Before moving on, I wanted to point out one difference that you may have noticed between the process for building this K means clustering algorithm (which is an unsupervised machine learning algorithm) and the supervised machine learning algorithms we’ve worked with so far in this course.</p>
+<p>Namely, we did not have to split the data set into training data and test data. This is an important difference - and in fact, you never need to make the train/test split on a data set when building unsupervised machine learning models!</p>
+<p>First, let’s predict which cluster each data point belongs to. To do this, access the labels_ attribute from our model object using the dot operator, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">labels_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 0, 2, 2, 1, 0, 2, 2, 1, 1, 0, 2, 2, 3, 0, 2, 3, 3, 2, 0, 3, 1,
+       0, 2, 2, 3, 0, 0, 0, 3, 2, 2, 2, 3, 1, 0, 3, 2, 0, 1, 2, 0, 3, 1,
+       3, 3, 1, 0, 2, 2, 3, 2, 2, 0, 3, 1, 3, 1, 2, 0, 2, 0, 3, 1, 2, 3,
+       1, 2, 3, 2, 3, 2, 2, 1, 1, 0, 3, 1, 1, 2, 1, 1, 2, 3, 1, 0, 2, 1,
+       0, 0, 1, 1, 3, 0, 2, 1, 3, 2, 3, 3, 2, 0, 3, 1, 0, 2, 2, 0, 0, 2,
+       1, 0, 0, 0, 1, 0, 3, 0, 0, 2, 3, 3, 2, 3, 3, 2, 1, 1, 3, 1, 2, 2,
+       1, 0, 0, 1, 2, 0, 0, 1, 1, 1, 1, 0, 1, 3, 2, 2, 1, 2, 1, 2, 3, 3,
+       2, 1, 0, 3, 1, 0, 0, 2, 0, 0, 2, 1, 0, 1, 1, 3, 3, 2, 2, 1, 3, 1,
+       0, 1, 0, 1, 2, 1, 1, 1, 3, 1, 0, 1, 1, 1, 2, 0, 3, 1, 1, 1, 1, 3,
+       2, 1])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This generates a NumPy array with predictions for each data point that looks like this:</p>
+<p>To see where the center of each cluster lies, access the cluster_centers_ attribute using the dot operator like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">cluster_centers_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2.06053535, -5.85932083],
+       [ 3.53168698,  4.331064  ],
+       [ 1.53060281, -1.41373173],
+       [-1.53269423,  3.99285135]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This generates a two-dimensional NumPy array that contains the coordinates of each clusters center. It will look like this:</p>
+<p>We’ll assess the accuracy of these predictions</p>
+<p><strong>Visualizing the Accuracy of Our Model</strong></p>
+<p>The last thing we’ll do in this tutorial is visualize the accuracy of our model. You can use the following code to do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Our Model&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Original Data&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1bef6f4ae88&gt;
+</pre></div>
+</div>
+<img alt="_images/8_k_means_39_1.png" src="_images/8_k_means_39_1.png" />
+</div>
+</div>
+<p>This generates two different plots side-by-side where one plot shows the clusters according to the real data set and the other plot shows the clusters according to our model. Here is what the output looks like:</p>
+<p>Although the coloring between the two plots is different, you can see that our model did a fairly good job of predicting the clusters within our data set. You can also see that the model was not perfect - if you look at the data points along a cluster’s edge, you can see that it occasionally misclassified an observation from our data set.</p>
+<p>There’s one last thing that needs to be mentioned about measuring our model’s prediction. In this example ,we knew which cluster each observation belonged to because we actually generated this data set ourselves.</p>
+<p>This is highly unusual. K means clustering is more often applied when the clusters aren’t known in advance. Instead, machine learning practitioners use K means clustering to find patterns that they don’t already know within a data set.</p>
+<div class="section" id="full-code-version-for-simple-kmeans-in-python">
+<h3>Full code version for simple kmeans in python<a class="headerlink" href="#full-code-version-for-simple-kmeans-in-python" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create artificial data set</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">centers</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="mf">1.8</span><span class="p">)</span>
+
+<span class="c1">#Data imports</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">#Visualization imports</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1">#Visualize the data</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1">#Build and train the model</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1">#See the predictions</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">labels_</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">cluster_centers_</span>
+
+<span class="c1">#PLot the predictions against the original data set</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Our Model&#39;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Original Data&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">raw_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">raw_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1bef6fb8088&gt;
+</pre></div>
+</div>
+<img alt="_images/8_k_means_43_1.png" src="_images/8_k_means_43_1.png" />
+<img alt="_images/8_k_means_43_2.png" src="_images/8_k_means_43_2.png" />
+</div>
+</div>
+<p>Practice: - Blog <a class="reference external" href="https://realpython.com/k-means-clustering-python/">Kmeans</a>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="7_Bayesian_methods.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">7. Naive Bayesian Methods</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="9_Principal_Component_Analysis.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">9. Principal Component Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By <a href="https://fangli-ying.github.io/">Dr. Fangli Ying</a><br/>
+    
+        &copy; Copyright 2023.<br/>
+      <div class="extra_footer">
+        Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
